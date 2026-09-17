@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ComingSoon } from "@/components/ComingSoon";
 
-export const Route = createFileRoute("/compare")({
+export const Route = createFileRoute("/compare/")({
   head: () => ({
     meta: [
       { title: "Сравниваем времена — English Tenses Trainer" },

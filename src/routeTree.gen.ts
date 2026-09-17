@@ -16,6 +16,7 @@ import { Route as MistakesRouteImport } from './routes/mistakes'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as TimeMachineRouteImport } from './routes/time-machine'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
+import { Route as LearnPresentContinuousRouteImport } from './routes/learn.present-continuous'
 import { Route as LearnPresentSimpleRouteImport } from './routes/learn.present-simple'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +54,11 @@ const LearnIndexRoute = LearnIndexRouteImport.update({
   path: '/learn/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnPresentContinuousRoute = LearnPresentContinuousRouteImport.update({
+  id: '/learn/present-continuous',
+  path: '/learn/present-continuous',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearnPresentSimpleRoute = LearnPresentSimpleRouteImport.update({
   id: '/learn/present-simple',
   path: '/learn/present-simple',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
+  '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/learn/': typeof LearnIndexRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
+  '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/learn': typeof LearnIndexRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
+  '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/learn/': typeof LearnIndexRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/mistakes'
     | '/progress'
     | '/time-machine'
+    | '/learn/present-continuous'
     | '/learn/present-simple'
     | '/learn/'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/mistakes'
     | '/progress'
     | '/time-machine'
+    | '/learn/present-continuous'
     | '/learn/present-simple'
     | '/learn'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/mistakes'
     | '/progress'
     | '/time-machine'
+    | '/learn/present-continuous'
     | '/learn/present-simple'
     | '/learn/'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   MistakesRoute: typeof MistakesRoute
   ProgressRoute: typeof ProgressRoute
   TimeMachineRoute: typeof TimeMachineRoute
+  LearnPresentContinuousRoute: typeof LearnPresentContinuousRoute
   LearnPresentSimpleRoute: typeof LearnPresentSimpleRoute
   LearnIndexRoute: typeof LearnIndexRoute
 }
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn/present-continuous': {
+      id: '/learn/present-continuous'
+      path: '/learn/present-continuous'
+      fullPath: '/learn/present-continuous'
+      preLoaderRoute: typeof LearnPresentContinuousRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn/present-simple': {
       id: '/learn/present-simple'
       path: '/learn/present-simple'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   MistakesRoute: MistakesRoute,
   ProgressRoute: ProgressRoute,
   TimeMachineRoute: TimeMachineRoute,
+  LearnPresentContinuousRoute: LearnPresentContinuousRoute,
   LearnPresentSimpleRoute: LearnPresentSimpleRoute,
   LearnIndexRoute: LearnIndexRoute,
 }
