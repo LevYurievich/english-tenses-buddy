@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CATEGORY_RULES, CATEGORY_TITLES } from "@/data/present-simple/exercises";
+import { CATEGORY_RULES, CATEGORY_TITLES } from "@/data/error-categories";
 import { TENSES } from "@/data/tenses";
 import { clearMistakes, useProgress } from "@/lib/progress";
 import { Button } from "@/components/ui/app-button";
@@ -97,9 +97,9 @@ function MistakesPage() {
           </details>
 
           <div className="flex flex-wrap gap-2">
-            {tense.available ? (
+            {tense.available && tense.path ? (
               <Link
-                to="/learn/present-simple"
+                to={tense.path as "/learn/present-simple"}
                 search={{ tab: "mistakes" as const }}
                 className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition hover:brightness-110"
               >
