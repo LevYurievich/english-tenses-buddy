@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Exercise } from "@/data/types";
-import { checkAnswer } from "@/lib/check-exercise";
+import { checkAnswer, displayAnswer } from "@/lib/check-exercise";
+import { WhyPanel } from "@/components/WhyPanel";
 import { AnswerFeedback } from "@/components/AnswerFeedback";
 import { GrammarChip } from "@/components/GrammarChip";
 import { Hint } from "@/components/Hint";
@@ -114,6 +115,14 @@ export function ExerciseCard({
                 Ответ сохранён. Результат будет в конце теста.
               </p>
             )}
+
+            {showFeedback ? (
+              <WhyPanel
+                exercise={exercise}
+                correct={correct}
+                userAnswer={displayAnswer(exercise, isTokenType ? finalAnswer : answer)}
+              />
+            ) : null}
 
             {showFeedback && exercise.type === "constructor" ? (
               <div className="flex flex-wrap gap-4 rounded-xl border border-border bg-muted/40 p-4">
