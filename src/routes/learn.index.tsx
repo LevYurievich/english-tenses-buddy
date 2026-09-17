@@ -45,7 +45,12 @@ function LearnCatalog() {
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {TENSES_BY_GROUP(group).map((tense) => (
-              <TenseCard key={tense.id} tense={tense} percent={percents[tense.id] ?? 0} />
+              <TenseCard
+                key={tense.id}
+                tense={tense}
+                percent={percents[tense.id] ?? 0}
+                completed={isCompleted(progress, tense.id)}
+              />
             ))}
           </div>
         </section>
