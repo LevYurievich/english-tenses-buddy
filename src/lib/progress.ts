@@ -18,6 +18,7 @@ export type TenseProgress = {
   lastTestScore: number | null;
   bestTestScore: number | null;
   testTotal: number | null;
+  testAttempts?: number;
   mistakes: number;
 };
 
@@ -45,6 +46,7 @@ const emptyTense = (): TenseProgress => ({
   lastTestScore: null,
   bestTestScore: null,
   testTotal: null,
+  testAttempts: 0,
   mistakes: 0,
 });
 
