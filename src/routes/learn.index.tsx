@@ -3,7 +3,7 @@ import { TenseCard } from "@/components/TenseCard";
 import { GROUP_TITLES, TENSES_BY_GROUP } from "@/data/tenses";
 import type { TenseGroup } from "@/data/types";
 import { useProgress } from "@/lib/progress";
-import { allPercents } from "@/lib/tense-stats";
+import { allPercents, isCompleted } from "@/lib/tense-stats";
 
 export const Route = createFileRoute("/learn/")({
   head: () => ({
