@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Exercise } from "@/data/types";
-import { checkAnswer } from "@/lib/check-exercise";
+import { checkAnswer, displayAnswer } from "@/lib/check-exercise";
+import { WhyPanel } from "@/components/WhyPanel";
 import { AnswerFeedback } from "@/components/AnswerFeedback";
 import { GrammarChip } from "@/components/GrammarChip";
 import { Hint } from "@/components/Hint";
