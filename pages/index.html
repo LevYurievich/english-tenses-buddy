@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>English Tenses Trainer — тренажёр времён английского языка</title>
+    <meta
+      name="description"
+      content="Интерактивный тренажёр времён английского языка для школьников: теория, формулы, упражнения и мини-тесты."
+    />
+    <meta property="og:title" content="English Tenses Trainer" />
+    <meta
+      property="og:description"
+      content="Разберись во временах английского, а не просто заучи правила."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap"
+    />
+    <script>
+      // GitHub Pages SPA redirect: 404.html sends the deep link here as ?/path
+      (function () {
+        var search = window.location.search;
+        if (search.indexOf("?/") === 0) {
+          var route = search.slice(2).split("&")[0].replace(/~and~/g, "&");
+          var rest = search.slice(2).split("&").slice(1).join("&");
+          window.history.replaceState(
+            null,
+            "",
+            window.location.pathname.replace(/\/$/, "/") +
+              route +
+              (rest ? "?" + rest : "") +
+              window.location.hash,
+          );
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/entry-pages.tsx"></script>
+  </body>
+</html>
