@@ -3,7 +3,7 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { Button } from "@/components/ui/app-button";
 import { TENSES } from "@/data/tenses";
 import { getTenseProgress, resetAll, useProgress } from "@/lib/progress";
-import { allPercents, overall } from "@/lib/tense-stats";
+import { allPercents, COUNTS, overall } from "@/lib/tense-stats";
 
 export const Route = createFileRoute("/progress")({
   head: () => ({
@@ -78,6 +78,10 @@ function ProgressPage() {
                     <dd className="font-semibold">
                       {p.bestTestScore !== null ? `${p.bestTestScore}/${p.testTotal}` : "—"}
                     </dd>
+                  </div>
+                  <div className="flex justify-between rounded-lg bg-muted px-3 py-2">
+                    <dt className="text-muted-foreground">Попыток теста</dt>
+                    <dd className="font-semibold">{p.testAttempts ?? 0}</dd>
                   </div>
                   <div className="flex justify-between rounded-lg bg-muted px-3 py-2">
                     <dt className="text-muted-foreground">Ошибок</dt>
