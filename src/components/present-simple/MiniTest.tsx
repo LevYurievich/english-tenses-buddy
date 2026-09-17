@@ -9,10 +9,12 @@ export function MiniTest({
   exercises,
   tenseId,
   title,
+  extraActions,
 }: {
   exercises: Exercise[];
   tenseId: string;
   title: string;
+  extraActions?: React.ReactNode;
 }) {
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState<{ skill: string; correct: boolean }[]>([]);
