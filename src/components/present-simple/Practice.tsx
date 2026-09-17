@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { ExerciseCard } from "@/components/exercises/ExerciseCard";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/app-button";
 import { ProgressBar } from "@/components/ProgressBar";
 import type { Exercise } from "@/data/types";
 import { recordAnswer } from "@/lib/progress";

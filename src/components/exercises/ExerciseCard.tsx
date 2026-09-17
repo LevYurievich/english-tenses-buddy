@@ -4,7 +4,7 @@ import { checkAnswer } from "@/lib/check-exercise";
 import { AnswerFeedback } from "@/components/AnswerFeedback";
 import { GrammarChip } from "@/components/GrammarChip";
 import { Hint } from "@/components/Hint";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/app-button";
 import { ProgressBar } from "@/components/ProgressBar";
 import {
   ErrorFinderInput,

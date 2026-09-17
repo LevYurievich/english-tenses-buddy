@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProgressBar } from "@/components/ProgressBar";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/app-button";
 import { TENSES } from "@/data/tenses";
 import { getTenseProgress, resetAll, useProgress } from "@/lib/progress";
 import { allPercents, overall } from "@/lib/tense-stats";

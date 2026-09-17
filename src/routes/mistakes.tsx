@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CATEGORY_RULES, CATEGORY_TITLES } from "@/data/present-simple/exercises";
 import { TENSES } from "@/data/tenses";
 import { clearMistakes, useProgress } from "@/lib/progress";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/app-button";
 
 export const Route = createFileRoute("/mistakes")({
   head: () => ({

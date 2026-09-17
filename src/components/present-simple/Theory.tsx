@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GrammarChip, RoleLegend } from "@/components/GrammarChip";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/app-button";
 import {
   CHEATSHEET,
   MARKER_WORDS,

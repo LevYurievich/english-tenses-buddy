@@ -1,5 +1,5 @@
 import { SKILL_TITLES } from "@/data/present-simple/exercises";
-import { Button } from "./ui/Button";
+import { Button } from "./ui/app-button";
 import { ProgressBar } from "./ProgressBar";
 
 export type SkillStat = { skill: string; correct: number; total: number };
