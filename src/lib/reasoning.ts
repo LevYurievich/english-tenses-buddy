@@ -1,5 +1,7 @@
 import type { Exercise, Reasoning, ReasoningStepKind } from "@/data/types";
 import { PRESENT_SIMPLE_REASONING } from "@/data/present-simple/reasoning";
+import { PRESENT_CONTINUOUS_REASONING } from "@/data/present-continuous/reasoning";
+import { COMPARE_PRESENT_REASONING } from "@/data/compare/present-simple-continuous";
 import { normalize } from "./answer-check";
 
 /**
@@ -8,6 +10,8 @@ import { normalize } from "./answer-check";
  */
 export const REASONING_BY_TENSE: Record<string, Record<string, Reasoning>> = {
   "present-simple": PRESENT_SIMPLE_REASONING,
+  "present-continuous": PRESENT_CONTINUOUS_REASONING,
+  "compare-present": COMPARE_PRESENT_REASONING,
 };
 
 /** Стандартные заголовки шагов (общие для всех времён). */

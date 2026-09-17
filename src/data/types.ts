@@ -8,7 +8,14 @@ export type ErrorCategory =
   | "question"
   | "verb_form"
   | "tense_choice"
-  | "translation";
+  | "translation"
+  // --- Present Continuous ---
+  | "missing_be"
+  | "wrong_be"
+  | "missing_ing"
+  | "question_word_order"
+  | "negative_position"
+  | "ing_spelling";
 
 export type Difficulty = 1 | 2 | 3;
 
@@ -62,6 +69,14 @@ export type Reasoning = {
   wrongAnswers?: { answer: string; text: string }[];
   /** Общее объяснение ошибки, если конкретный вариант не найден. */
   wrongDefault?: string;
+  /**
+   * LEVEL 2 — «Почему именно это время, а не другое?».
+   * Нужен в сравнительных и смешанных упражнениях.
+   */
+  whyThisTense?: {
+    title?: string;
+    steps: ReasoningStep[];
+  };
 };
 
 type Base = {
@@ -78,8 +93,20 @@ type Base = {
   errorCategory: ErrorCategory;
   /** Пошаговое объяснение «Почему?». Можно задать здесь или в файле reasoning.ts времени. */
   reasoning?: Reasoning;
+  /** Короткая ситуация на русском («Пойми ситуацию»). Показывается над заданием. */
+  situation?: string;
   /** Группа для статистики мини-теста. */
-  skill: "statement" | "negative" | "question" | "verb-form" | "order" | "translation";
+  skill:
+    | "statement"
+    | "negative"
+    | "question"
+    | "verb-form"
+    | "order"
+    | "translation"
+    | "be-form"
+    | "ing"
+    | "tense-choice"
+    | "situation";
 };
 
 export type MultipleChoiceExercise = Base & {

@@ -84,6 +84,21 @@ export function WhyPanel({
             <p className="mt-1 font-semibold">{reasoning.result}</p>
           </div>
 
+          {reasoning.whyThisTense ? (
+            <div className="rounded-lg border-2 border-primary/30 bg-background/70 p-3">
+              <p className="font-display text-sm font-bold text-primary">
+                {reasoning.whyThisTense.title ?? "Почему именно это время?"}
+              </p>
+              <ul className="mt-2 space-y-1.5">
+                {reasoning.whyThisTense.steps.map((step, i) => (
+                  <li key={`tense-${i}`} className="text-sm leading-relaxed">
+                    {step.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
           {reasoning.remember ? (
             <p className="rounded-lg border border-dashed border-marker/60 bg-marker-soft px-3 py-2 text-sm text-marker">
               <span className="font-bold">Запомни: </span>

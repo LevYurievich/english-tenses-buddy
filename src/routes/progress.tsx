@@ -58,8 +58,10 @@ function ProgressPage() {
                     <dd className="font-semibold">{p.theoryDone ? "да" : "нет"}</dd>
                   </div>
                   <div className="flex justify-between rounded-lg bg-muted px-3 py-2">
-                    <dt className="text-muted-foreground">Упражнений выполнено</dt>
-                    <dd className="font-semibold">{p.doneExercises.length}</dd>
+                    <dt className="text-muted-foreground">Практика</dt>
+                    <dd className="font-semibold">
+                      {p.doneExercises.length}/{COUNTS[t.id]?.exercises ?? 0}
+                    </dd>
                   </div>
                   <div className="flex justify-between rounded-lg bg-muted px-3 py-2">
                     <dt className="text-muted-foreground">Точность ответов</dt>

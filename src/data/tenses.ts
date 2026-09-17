@@ -28,8 +28,9 @@ export const TENSES: TenseMeta[] = [
     id: "present-continuous",
     title: "Present Continuous",
     group: "present",
-    tagline: "Сейчас • в этот момент",
-    available: false,
+    tagline: "Сейчас • в процессе • временная ситуация",
+    available: true,
+    path: "/learn/present-continuous",
   },
   {
     id: "present-perfect",
