@@ -37,6 +37,7 @@ export function MiniTest({
           setIndex(0);
           setResults([]);
         }}
+        extraActions={extraActions}
       />
     );
   }
