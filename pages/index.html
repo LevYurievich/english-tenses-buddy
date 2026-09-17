@@ -22,24 +22,6 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap"
     />
-    <script>
-      // GitHub Pages SPA redirect: 404.html sends the deep link here as ?/path
-      (function () {
-        var search = window.location.search;
-        if (search.indexOf("?/") === 0) {
-          var route = search.slice(2).split("&")[0].replace(/~and~/g, "&");
-          var rest = search.slice(2).split("&").slice(1).join("&");
-          window.history.replaceState(
-            null,
-            "",
-            window.location.pathname.replace(/\/$/, "/") +
-              route +
-              (rest ? "?" + rest : "") +
-              window.location.hash,
-          );
-        }
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>
