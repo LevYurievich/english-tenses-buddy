@@ -29,8 +29,8 @@ export function GrammarChip({
 }: {
   role: GrammarRole;
   children: React.ReactNode;
-  note?: string;
-  showLabel?: boolean;
+  note?: string | undefined;
+  showLabel?: boolean | undefined;
 }) {
   return (
     <span className="inline-flex flex-col items-center gap-1 align-top">

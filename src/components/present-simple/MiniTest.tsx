@@ -40,6 +40,7 @@ export function MiniTest({
   }
 
   const current = exercises[index];
+  if (!current) return null;
 
   return (
     <ExerciseCard

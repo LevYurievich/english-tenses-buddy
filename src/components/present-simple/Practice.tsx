@@ -61,6 +61,8 @@ export function Practice({
     );
   }
 
+  if (!current) return null;
+
   return (
     <div className="space-y-4">
       <p className="text-sm font-semibold text-muted-foreground">{title}</p>

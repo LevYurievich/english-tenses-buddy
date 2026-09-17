@@ -12,7 +12,7 @@ type Tab = "theory" | "practice" | "test" | "mistakes";
 
 export const Route = createFileRoute("/learn/present-simple")({
   validateSearch: (search: Record<string, unknown>): { tab?: Tab } => {
-    const tab = search.tab;
+    const tab = search["tab"];
     return tab === "theory" || tab === "practice" || tab === "test" || tab === "mistakes"
       ? { tab }
       : {};
