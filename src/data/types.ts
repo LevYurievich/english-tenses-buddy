@@ -76,6 +76,8 @@ type Base = {
   explanation: string;
   rule: string;
   errorCategory: ErrorCategory;
+  /** Пошаговое объяснение «Почему?». Можно задать здесь или в файле reasoning.ts времени. */
+  reasoning?: Reasoning;
   /** Группа для статистики мини-теста. */
   skill: "statement" | "negative" | "question" | "verb-form" | "order" | "translation";
 };
