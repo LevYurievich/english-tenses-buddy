@@ -1,12 +1,13 @@
 import { Link } from "@tanstack/react-router";
+import { BookOpen, Clock, Home, Puzzle, TrendingUp } from "lucide-react";
 import type { ReactNode } from "react";
 
 const NAV = [
-  { to: "/", label: "Главная", icon: "🏠" },
-  { to: "/learn", label: "Учим времена", icon: "📘" },
-  { to: "/mistakes", label: "Мои ошибки", icon: "🧩" },
-  { to: "/progress", label: "Прогресс", icon: "📈" },
-  { to: "/time-machine", label: "Машина времени", icon: "🕰️" },
+  { to: "/", label: "Главная", icon: Home },
+  { to: "/learn", label: "Учим времена", icon: BookOpen },
+  { to: "/mistakes", label: "Мои ошибки", icon: Puzzle },
+  { to: "/progress", label: "Прогресс", icon: TrendingUp },
+  { to: "/time-machine", label: "Машина времени", icon: Clock },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -29,7 +30,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               activeProps={{ className: "bg-primary/10 text-primary" }}
               className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-muted-foreground transition hover:bg-muted"
             >
-              <span aria-hidden>{item.icon}</span>
+              <item.icon aria-hidden className="size-4" />
               {item.label}
             </Link>
           ))}
@@ -54,9 +55,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             activeProps={{ className: "text-primary" }}
             className="flex flex-1 flex-col items-center gap-0.5 px-1 py-2 text-[10px] font-semibold text-muted-foreground"
           >
-            <span aria-hidden className="text-base">
-              {item.icon}
-            </span>
+            <item.icon aria-hidden className="size-5" />
             {item.label}
           </Link>
         ))}
