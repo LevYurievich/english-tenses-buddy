@@ -160,7 +160,7 @@ export const COMPARE_PRESENT_EXERCISES: Exercise[] = [
   },
 ];
 
-const simpleTense = (text: string): Reasoning["whyThisTense"] => ({
+const simpleTense = (text: string): NonNullable<Reasoning["whyThisTense"]> => ({
   title: "Почему Present Simple, а не Present Continuous?",
   steps: [
     { kind: "tense", text },
@@ -168,7 +168,7 @@ const simpleTense = (text: string): Reasoning["whyThisTense"] => ({
   ],
 });
 
-const continuousTense = (text: string): Reasoning["whyThisTense"] => ({
+const continuousTense = (text: string): NonNullable<Reasoning["whyThisTense"]> => ({
   title: "Почему Present Continuous, а не Present Simple?",
   steps: [
     { kind: "tense", text: "Present Simple описывает то, что происходит обычно." },
