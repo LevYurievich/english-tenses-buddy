@@ -11,10 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AllTensesRouteImport } from './routes/all-tenses'
-import { Route as CompareRouteImport } from './routes/compare'
 import { Route as MistakesRouteImport } from './routes/mistakes'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as TimeMachineRouteImport } from './routes/time-machine'
+import { Route as CompareIndexRouteImport } from './routes/compare.index'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnPresentContinuousRouteImport } from './routes/learn.present-continuous'
 import { Route as LearnPresentSimpleRouteImport } from './routes/learn.present-simple'
@@ -27,11 +27,6 @@ const IndexRoute = IndexRouteImport.update({
 const AllTensesRoute = AllTensesRouteImport.update({
   id: '/all-tenses',
   path: '/all-tenses',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CompareRoute = CompareRouteImport.update({
-  id: '/compare',
-  path: '/compare',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MistakesRoute = MistakesRouteImport.update({
@@ -47,6 +42,11 @@ const ProgressRoute = ProgressRouteImport.update({
 const TimeMachineRoute = TimeMachineRouteImport.update({
   id: '/time-machine',
   path: '/time-machine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareIndexRoute = CompareIndexRouteImport.update({
+  id: '/compare/',
+  path: '/compare/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnIndexRoute = LearnIndexRouteImport.update({
@@ -68,35 +68,35 @@ const LearnPresentSimpleRoute = LearnPresentSimpleRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/all-tenses': typeof AllTensesRoute
-  '/compare': typeof CompareRoute
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
+  '/compare/': typeof CompareIndexRoute
   '/learn/': typeof LearnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/all-tenses': typeof AllTensesRoute
-  '/compare': typeof CompareRoute
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
+  '/compare': typeof CompareIndexRoute
   '/learn': typeof LearnIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/all-tenses': typeof AllTensesRoute
-  '/compare': typeof CompareRoute
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
+  '/compare/': typeof CompareIndexRoute
   '/learn/': typeof LearnIndexRoute
 }
 export interface FileRouteTypes {
@@ -104,46 +104,46 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/all-tenses'
-    | '/compare'
     | '/mistakes'
     | '/progress'
     | '/time-machine'
     | '/learn/present-continuous'
     | '/learn/present-simple'
+    | '/compare/'
     | '/learn/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/all-tenses'
-    | '/compare'
     | '/mistakes'
     | '/progress'
     | '/time-machine'
     | '/learn/present-continuous'
     | '/learn/present-simple'
+    | '/compare'
     | '/learn'
   id:
     | '__root__'
     | '/'
     | '/all-tenses'
-    | '/compare'
     | '/mistakes'
     | '/progress'
     | '/time-machine'
     | '/learn/present-continuous'
     | '/learn/present-simple'
+    | '/compare/'
     | '/learn/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AllTensesRoute: typeof AllTensesRoute
-  CompareRoute: typeof CompareRoute
   MistakesRoute: typeof MistakesRoute
   ProgressRoute: typeof ProgressRoute
   TimeMachineRoute: typeof TimeMachineRoute
   LearnPresentContinuousRoute: typeof LearnPresentContinuousRoute
   LearnPresentSimpleRoute: typeof LearnPresentSimpleRoute
+  CompareIndexRoute: typeof CompareIndexRoute
   LearnIndexRoute: typeof LearnIndexRoute
 }
 
@@ -161,13 +161,6 @@ declare module '@tanstack/react-router' {
       path: '/all-tenses'
       fullPath: '/all-tenses'
       preLoaderRoute: typeof AllTensesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/compare': {
-      id: '/compare'
-      path: '/compare'
-      fullPath: '/compare'
-      preLoaderRoute: typeof CompareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mistakes': {
@@ -189,6 +182,13 @@ declare module '@tanstack/react-router' {
       path: '/time-machine'
       fullPath: '/time-machine'
       preLoaderRoute: typeof TimeMachineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare/': {
+      id: '/compare/'
+      path: '/compare'
+      fullPath: '/compare/'
+      preLoaderRoute: typeof CompareIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn/': {
@@ -218,12 +218,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AllTensesRoute: AllTensesRoute,
-  CompareRoute: CompareRoute,
   MistakesRoute: MistakesRoute,
   ProgressRoute: ProgressRoute,
   TimeMachineRoute: TimeMachineRoute,
   LearnPresentContinuousRoute: LearnPresentContinuousRoute,
   LearnPresentSimpleRoute: LearnPresentSimpleRoute,
+  CompareIndexRoute: CompareIndexRoute,
   LearnIndexRoute: LearnIndexRoute,
 }
 export const routeTree = rootRouteImport
