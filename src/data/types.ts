@@ -21,6 +21,49 @@ export type ExerciseType =
   | "translation"
   | "constructor";
 
+/**
+ * Универсальная структура объяснения «Почему?» — подходит для всех 12 времён.
+ * Хранится отдельно от UI, тексты заранее подготовлены (без генерации в реальном времени).
+ */
+export type ReasoningStepKind =
+  /** Когда происходит действие? */
+  | "when"
+  /** Что происходит? */
+  | "what"
+  /** Какое время подходит? */
+  | "tense"
+  /** Кто выполняет действие? */
+  | "who"
+  /** Какая нужна конструкция? */
+  | "structure"
+  /** Какая форма глагола нужна? */
+  | "form";
+
+export type ReasoningStep = {
+  kind: ReasoningStepKind;
+  /** Необязательный свой заголовок вместо стандартного вопроса. */
+  title?: string;
+  text: string;
+  /** Ключевое слово-признак в предложении. */
+  highlight?: string;
+};
+
+export type Reasoning = {
+  /** «Почему plays?» — если не задано, собирается из правильного ответа. */
+  title?: string;
+  /** Короткая цепочка: Признак → Значение → Время → Формула → Ответ. */
+  chain?: string[];
+  steps: ReasoningStep[];
+  /** Итоговое предложение. */
+  result: string;
+  /** «Запомни: DOES забирает S себе.» */
+  remember?: string;
+  /** Разбор конкретных неверных вариантов. */
+  wrongAnswers?: { answer: string; text: string }[];
+  /** Общее объяснение ошибки, если конкретный вариант не найден. */
+  wrongDefault?: string;
+};
+
 type Base = {
   id: string;
   tense: string;
