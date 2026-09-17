@@ -33,5 +33,8 @@ export default defineConfig({
   build: {
     outDir,
     emptyOutDir: true,
+    rollupOptions: {
+      input: path.resolve(rootDir, "pages/index.html"),
+    },
   },
 });
