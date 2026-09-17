@@ -163,6 +163,7 @@ export function recordTest(tenseId: string, score: number, total: number) {
           lastTestScore: score,
           testTotal: total,
           bestTestScore: Math.max(prev.bestTestScore ?? 0, score),
+          testAttempts: (prev.testAttempts ?? 0) + 1,
         },
       },
     };
