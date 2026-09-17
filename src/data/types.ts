@@ -93,8 +93,20 @@ type Base = {
   errorCategory: ErrorCategory;
   /** Пошаговое объяснение «Почему?». Можно задать здесь или в файле reasoning.ts времени. */
   reasoning?: Reasoning;
+  /** Короткая ситуация на русском («Пойми ситуацию»). Показывается над заданием. */
+  situation?: string;
   /** Группа для статистики мини-теста. */
-  skill: "statement" | "negative" | "question" | "verb-form" | "order" | "translation";
+  skill:
+    | "statement"
+    | "negative"
+    | "question"
+    | "verb-form"
+    | "order"
+    | "translation"
+    | "be-form"
+    | "ing"
+    | "tense-choice"
+    | "situation";
 };
 
 export type MultipleChoiceExercise = Base & {
