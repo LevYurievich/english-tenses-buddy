@@ -10,11 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MistakesRouteImport } from './routes/mistakes'
+import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
+import { Route as LearnPresentSimpleRouteImport } from './routes/learn.present-simple'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MistakesRoute = MistakesRouteImport.update({
+  id: '/mistakes',
+  path: '/mistakes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgressRoute = ProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnIndexRoute = LearnIndexRouteImport.update({
@@ -22,30 +35,54 @@ const LearnIndexRoute = LearnIndexRouteImport.update({
   path: '/learn/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnPresentSimpleRoute = LearnPresentSimpleRouteImport.update({
+  id: '/learn/present-simple',
+  path: '/learn/present-simple',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/mistakes': typeof MistakesRoute
+  '/progress': typeof ProgressRoute
+  '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/learn/': typeof LearnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/mistakes': typeof MistakesRoute
+  '/progress': typeof ProgressRoute
+  '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/learn': typeof LearnIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/mistakes': typeof MistakesRoute
+  '/progress': typeof ProgressRoute
+  '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/learn/': typeof LearnIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/learn/'
+  fullPaths:
+    '/' | '/mistakes' | '/progress' | '/learn/present-simple' | '/learn/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/learn'
-  id: '__root__' | '/' | '/learn/'
+  to: '/' | '/mistakes' | '/progress' | '/learn/present-simple' | '/learn'
+  id:
+    | '__root__'
+    | '/'
+    | '/mistakes'
+    | '/progress'
+    | '/learn/present-simple'
+    | '/learn/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MistakesRoute: typeof MistakesRoute
+  ProgressRoute: typeof ProgressRoute
+  LearnPresentSimpleRoute: typeof LearnPresentSimpleRoute
   LearnIndexRoute: typeof LearnIndexRoute
 }
 
@@ -58,6 +95,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mistakes': {
+      id: '/mistakes'
+      path: '/mistakes'
+      fullPath: '/mistakes'
+      preLoaderRoute: typeof MistakesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/progress': {
+      id: '/progress'
+      path: '/progress'
+      fullPath: '/progress'
+      preLoaderRoute: typeof ProgressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn/': {
       id: '/learn/'
       path: '/learn'
@@ -65,11 +116,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn/present-simple': {
+      id: '/learn/present-simple'
+      path: '/learn/present-simple'
+      fullPath: '/learn/present-simple'
+      preLoaderRoute: typeof LearnPresentSimpleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MistakesRoute: MistakesRoute,
+  ProgressRoute: ProgressRoute,
+  LearnPresentSimpleRoute: LearnPresentSimpleRoute,
   LearnIndexRoute: LearnIndexRoute,
 }
 export const routeTree = rootRouteImport
