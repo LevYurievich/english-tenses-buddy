@@ -15,6 +15,7 @@ import { Route as MistakesRouteImport } from './routes/mistakes'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as TimeMachineRouteImport } from './routes/time-machine'
 import { Route as CompareIndexRouteImport } from './routes/compare.index'
+import { Route as ComparePresentRouteImport } from './routes/compare.present'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnPresentContinuousRouteImport } from './routes/learn.present-continuous'
 import { Route as LearnPresentSimpleRouteImport } from './routes/learn.present-simple'
@@ -49,6 +50,11 @@ const CompareIndexRoute = CompareIndexRouteImport.update({
   path: '/compare/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComparePresentRoute = ComparePresentRouteImport.update({
+  id: '/compare/present',
+  path: '/compare/present',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearnIndexRoute = LearnIndexRouteImport.update({
   id: '/learn/',
   path: '/learn/',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
+  '/compare/present': typeof ComparePresentRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/compare/': typeof CompareIndexRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
+  '/compare/present': typeof ComparePresentRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/compare': typeof CompareIndexRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
+  '/compare/present': typeof ComparePresentRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/compare/': typeof CompareIndexRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/mistakes'
     | '/progress'
     | '/time-machine'
+    | '/compare/present'
     | '/learn/present-continuous'
     | '/learn/present-simple'
     | '/compare/'
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/mistakes'
     | '/progress'
     | '/time-machine'
+    | '/compare/present'
     | '/learn/present-continuous'
     | '/learn/present-simple'
     | '/compare'
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/mistakes'
     | '/progress'
     | '/time-machine'
+    | '/compare/present'
     | '/learn/present-continuous'
     | '/learn/present-simple'
     | '/compare/'
@@ -141,6 +153,7 @@ export interface RootRouteChildren {
   MistakesRoute: typeof MistakesRoute
   ProgressRoute: typeof ProgressRoute
   TimeMachineRoute: typeof TimeMachineRoute
+  ComparePresentRoute: typeof ComparePresentRoute
   LearnPresentContinuousRoute: typeof LearnPresentContinuousRoute
   LearnPresentSimpleRoute: typeof LearnPresentSimpleRoute
   CompareIndexRoute: typeof CompareIndexRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompareIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare/present': {
+      id: '/compare/present'
+      path: '/compare/present'
+      fullPath: '/compare/present'
+      preLoaderRoute: typeof ComparePresentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn/': {
       id: '/learn/'
       path: '/learn'
@@ -221,6 +241,7 @@ const rootRouteChildren: RootRouteChildren = {
   MistakesRoute: MistakesRoute,
   ProgressRoute: ProgressRoute,
   TimeMachineRoute: TimeMachineRoute,
+  ComparePresentRoute: ComparePresentRoute,
   LearnPresentContinuousRoute: LearnPresentContinuousRoute,
   LearnPresentSimpleRoute: LearnPresentSimpleRoute,
   CompareIndexRoute: CompareIndexRoute,
