@@ -25,7 +25,8 @@ export default defineConfig({
     {
       // GitHub Pages has no SPA fallback: serve index.html for unknown paths via 404.html
       name: "spa-404-fallback",
-      closeBundle() {
+      enforce: "post",
+      writeBundle() {
         copyFileSync(path.join(outDir, "index.html"), path.join(outDir, "404.html"));
       },
     },
