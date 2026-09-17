@@ -82,6 +82,13 @@ export function ExerciseCard({
 
       <ProgressBar value={((index + (checked ? 1 : 0)) / total) * 100} />
 
+      {exercise.situation ? (
+        <div className="mt-5 rounded-xl border-2 border-dashed border-primary/40 bg-primary/5 px-4 py-3">
+          <p className="text-xs font-bold tracking-widest text-primary">СИТУАЦИЯ</p>
+          <p className="mt-1 text-sm leading-relaxed">{exercise.situation}</p>
+        </div>
+      ) : null}
+
       <p className="my-5 rounded-xl bg-muted/60 px-4 py-4 text-lg font-semibold sm:text-xl">
         {exercise.question}
       </p>
