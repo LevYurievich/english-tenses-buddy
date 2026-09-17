@@ -116,6 +116,14 @@ export function ExerciseCard({
               </p>
             )}
 
+            {showFeedback ? (
+              <WhyPanel
+                exercise={exercise}
+                correct={correct}
+                userAnswer={displayAnswer(exercise, isTokenType ? finalAnswer : answer)}
+              />
+            ) : null}
+
             {showFeedback && exercise.type === "constructor" ? (
               <div className="flex flex-wrap gap-4 rounded-xl border border-border bg-muted/40 p-4">
                 {exercise.breakdown.map((part) => (
