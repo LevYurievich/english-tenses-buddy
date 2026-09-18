@@ -15,9 +15,11 @@ import { Route as MistakesRouteImport } from './routes/mistakes'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as TimeMachineRouteImport } from './routes/time-machine'
 import { Route as CompareIndexRouteImport } from './routes/compare.index'
+import { Route as ComparePerfectRouteImport } from './routes/compare.perfect'
 import { Route as ComparePresentRouteImport } from './routes/compare.present'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnPresentContinuousRouteImport } from './routes/learn.present-continuous'
+import { Route as LearnPresentPerfectRouteImport } from './routes/learn.present-perfect'
 import { Route as LearnPresentSimpleRouteImport } from './routes/learn.present-simple'
 
 const IndexRoute = IndexRouteImport.update({
@@ -50,6 +52,11 @@ const CompareIndexRoute = CompareIndexRouteImport.update({
   path: '/compare/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComparePerfectRoute = ComparePerfectRouteImport.update({
+  id: '/compare/perfect',
+  path: '/compare/perfect',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComparePresentRoute = ComparePresentRouteImport.update({
   id: '/compare/present',
   path: '/compare/present',
@@ -65,6 +72,11 @@ const LearnPresentContinuousRoute = LearnPresentContinuousRouteImport.update({
   path: '/learn/present-continuous',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnPresentPerfectRoute = LearnPresentPerfectRouteImport.update({
+  id: '/learn/present-perfect',
+  path: '/learn/present-perfect',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearnPresentSimpleRoute = LearnPresentSimpleRouteImport.update({
   id: '/learn/present-simple',
   path: '/learn/present-simple',
@@ -77,8 +89,10 @@ export interface FileRoutesByFullPath {
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
+  '/compare/perfect': typeof ComparePerfectRoute
   '/compare/present': typeof ComparePresentRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
+  '/learn/present-perfect': typeof LearnPresentPerfectRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/compare/': typeof CompareIndexRoute
   '/learn/': typeof LearnIndexRoute
@@ -89,8 +103,10 @@ export interface FileRoutesByTo {
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
+  '/compare/perfect': typeof ComparePerfectRoute
   '/compare/present': typeof ComparePresentRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
+  '/learn/present-perfect': typeof LearnPresentPerfectRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/compare': typeof CompareIndexRoute
   '/learn': typeof LearnIndexRoute
@@ -102,8 +118,10 @@ export interface FileRoutesById {
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
   '/time-machine': typeof TimeMachineRoute
+  '/compare/perfect': typeof ComparePerfectRoute
   '/compare/present': typeof ComparePresentRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
+  '/learn/present-perfect': typeof LearnPresentPerfectRoute
   '/learn/present-simple': typeof LearnPresentSimpleRoute
   '/compare/': typeof CompareIndexRoute
   '/learn/': typeof LearnIndexRoute
@@ -116,8 +134,10 @@ export interface FileRouteTypes {
     | '/mistakes'
     | '/progress'
     | '/time-machine'
+    | '/compare/perfect'
     | '/compare/present'
     | '/learn/present-continuous'
+    | '/learn/present-perfect'
     | '/learn/present-simple'
     | '/compare/'
     | '/learn/'
@@ -128,8 +148,10 @@ export interface FileRouteTypes {
     | '/mistakes'
     | '/progress'
     | '/time-machine'
+    | '/compare/perfect'
     | '/compare/present'
     | '/learn/present-continuous'
+    | '/learn/present-perfect'
     | '/learn/present-simple'
     | '/compare'
     | '/learn'
@@ -140,8 +162,10 @@ export interface FileRouteTypes {
     | '/mistakes'
     | '/progress'
     | '/time-machine'
+    | '/compare/perfect'
     | '/compare/present'
     | '/learn/present-continuous'
+    | '/learn/present-perfect'
     | '/learn/present-simple'
     | '/compare/'
     | '/learn/'
@@ -153,8 +177,10 @@ export interface RootRouteChildren {
   MistakesRoute: typeof MistakesRoute
   ProgressRoute: typeof ProgressRoute
   TimeMachineRoute: typeof TimeMachineRoute
+  ComparePerfectRoute: typeof ComparePerfectRoute
   ComparePresentRoute: typeof ComparePresentRoute
   LearnPresentContinuousRoute: typeof LearnPresentContinuousRoute
+  LearnPresentPerfectRoute: typeof LearnPresentPerfectRoute
   LearnPresentSimpleRoute: typeof LearnPresentSimpleRoute
   CompareIndexRoute: typeof CompareIndexRoute
   LearnIndexRoute: typeof LearnIndexRoute
@@ -204,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompareIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare/perfect': {
+      id: '/compare/perfect'
+      path: '/compare/perfect'
+      fullPath: '/compare/perfect'
+      preLoaderRoute: typeof ComparePerfectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compare/present': {
       id: '/compare/present'
       path: '/compare/present'
@@ -225,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnPresentContinuousRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn/present-perfect': {
+      id: '/learn/present-perfect'
+      path: '/learn/present-perfect'
+      fullPath: '/learn/present-perfect'
+      preLoaderRoute: typeof LearnPresentPerfectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn/present-simple': {
       id: '/learn/present-simple'
       path: '/learn/present-simple'
@@ -241,8 +281,10 @@ const rootRouteChildren: RootRouteChildren = {
   MistakesRoute: MistakesRoute,
   ProgressRoute: ProgressRoute,
   TimeMachineRoute: TimeMachineRoute,
+  ComparePerfectRoute: ComparePerfectRoute,
   ComparePresentRoute: ComparePresentRoute,
   LearnPresentContinuousRoute: LearnPresentContinuousRoute,
+  LearnPresentPerfectRoute: LearnPresentPerfectRoute,
   LearnPresentSimpleRoute: LearnPresentSimpleRoute,
   CompareIndexRoute: CompareIndexRoute,
   LearnIndexRoute: LearnIndexRoute,
