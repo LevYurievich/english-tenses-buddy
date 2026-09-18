@@ -15,7 +15,16 @@ export type ErrorCategory =
   | "missing_ing"
   | "question_word_order"
   | "negative_position"
-  | "ing_spelling";
+  | "ing_spelling"
+  // --- Present Perfect ---
+  | "wrong_have_has"
+  | "missing_have_has"
+  | "wrong_v3"
+  | "used_v2_instead_v3"
+  | "negative_form"
+  | "already_position"
+  | "yet_usage"
+  | "present_perfect_vs_past_simple";
 
 export type Difficulty = 1 | 2 | 3;
 

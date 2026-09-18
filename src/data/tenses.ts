@@ -36,8 +36,9 @@ export const TENSES: TenseMeta[] = [
     id: "present-perfect",
     title: "Present Perfect",
     group: "present",
-    tagline: "Уже • результат сейчас",
-    available: false,
+    tagline: "Произошло раньше • важно сейчас",
+    available: true,
+    path: "/learn/present-perfect",
   },
   {
     id: "present-perfect-continuous",

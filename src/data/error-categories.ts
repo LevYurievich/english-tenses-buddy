@@ -19,6 +19,15 @@ export const CATEGORY_TITLES: Record<string, string> = {
   question_word_order: "Порядок слов в вопросе",
   negative_position: "Место not в отрицании",
   ing_spelling: "Написание формы -ing",
+  // Present Perfect
+  wrong_have_has: "HAVE или HAS?",
+  missing_have_has: "Забыл have / has",
+  wrong_v3: "Третья форма глагола (V3)",
+  used_v2_instead_v3: "V2 или V3?",
+  negative_form: "Отрицание с have / has",
+  already_position: "Место just и already",
+  yet_usage: "Слово yet",
+  present_perfect_vs_past_simple: "Present Perfect или Past Simple?",
 };
 
 export const CATEGORY_RULES: Record<
@@ -96,5 +105,49 @@ export const CATEGORY_RULES: Record<
     rule: "make → making, run → running, lie → lying",
     right: "He is running.",
     wrong: "He is runing.",
+  },
+  wrong_have_has: {
+    rule: "he / she / it → has, остальные → have",
+    right: "She has finished her homework.",
+    wrong: "She have finished her homework.",
+    tip: "Сначала определи, кто выполняет действие, потом выбери have или has.",
+  },
+  missing_have_has: {
+    rule: "Present Perfect = have / has + V3",
+    right: "I have finished my homework.",
+    wrong: "I finished my homework already.",
+    tip: "V3 не ходит один: перед ним нужен have или has.",
+  },
+  wrong_v3: {
+    rule: "После have / has нужна третья форма глагола",
+    right: "My sister has broken her phone.",
+    wrong: "My sister has broke her phone.",
+  },
+  used_v2_instead_v3: {
+    rule: "Past Simple → V2, Present Perfect → V3",
+    right: "I have gone to London.",
+    wrong: "I have went to London.",
+    tip: "go → went → gone, see → saw → seen, take → took → taken.",
+  },
+  negative_form: {
+    rule: "have / has + not + V3",
+    right: "She hasn't finished her homework.",
+    wrong: "She doesn't finished her homework.",
+  },
+  already_position: {
+    rule: "just и already стоят между have / has и V3",
+    right: "She has just finished her breakfast.",
+    wrong: "She just has finished her breakfast.",
+  },
+  yet_usage: {
+    rule: "yet — в вопросах и отрицаниях, ближе к концу предложения",
+    right: "I haven't finished the test yet.",
+    wrong: "I have finished the test yet.",
+  },
+  present_perfect_vs_past_simple: {
+    rule: "Назван законченный момент прошлого → Past Simple, важен результат сейчас → Present Perfect",
+    right: "I saw him yesterday. / I have lost my key.",
+    wrong: "I have seen him yesterday.",
+    tip: "Сначала спроси себя: важно КОГДА или важен РЕЗУЛЬТАТ сейчас?",
   },
 };

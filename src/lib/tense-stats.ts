@@ -3,7 +3,9 @@ import {
   PRESENT_CONTINUOUS_EXERCISES,
   PRESENT_CONTINUOUS_TEST,
 } from "@/data/present-continuous/exercises";
+import { PRESENT_PERFECT_EXERCISES, PRESENT_PERFECT_TEST } from "@/data/present-perfect/exercises";
 import { COMPARE_PRESENT_EXERCISES } from "@/data/compare/present-simple-continuous";
+import { COMPARE_PERFECT_EXERCISES } from "@/data/compare/present-perfect-past-simple";
 import { TENSES } from "@/data/tenses";
 import { getTenseProgress, tensePercent, type ProgressState } from "./progress";
 
@@ -16,8 +18,16 @@ export const COUNTS: Record<string, { exercises: number; test: number }> = {
     exercises: PRESENT_CONTINUOUS_EXERCISES.length,
     test: PRESENT_CONTINUOUS_TEST.length,
   },
+  "present-perfect": {
+    exercises: PRESENT_PERFECT_EXERCISES.length,
+    test: PRESENT_PERFECT_TEST.length,
+  },
   "compare-present": {
     exercises: COMPARE_PRESENT_EXERCISES.length,
+    test: 0,
+  },
+  "compare-perfect": {
+    exercises: COMPARE_PERFECT_EXERCISES.length,
     test: 0,
   },
 };
