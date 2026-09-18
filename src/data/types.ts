@@ -121,7 +121,9 @@ type Base = {
     | "be-form"
     | "ing"
     | "tense-choice"
-    | "situation";
+    | "situation"
+    | "been"
+    | "for-since";
 };
 
 export type MultipleChoiceExercise = Base & {

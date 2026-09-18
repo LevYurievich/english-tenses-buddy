@@ -10,4 +10,6 @@ export const SKILL_TITLES: Record<string, string> = {
   ing: "V-ing",
   "tense-choice": "Выбор времени",
   situation: "Понимание ситуации",
+  been: "BEEN в конструкции",
+  "for-since": "FOR / SINCE",
 };

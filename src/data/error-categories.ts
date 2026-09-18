@@ -28,6 +28,12 @@ export const CATEGORY_TITLES: Record<string, string> = {
   already_position: "Место just и already",
   yet_usage: "Слово yet",
   present_perfect_vs_past_simple: "Present Perfect или Past Simple?",
+  // Present Perfect Continuous
+  missing_been: "Ты забываешь BEEN",
+  wrong_word_order: "Порядок слов в конструкции",
+  wrong_for_since: "FOR или SINCE?",
+  wrong_tense_duration: "Длительность: какое время выбрать?",
+  present_perfect_vs_present_perfect_continuous: "Результат или процесс?",
 };
 
 export const CATEGORY_RULES: Record<
@@ -149,5 +155,34 @@ export const CATEGORY_RULES: Record<
     right: "I saw him yesterday. / I have lost my key.",
     wrong: "I have seen him yesterday.",
     tip: "Сначала спроси себя: важно КОГДА или важен РЕЗУЛЬТАТ сейчас?",
+  },
+  missing_been: {
+    rule: "HAVE / HAS + BEEN + V-ING",
+    right: "I have been studying for two hours.",
+    wrong: "I have studying for two hours.",
+    tip: "BEEN не пропускаем: без него конструкция неправильная.",
+  },
+  wrong_word_order: {
+    rule: "Кто → have / has → been → V-ing → остальное",
+    right: "Tom has been playing football all morning.",
+    wrong: "Tom has playing been football all morning.",
+  },
+  wrong_for_since: {
+    rule: "FOR → промежуток, SINCE → точка начала",
+    right: "for three years / since 2023",
+    wrong: "since three hours",
+    tip: "FOR = ДЛИНА, SINCE = СТАРТ.",
+  },
+  wrong_tense_duration: {
+    rule: "Важна длительность процесса → have / has + been + V-ing",
+    right: "I have been waiting for twenty minutes.",
+    wrong: "I wait for twenty minutes.",
+    tip: "Но глаголы состояния (know, have, love) в Continuous не используются.",
+  },
+  present_perfect_vs_present_perfect_continuous: {
+    rule: "Результат → Present Perfect, процесс и длительность → Present Perfect Continuous",
+    right: "She has been cleaning the kitchen for two hours.",
+    wrong: "She has cleaned the kitchen for two hours and hasn't finished.",
+    tip: "Спроси себя: важен готовый результат или сам процесс?",
   },
 };
