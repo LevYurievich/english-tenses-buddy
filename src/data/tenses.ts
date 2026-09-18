@@ -44,8 +44,9 @@ export const TENSES: TenseMeta[] = [
     id: "present-perfect-continuous",
     title: "Present Perfect Continuous",
     group: "present",
-    tagline: "Длится с какого-то момента",
-    available: false,
+    tagline: "Как долго • процесс до сейчас",
+    available: true,
+    path: "/learn/present-perfect-continuous",
   },
   {
     id: "past-simple",

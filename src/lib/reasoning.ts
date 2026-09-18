@@ -2,8 +2,10 @@ import type { Exercise, Reasoning, ReasoningStepKind } from "@/data/types";
 import { PRESENT_SIMPLE_REASONING } from "@/data/present-simple/reasoning";
 import { PRESENT_CONTINUOUS_REASONING } from "@/data/present-continuous/reasoning";
 import { PRESENT_PERFECT_REASONING } from "@/data/present-perfect/reasoning";
+import { PRESENT_PERFECT_CONTINUOUS_REASONING } from "@/data/present-perfect-continuous/reasoning";
 import { COMPARE_PRESENT_REASONING } from "@/data/compare/present-simple-continuous";
 import { COMPARE_PERFECT_REASONING } from "@/data/compare/present-perfect-past-simple";
+import { COMPARE_PPC_REASONING } from "@/data/compare/perfect-vs-perfect-continuous";
 import { normalize } from "./answer-check";
 
 /**
@@ -14,8 +16,10 @@ export const REASONING_BY_TENSE: Record<string, Record<string, Reasoning>> = {
   "present-simple": PRESENT_SIMPLE_REASONING,
   "present-continuous": PRESENT_CONTINUOUS_REASONING,
   "present-perfect": PRESENT_PERFECT_REASONING,
+  "present-perfect-continuous": PRESENT_PERFECT_CONTINUOUS_REASONING,
   "compare-present": COMPARE_PRESENT_REASONING,
   "compare-perfect": COMPARE_PERFECT_REASONING,
+  "compare-perfect-continuous": COMPARE_PPC_REASONING,
 };
 
 /** Стандартные заголовки шагов (общие для всех времён). */

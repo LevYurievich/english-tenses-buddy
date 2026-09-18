@@ -4,6 +4,12 @@ import {
   PRESENT_CONTINUOUS_TEST,
 } from "@/data/present-continuous/exercises";
 import { PRESENT_PERFECT_EXERCISES, PRESENT_PERFECT_TEST } from "@/data/present-perfect/exercises";
+import {
+  PRESENT_PERFECT_CONTINUOUS_EXERCISES,
+  PRESENT_PERFECT_CONTINUOUS_TEST,
+} from "@/data/present-perfect-continuous/exercises";
+import { FOR_SINCE_EXERCISES } from "@/data/present-perfect-continuous/for-since";
+import { COMPARE_PPC_EXERCISES } from "@/data/compare/perfect-vs-perfect-continuous";
 import { COMPARE_PRESENT_EXERCISES } from "@/data/compare/present-simple-continuous";
 import { COMPARE_PERFECT_EXERCISES } from "@/data/compare/present-perfect-past-simple";
 import { TENSES } from "@/data/tenses";
@@ -21,6 +27,14 @@ export const COUNTS: Record<string, { exercises: number; test: number }> = {
   "present-perfect": {
     exercises: PRESENT_PERFECT_EXERCISES.length,
     test: PRESENT_PERFECT_TEST.length,
+  },
+  "present-perfect-continuous": {
+    exercises: PRESENT_PERFECT_CONTINUOUS_EXERCISES.length + FOR_SINCE_EXERCISES.length,
+    test: PRESENT_PERFECT_CONTINUOUS_TEST.length,
+  },
+  "compare-perfect-continuous": {
+    exercises: COMPARE_PPC_EXERCISES.length,
+    test: 0,
   },
   "compare-present": {
     exercises: COMPARE_PRESENT_EXERCISES.length,
