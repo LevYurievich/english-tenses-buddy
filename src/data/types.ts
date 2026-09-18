@@ -24,7 +24,13 @@ export type ErrorCategory =
   | "negative_form"
   | "already_position"
   | "yet_usage"
-  | "present_perfect_vs_past_simple";
+  | "present_perfect_vs_past_simple"
+  // --- Present Perfect Continuous ---
+  | "missing_been"
+  | "wrong_word_order"
+  | "wrong_for_since"
+  | "wrong_tense_duration"
+  | "present_perfect_vs_present_perfect_continuous";
 
 export type Difficulty = 1 | 2 | 3;
 
