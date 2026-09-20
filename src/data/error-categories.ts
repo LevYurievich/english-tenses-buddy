@@ -34,6 +34,16 @@ export const CATEGORY_TITLES: Record<string, string> = {
   wrong_for_since: "FOR или SINCE?",
   wrong_tense_duration: "Длительность: какое время выбрать?",
   present_perfect_vs_present_perfect_continuous: "Результат или процесс?",
+  // Смешанный модуль «Все Present»
+  simple_vs_continuous: "Обычно или сейчас?",
+  simple_vs_perfect: "Обычно или результат?",
+  continuous_vs_perfect: "Процесс сейчас или результат?",
+  perfect_vs_perfect_continuous: "Результат или длительность процесса?",
+  present_tense_selection: "Выбор времени по смыслу",
+  auxiliary_error: "Помощник (am/is/are, do/does, have/has)",
+  verb_form_error: "Форма глагола (V1 / V-ing / V3)",
+  word_order_error: "Порядок слов",
+  for_since_error: "FOR или SINCE?",
 };
 
 export const CATEGORY_RULES: Record<
@@ -184,5 +194,53 @@ export const CATEGORY_RULES: Record<
     right: "She has been cleaning the kitchen for two hours.",
     wrong: "She has cleaned the kitchen for two hours and hasn't finished.",
     tip: "Спроси себя: важен готовый результат или сам процесс?",
+  },,
+  simple_vs_continuous: {
+    rule: "Обычно → Present Simple, сейчас / в процессе → Present Continuous",
+    right: "Look! Tom is playing football.",
+    wrong: "Look! Tom plays football.",
+    tip: "Спроси: это привычка или то, что происходит прямо сейчас?",
+  },
+  simple_vs_perfect: {
+    rule: "Регулярное действие → Present Simple, результат сейчас → Present Perfect",
+    right: "I have lost my key.",
+    wrong: "I lose my key.",
+  },
+  continuous_vs_perfect: {
+    rule: "Процесс сейчас → Present Continuous, готовый результат → Present Perfect",
+    right: "She has finished her homework.",
+    wrong: "She is finishing her homework. (если работа уже сделана)",
+  },
+  perfect_vs_perfect_continuous: {
+    rule: "Perfect → результат, Perfect Continuous → процесс и длительность",
+    right: "I have been reading this book for two hours.",
+    wrong: "I have read this book for two hours.",
+    tip: "Ты знаешь обе формулы — вопрос в том, что важнее: результат или сам процесс.",
+  },
+  present_tense_selection: {
+    rule: "Сначала смысл ситуации, потом формула",
+    right: "Ситуация «результат сейчас» → have / has + V3",
+    wrong: "Выбор времени только по слову-маркеру",
+    tip: "Обычно → Simple, сейчас → Continuous, результат → Perfect, как долго → Perfect Continuous.",
+  },
+  auxiliary_error: {
+    rule: "I → am/have, he/she/it → is/has/does, you/we/they → are/have/do",
+    right: "They have been waiting.",
+    wrong: "They has been waiting.",
+  },
+  verb_form_error: {
+    rule: "Simple → V1, Continuous → V-ing, Perfect → V3",
+    right: "He has eaten the pizza.",
+    wrong: "He has ate the pizza.",
+  },
+  word_order_error: {
+    rule: "Кто → помощник → действие → что → когда",
+    right: "Tom has been working in the garden all day.",
+    wrong: "Tom has working been in the garden all day.",
+  },
+  for_since_error: {
+    rule: "FOR → сколько длится, SINCE → с какого момента",
+    right: "since 2019 / for three years",
+    wrong: "since three years",
   },
 };
