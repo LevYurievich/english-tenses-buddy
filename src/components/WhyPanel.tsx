@@ -32,7 +32,7 @@ export function WhyPanel({
         aria-expanded={open}
         className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left font-display text-base font-bold text-primary"
       >
-        <span>Почему?</span>
+        <span>{reasoning.alternatives?.length ? "Почему именно это время?" : "Почему?"}</span>
         <span aria-hidden className={`text-sm transition-transform ${open ? "rotate-180" : ""}`}>
           ▼
         </span>
@@ -93,6 +93,20 @@ export function WhyPanel({
                 {reasoning.whyThisTense.steps.map((step, i) => (
                   <li key={`tense-${i}`} className="text-sm leading-relaxed">
                     {step.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {reasoning.alternatives?.length ? (
+            <div className="rounded-lg border border-border bg-background/70 p-3">
+              <p className="font-display text-sm font-bold">Почему не остальные?</p>
+              <ul className="mt-2 space-y-1.5">
+                {reasoning.alternatives.map((alt) => (
+                  <li key={alt.label} className="text-sm leading-relaxed">
+                    <span className="font-semibold">{alt.label}: </span>
+                    {alt.text}
                   </li>
                 ))}
               </ul>

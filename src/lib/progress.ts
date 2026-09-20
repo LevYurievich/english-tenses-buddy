@@ -20,6 +20,8 @@ export type TenseProgress = {
   testTotal: number | null;
   testAttempts?: number;
   mistakes: number;
+  /** Последний результат по каждому упражнению (нужно для диагностики смешанных модулей). */
+  results?: Record<string, boolean>;
 };
 
 export type MistakeRecord = {
@@ -48,6 +50,7 @@ const emptyTense = (): TenseProgress => ({
   testTotal: null,
   testAttempts: 0,
   mistakes: 0,
+  results: {},
 });
 
 export const emptyState = (): ProgressState => ({ tenses: {}, mistakes: [] });
@@ -141,6 +144,7 @@ export function recordAnswer(params: {
         ...s.tenses,
         [params.tenseId]: {
           ...prev,
+          results: { ...(prev.results ?? {}), [params.exerciseId]: params.correct },
           doneExercises,
           correct: prev.correct + (params.correct ? 1 : 0),
           total: prev.total + 1,
