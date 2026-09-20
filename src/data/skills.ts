@@ -12,4 +12,6 @@ export const SKILL_TITLES: Record<string, string> = {
   situation: "Понимание ситуации",
   been: "BEEN в конструкции",
   "for-since": "FOR / SINCE",
+  meaning: "Понимание смысла",
+  formula: "Формула",
 };
