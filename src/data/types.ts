@@ -30,7 +30,17 @@ export type ErrorCategory =
   | "wrong_word_order"
   | "wrong_for_since"
   | "wrong_tense_duration"
-  | "present_perfect_vs_present_perfect_continuous";
+  | "present_perfect_vs_present_perfect_continuous"
+  // --- Смешанный модуль «Все Present» ---
+  | "simple_vs_continuous"
+  | "simple_vs_perfect"
+  | "continuous_vs_perfect"
+  | "perfect_vs_perfect_continuous"
+  | "present_tense_selection"
+  | "auxiliary_error"
+  | "verb_form_error"
+  | "word_order_error"
+  | "for_since_error";
 
 export type Difficulty = 1 | 2 | 3;
 
@@ -92,6 +102,8 @@ export type Reasoning = {
     title?: string;
     steps: ReasoningStep[];
   };
+  /** «Почему не остальные времена?» — короткие ответы для смешанных заданий. */
+  alternatives?: { label: string; text: string }[];
 };
 
 type Base = {
@@ -123,7 +135,13 @@ type Base = {
     | "tense-choice"
     | "situation"
     | "been"
-    | "for-since";
+    | "for-since"
+    | "meaning"
+    | "formula";
+  /** Какое время проверяет задание (нужно для диагностики смешанных модулей). */
+  targetTense?: string;
+  /** Уровень смешанного модуля: 1 — с подсказками, 2 — по ситуации, 3 — без подсказок. */
+  level?: 1 | 2 | 3;
 };
 
 export type MultipleChoiceExercise = Base & {
