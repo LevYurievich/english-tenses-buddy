@@ -54,6 +54,13 @@ const CARDS = [
     description: "Сам выбираешь время по смыслу",
     id: "all-present",
   },
+  {
+    to: "/all-past" as const,
+    icon: "🕰",
+    title: "Все времена Past",
+    description: "Четыре прошедших времени — выбираешь сам",
+    id: "all-past",
+  },
 ];
 
 function PracticePage() {
