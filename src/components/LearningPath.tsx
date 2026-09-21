@@ -132,10 +132,24 @@ export const PATH_STEPS: Step[] = [
     to: "/compare/future",
     kind: "compare",
   },
+  {
+    id: "future-continuous",
+    title: "Future Continuous",
+    subtitle: "Процесс в момент будущего • will be + V-ing",
+    to: "/learn/future-continuous",
+    kind: "tense",
+  },
+  {
+    id: "compare-future-continuous",
+    title: "Future Simple vs Future Continuous",
+    subtitle: "Событие ● или процесс ████",
+    to: "/compare/future-continuous",
+    kind: "compare",
+  },
 ];
 
 /** Следующая остановка маршрута — пока закрыта. */
-const LOCKED_PAST = ["Future Continuous"];
+const LOCKED_PAST = ["Future Perfect"];
 
 export type StepStatus = "done" | "current" | "open";
 

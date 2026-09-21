@@ -39,6 +39,13 @@ import {
   WHY_WILL_EXERCISES,
 } from "@/data/future-simple/exercises";
 import { COMPARE_FUTURE_EXERCISES } from "@/data/compare/future-ways";
+import {
+  CONTINUOUS_FAMILY_EXERCISES,
+  FUTURE_CONTINUOUS_EXERCISES,
+  FUTURE_CONTINUOUS_TEST,
+  LOOK_AHEAD_EXERCISES,
+} from "@/data/future-continuous/exercises";
+import { COMPARE_FC_EXERCISES } from "@/data/compare/future-simple-continuous";
 import type { Exercise } from "@/data/types";
 
 /** Тренировочные упражнения, сгруппированные по времени/модулю. */
@@ -64,6 +71,12 @@ export const BANKS: Record<string, Exercise[]> = {
   "compare-past-perfect-continuous": COMPARE_PFC_EXERCISES,
   "future-simple": [...WHY_WILL_EXERCISES, ...FUTURE_SIMPLE_EXERCISES],
   "compare-future": COMPARE_FUTURE_EXERCISES,
+  "future-continuous": [
+    ...LOOK_AHEAD_EXERCISES,
+    ...FUTURE_CONTINUOUS_EXERCISES,
+    ...CONTINUOUS_FAMILY_EXERCISES,
+  ],
+  "compare-future-continuous": COMPARE_FC_EXERCISES,
 };
 
 export const ALL_EXERCISES: Exercise[] = [
@@ -78,6 +91,7 @@ export const ALL_EXERCISES: Exercise[] = [
   ...PAST_PERFECT_CONTINUOUS_TEST,
   ...PAST_FINAL_BANK,
   ...FUTURE_SIMPLE_TEST,
+  ...FUTURE_CONTINUOUS_TEST,
 ];
 
 export const EXERCISE_BY_ID: Record<string, Exercise> = Object.fromEntries(
