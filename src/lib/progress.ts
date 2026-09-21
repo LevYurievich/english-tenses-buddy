@@ -6,6 +6,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { ErrorCategory } from "@/data/types";
 import { TENSES } from "@/data/tenses";
+import { awardAnswer, awardCorrectedMistake, awardLesson, awardTest } from "./gamification";
 
 const STORAGE_KEY = "ets-progress-v1";
 const EVENT = "ets-progress-change";
@@ -108,8 +109,6 @@ export function markTheoryDone(tenseId: string) {
     tenses: { ...s.tenses, [tenseId]: { ...getTenseProgress(s, tenseId), theoryDone: true } },
   }));
 }
-
-import { awardAnswer, awardCorrectedMistake, awardLesson, awardTest } from "./gamification";
 
 export function recordAnswer(params: {
   tenseId: string;
