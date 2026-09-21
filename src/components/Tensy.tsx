@@ -1,38 +1,70 @@
 /**
- * Tensy — дружелюбный «хранитель времени».
- * Пока используется как место в UI: вместо иллюстрации показывается аккуратный аватар-заглушка.
- * Когда появится PNG/SVG/WebP, достаточно передать проп `image`.
+ * Tensy — кот-путешественник, спутник ученика в мире английских времён.
+ * Иллюстрации лежат в src/assets/tensy и подбираются по настроению (mood).
  */
-export type TensyMood = "hello" | "hint" | "mistake" | "cheer";
+import mapImg from "@/assets/tensy/map.png";
+import helloImg from "@/assets/tensy/hello.png";
+import bookImg from "@/assets/tensy/book.png";
+import hintImg from "@/assets/tensy/hint.png";
+import thinkImg from "@/assets/tensy/think.png";
+import correctImg from "@/assets/tensy/correct.png";
+import achievementImg from "@/assets/tensy/achievement.png";
+import levelImg from "@/assets/tensy/level.png";
+import testImg from "@/assets/tensy/test.png";
+import motivationImg from "@/assets/tensy/motivation.png";
 
-const MOODS: Record<TensyMood, { face: string; ring: string }> = {
-  hello: { face: "🕒", ring: "border-primary/40 bg-primary/10" },
-  hint: { face: "💡", ring: "border-marker/50 bg-marker-soft" },
-  mistake: { face: "🧭", ring: "border-warning/50 bg-warning/15" },
-  cheer: { face: "🎉", ring: "border-success/50 bg-success/15" },
+export type TensyMood =
+  | "hello"
+  | "hint"
+  | "mistake"
+  | "cheer"
+  | "map"
+  | "book"
+  | "level"
+  | "test"
+  | "motivation";
+
+const MOOD_IMAGES: Record<TensyMood, string> = {
+  hello: helloImg,
+  hint: hintImg,
+  mistake: thinkImg,
+  cheer: correctImg,
+  map: mapImg,
+  book: bookImg,
+  level: levelImg,
+  test: testImg,
+  motivation: motivationImg,
 };
+
+/** Отдельная картинка для экрана достижения. */
+export const TENSY_ACHIEVEMENT = achievementImg;
+
+const SIZES = {
+  sm: "size-10",
+  md: "size-14",
+  lg: "size-20",
+  xl: "size-28 sm:size-36",
+} as const;
 
 export function TensyAvatar({
   mood = "hello",
   size = "md",
   image,
+  className = "",
 }: {
   mood?: TensyMood;
-  size?: "sm" | "md" | "lg";
+  size?: keyof typeof SIZES;
   image?: string;
+  className?: string;
 }) {
-  const box = size === "lg" ? "size-16 text-2xl" : size === "sm" ? "size-9 text-base" : "size-12 text-xl";
   return (
-    <span
+    <img
+      src={image ?? MOOD_IMAGES[mood]}
+      alt=""
       aria-hidden
-      className={`grid shrink-0 place-items-center rounded-2xl border-2 ${MOODS[mood].ring} ${box}`}
-    >
-      {image ? (
-        <img src={image} alt="" className="size-full rounded-xl object-cover" />
-      ) : (
-        MOODS[mood].face
-      )}
-    </span>
+      loading="lazy"
+      className={`${SIZES[size]} shrink-0 object-contain drop-shadow-sm ${className}`}
+    />
   );
 }
 
