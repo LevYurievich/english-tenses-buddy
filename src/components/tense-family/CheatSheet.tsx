@@ -26,7 +26,7 @@ export function CheatSheet({
       </button>
       {open ? (
         <div className="border-t border-border px-4 py-4">
-          <TenseMapTable rows={PRESENT_MAP} />
+          <TenseMapTable rows={rows} />
         </div>
       ) : null}
     </div>
