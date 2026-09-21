@@ -83,6 +83,17 @@ export const CATEGORY_TITLES: Record<string, string> = {
   // Смешанный модуль «Все Past»
   past_tense_selection: "Какое время прошлого выбрать?",
   duration_selection: "Длительность до момента прошлого",
+  // Future Simple
+  will_plus_wrong_verb_form: "WILL + V1",
+  will_plus_to: "Лишнее TO после WILL",
+  will_plus_ing: "V-ing после WILL",
+  will_plus_s: "Окончание -s после WILL",
+  wrong_wont_form: "WILL NOT = WON'T",
+  future_question_order: "Порядок слов в вопросе с WILL",
+  future_negative_form: "Отрицание с won't",
+  will_vs_going_to: "Решил сейчас или планировал раньше?",
+  will_vs_present_continuous_future: "План или договорённость?",
+  future_context_selection: "Какой смысл у будущего?",
 };
 
 export const CATEGORY_RULES: Record<
