@@ -27,8 +27,13 @@ function MistakesPage() {
   const mistakes = progress?.mistakes ?? [];
 
   const groups = [
-    ...TENSES.map((t) => ({ id: t.id, title: t.title })),
-    { id: "all-present", title: "Все Present" },
+    ...TENSES.map((t) => ({
+      id: t.id,
+      title: t.title,
+      available: t.available,
+      path: t.path as string | undefined,
+    })),
+    { id: "all-present", title: "Все Present", available: true, path: "/all-present" },
   ];
 
   const byTense = groups.map((tense) => {
