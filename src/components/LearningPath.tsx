@@ -62,6 +62,21 @@ export const PATH_STEPS: Step[] = [
     to: "/all-present",
     kind: "challenge",
   },
+  {
+    id: "past-simple",
+    title: "Past Simple",
+    subtitle: "Было • закончилось • V2 / DID + V1",
+    to: "/learn/past-simple",
+    kind: "tense",
+  },
+];
+
+/** Следующие остановки маршрута PAST — пока закрыты. */
+const LOCKED_PAST = [
+  "Past Continuous",
+  "Past Perfect",
+  "Past Perfect Continuous",
+  "Испытание Past",
 ];
 
 export type StepStatus = "done" | "current" | "open";

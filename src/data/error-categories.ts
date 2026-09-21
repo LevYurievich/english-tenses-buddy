@@ -252,4 +252,49 @@ export const CATEGORY_RULES: Record<
     right: "since 2019 / for three years",
     wrong: "since three years",
   },
+  // Past Simple
+  wrong_v2: {
+    rule: "Past Simple → смотри V2",
+    right: "She went home.",
+    wrong: "She goed home.",
+    tip: "У неправильных глаголов нет окончания -ed: go → went → gone.",
+  },
+  used_v3_instead_v2: {
+    rule: "Past Simple → V2, Present Perfect → have/has + V3",
+    right: "I went to London.",
+    wrong: "I gone to London.",
+    tip: "go → went → gone: вторая форма для прошлого, третья — с have / has.",
+  },
+  did_plus_v2: {
+    rule: "DID ЗАБИРАЕТ ПРОШЛОЕ СЕБЕ",
+    right: "Did you go there?",
+    wrong: "Did you went there?",
+    tip: "Если появился DID, глагол возвращается в V1.",
+  },
+  didnt_plus_v2: {
+    rule: "После DIDN'T — только V1",
+    right: "I didn't see him.",
+    wrong: "I didn't saw him.",
+  },
+  wrong_was_were: {
+    rule: "I / he / she / it → was, you / we / they → were",
+    right: "They were tired.",
+    wrong: "They was tired.",
+  },
+  used_did_with_be: {
+    rule: "WAS / WERE работают сами",
+    right: "Was she at home?",
+    wrong: "Did she be at home?",
+  },
+  ed_spelling: {
+    rule: "V1 + ed, но: -e → -d, согласная + y → -ied, короткое слово → удвоение",
+    right: "study → studied, stop → stopped",
+    wrong: "studyed, stoped",
+  },
+  past_simple_selection: {
+    rule: "Законченная ситуация в прошлом → Past Simple",
+    right: "I lost my keys two days ago.",
+    wrong: "I have lost my keys two days ago.",
+    tip: "Слова-маркеры помогают, но решает смысл: действие уже закончилось.",
+  },
 };
