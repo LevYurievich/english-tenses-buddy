@@ -90,7 +90,17 @@ export type ErrorCategory =
   | "future_negative_form"
   | "will_vs_going_to"
   | "will_vs_present_continuous_future"
-  | "future_context_selection";
+  | "future_context_selection"
+  // --- Future Continuous ---
+  | "missing_be_future_continuous"
+  | "wrong_ing_future_continuous"
+  | "will_be_plus_v1"
+  | "will_be_plus_v3"
+  | "future_simple_vs_continuous"
+  | "future_continuous_question_order"
+  | "future_continuous_negative"
+  | "wrong_future_reference_point"
+  | "continuous_family_confusion";
 
 export type Difficulty = 1 | 2 | 3;
 

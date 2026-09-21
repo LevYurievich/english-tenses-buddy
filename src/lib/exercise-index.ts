@@ -39,6 +39,13 @@ import {
   WHY_WILL_EXERCISES,
 } from "@/data/future-simple/exercises";
 import { COMPARE_FUTURE_EXERCISES } from "@/data/compare/future-ways";
+import {
+  CONTINUOUS_FAMILY_EXERCISES,
+  FUTURE_CONTINUOUS_EXERCISES,
+  FUTURE_CONTINUOUS_TEST,
+  LOOK_AHEAD_EXERCISES,
+} from "@/data/future-continuous/exercises";
+import { COMPARE_FC_EXERCISES } from "@/data/compare/future-simple-continuous";
 import type { Exercise } from "@/data/types";
 
 /** Тренировочные упражнения, сгруппированные по времени/модулю. */

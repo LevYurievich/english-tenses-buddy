@@ -92,8 +92,9 @@ export const TENSES: TenseMeta[] = [
     id: "future-continuous",
     title: "Future Continuous",
     group: "future",
-    tagline: "Будет длиться в момент будущего",
-    available: false,
+    tagline: "Процесс в момент будущего • will be + V-ing",
+    available: true,
+    path: "/learn/future-continuous",
   },
   {
     id: "future-perfect",
