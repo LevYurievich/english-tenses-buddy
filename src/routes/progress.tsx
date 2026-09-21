@@ -41,7 +41,10 @@ function ProgressPage() {
       </div>
 
       <div className="space-y-3">
-        {TENSES.map((t) => {
+        {[
+          ...TENSES.map((t) => ({ id: t.id, title: t.title, available: t.available })),
+          { id: "all-present", title: "Все Present", available: true },
+        ].map((t) => {
           const p = state ? getTenseProgress(state, t.id) : null;
           const accuracy = p && p.total ? Math.round((p.correct / p.total) * 100) : 0;
           return (

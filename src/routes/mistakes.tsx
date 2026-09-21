@@ -26,7 +26,12 @@ function MistakesPage() {
   const progress = useProgress();
   const mistakes = progress?.mistakes ?? [];
 
-  const byTense = TENSES.map((tense) => {
+  const groups = [
+    ...TENSES.map((t) => ({ id: t.id, title: t.title })),
+    { id: "all-present", title: "Все Present" },
+  ];
+
+  const byTense = groups.map((tense) => {
     const rows = mistakes.filter((m) => m.tense === tense.id);
     const categories = [...new Set(rows.map((m) => m.category))].map((c) => ({
       category: c,

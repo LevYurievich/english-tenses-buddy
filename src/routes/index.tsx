@@ -38,8 +38,15 @@ const SECTIONS = [
     available: false,
   },
   {
+    title: "Все Present",
+    description: "Сам выбираешь время по смыслу: 50 упражнений и финальный тест.",
+    action: "Начать",
+    to: "/all-present" as const,
+    available: true,
+  },
+  {
     title: "Все времена",
-    description: "Смешанная тренировка без подсказок.",
+    description: "Смешанная тренировка на все 12 времён.",
     action: "Скоро",
     to: "/all-tenses" as const,
     available: false,

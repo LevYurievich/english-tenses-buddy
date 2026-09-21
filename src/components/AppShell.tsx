@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { BookOpen, Clock, Home, Puzzle, TrendingUp } from "lucide-react";
+import { BookOpen, Clock, Home, Layers, Puzzle, TrendingUp } from "lucide-react";
 import type { ReactNode } from "react";
 
 const NAV = [
   { to: "/", label: "Главная", icon: Home },
   { to: "/learn", label: "Учим времена", icon: BookOpen },
+  { to: "/all-present", label: "Все Present", icon: Layers },
   { to: "/mistakes", label: "Мои ошибки", icon: Puzzle },
   { to: "/progress", label: "Прогресс", icon: TrendingUp },
   { to: "/time-machine", label: "Машина времени", icon: Clock },
