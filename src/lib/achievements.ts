@@ -9,6 +9,7 @@ const MASTERY: Record<string, string> = {
   "present-continuous": "in-the-moment",
   "present-perfect": "result-is-here",
   "present-perfect-continuous": "duration-master",
+  "past-simple": "back-in-time",
 };
 
 export function earnedAchievements(progress: ProgressState, game: GameState): string[] {

@@ -44,6 +44,15 @@ export const CATEGORY_TITLES: Record<string, string> = {
   verb_form_error: "Форма глагола (V1 / V-ing / V3)",
   word_order_error: "Порядок слов",
   for_since_error: "FOR или SINCE?",
+  // Past Simple
+  wrong_v2: "Вторая форма глагола (V2)",
+  used_v3_instead_v2: "V2 или V3?",
+  did_plus_v2: "DID + V1",
+  didnt_plus_v2: "DIDN'T + V1",
+  wrong_was_were: "WAS или WERE?",
+  used_did_with_be: "DID с глаголом BE",
+  ed_spelling: "Написание окончания -ed",
+  past_simple_selection: "Выбор Past Simple по смыслу",
 };
 
 export const CATEGORY_RULES: Record<

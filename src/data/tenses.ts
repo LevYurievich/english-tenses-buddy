@@ -52,8 +52,9 @@ export const TENSES: TenseMeta[] = [
     id: "past-simple",
     title: "Past Simple",
     group: "past",
-    tagline: "Вчера • факт в прошлом",
-    available: false,
+    tagline: "Было • закончилось • V2 / DID + V1",
+    available: true,
+    path: "/learn/past-simple",
   },
   {
     id: "past-continuous",
