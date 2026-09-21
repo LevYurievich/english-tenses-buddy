@@ -481,4 +481,59 @@ export const CATEGORY_RULES: Record<
     wrong: "We waited for 20 minutes when the bus came.",
     tip: "КАК ДОЛГО ДО ТОГО МОМЕНТА → had been + V-ing.",
   },
+  will_plus_wrong_verb_form: {
+    rule: "После WILL всегда V1",
+    right: "She will go.",
+    wrong: "She will goes.",
+    tip: "WILL не меняется, и глагол после него тоже.",
+  },
+  will_plus_to: {
+    rule: "После WILL частица to не нужна",
+    right: "He will come.",
+    wrong: "He will to come.",
+  },
+  will_plus_ing: {
+    rule: "После WILL не бывает V-ing",
+    right: "They will play.",
+    wrong: "They will playing.",
+  },
+  will_plus_s: {
+    rule: "После WILL окончание -s не ставится",
+    right: "Will he come?",
+    wrong: "Will he comes?",
+  },
+  wrong_wont_form: {
+    rule: "will not = won't",
+    right: "I won't forget.",
+    wrong: "I willn't forget.",
+  },
+  future_question_order: {
+    rule: "Will + кто + V1 ?",
+    right: "Will Tom come tomorrow?",
+    wrong: "Tom will come tomorrow?",
+    tip: "WILL выходит вперёд.",
+  },
+  future_negative_form: {
+    rule: "Subject + won't + V1",
+    right: "She won't be late.",
+    wrong: "She don't will be late.",
+  },
+  will_vs_going_to: {
+    rule: "Решение сейчас → WILL, намерение было раньше → BE GOING TO",
+    right: "I've bought paint. I'm going to paint my room.",
+    wrong: "I've bought paint. I'll paint my room.",
+    tip: "Спроси: план уже был или решение появилось только что?",
+  },
+  will_vs_present_continuous_future: {
+    rule: "Намерение → be going to, конкретная договорённость → am/is/are + V-ing",
+    right: "I'm meeting Anna at 5 tomorrow.",
+    wrong: "I will meet Anna at 5 tomorrow (хотя вы уже договорились).",
+    tip: "Граница не абсолютная: смотри, есть ли договорённость.",
+  },
+  future_context_selection: {
+    rule: "Сначала контекст: решение / обещание / предложение / прогноз / факт",
+    right: "The phone is ringing. I'll answer it.",
+    wrong: "The phone is ringing. I'm going to answer it.",
+    tip: "tomorrow говорит КОГДА, но не выбирает конструкцию.",
+  },
 };
