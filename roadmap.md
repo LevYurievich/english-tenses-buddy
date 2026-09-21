@@ -31,3 +31,8 @@
 - Reasoning «Почему?», новые категории ошибок, достижение «Назад во времени»
 - Маршрут /learn/past-simple, прогресс, учебный путь с блоком PAST
 - Не реализованы: Past Continuous, Past Perfect, Past Perfect Continuous, Испытание Past
+
+## PAST CONTINUOUS (выполнено)
+- Теория (12 карточек), 36 упражнений, тест 15, «Почему?», ошибки, прогресс, достижение «В процессе прошлого».
+- Сравнение Past Simple vs Past Continuous: /compare/past, 15 заданий.
+- Дальше (не начато): Past Perfect, Past Perfect Continuous, All Past.
