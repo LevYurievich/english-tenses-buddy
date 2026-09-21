@@ -48,9 +48,9 @@ function MistakesPage() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-3xl">Мои ошибки</h1>
+        <h1 className="text-3xl">Разбираем ошибки</h1>
         <p className="mt-2 text-muted-foreground">
-          Здесь собраны правила, в которых ты ошибался. Их можно потренировать отдельно.
+          Ошибки показывают, что стоит потренировать.
         </p>
       </header>
 
