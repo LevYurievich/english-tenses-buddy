@@ -14,8 +14,8 @@ export function AnswerFeedback({
   correct: boolean;
   correctAnswer: string;
   explanation: string;
-  userAnswer?: string;
-  tip?: string;
+  userAnswer?: string | undefined;
+  tip?: string | undefined;
 }) {
   return (
     <div
