@@ -84,8 +84,9 @@ export const TENSES: TenseMeta[] = [
     id: "future-simple",
     title: "Future Simple",
     group: "future",
-    tagline: "Решение • обещание • прогноз",
-    available: false,
+    tagline: "Решение сейчас • обещание • прогноз • will + V1",
+    available: true,
+    path: "/learn/future-simple",
   },
   {
     id: "future-continuous",
