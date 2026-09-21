@@ -1,14 +1,23 @@
 import { Link } from "@tanstack/react-router";
-import { BookOpen, Clock, Home, Layers, Puzzle, TrendingUp } from "lucide-react";
+import {
+  BookOpen,
+  Brain,
+  Clock,
+  Home,
+  Target,
+  TrendingUp,
+  Trophy,
+} from "lucide-react";
 import type { ReactNode } from "react";
 
 const NAV = [
-  { to: "/", label: "Главная", icon: Home },
-  { to: "/learn", label: "Учим времена", icon: BookOpen },
-  { to: "/all-present", label: "Все Present", icon: Layers },
-  { to: "/mistakes", label: "Мои ошибки", icon: Puzzle },
-  { to: "/progress", label: "Прогресс", icon: TrendingUp },
-  { to: "/time-machine", label: "Машина времени", icon: Clock },
+  { to: "/", label: "Главная", icon: Home, mobile: true },
+  { to: "/learn", label: "Учусь", icon: BookOpen, mobile: true },
+  { to: "/practice", label: "Тренируюсь", icon: Target, mobile: true },
+  { to: "/tests", label: "Тесты", icon: Trophy, mobile: true },
+  { to: "/mistakes", label: "Мои ошибки", icon: Brain, mobile: false },
+  { to: "/progress", label: "Прогресс", icon: TrendingUp, mobile: true },
+  { to: "/time-machine", label: "Машина времени", icon: Clock, mobile: false },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -20,6 +29,9 @@ export function AppShell({ children }: { children: ReactNode }) {
             English Tenses
             <br />
             Trainer
+          </p>
+          <p className="mt-1 text-[11px] font-bold tracking-widest text-muted-foreground">
+            PAST ← PRESENT → FUTURE
           </p>
         </Link>
         <nav className="mt-8 space-y-1">
@@ -48,13 +60,13 @@ export function AppShell({ children }: { children: ReactNode }) {
       </div>
 
       <nav className="fixed inset-x-0 bottom-0 z-20 flex border-t border-border bg-card md:hidden">
-        {NAV.map((item) => (
+        {NAV.filter((i) => i.mobile).map((item) => (
           <Link
             key={item.to}
             to={item.to}
             activeOptions={{ exact: item.to === "/" }}
             activeProps={{ className: "text-primary" }}
-            className="flex flex-1 flex-col items-center gap-0.5 px-1 py-2 text-[10px] font-semibold text-muted-foreground"
+            className="flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-2 text-[10px] font-semibold text-muted-foreground"
           >
             <item.icon aria-hidden className="size-5" />
             {item.label}

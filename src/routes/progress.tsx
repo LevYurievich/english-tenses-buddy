@@ -4,6 +4,12 @@ import { Button } from "@/components/ui/app-button";
 import { TENSES } from "@/data/tenses";
 import { getTenseProgress, resetAll, useProgress } from "@/lib/progress";
 import { allPercents, COUNTS, overall } from "@/lib/tense-stats";
+import { levelFor, useGame } from "@/lib/gamification";
+import { accuracyOverall, skillStats, weakCategories } from "@/lib/skill-stats";
+import { ACHIEVEMENTS } from "@/data/achievements";
+import { CATEGORY_TITLES } from "@/data/error-categories";
+import { TenseTypeBadge } from "@/components/TenseTypeBadge";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/progress")({
   head: () => ({
@@ -26,19 +32,99 @@ export const Route = createFileRoute("/progress")({
 function ProgressPage() {
   const state = useProgress();
   const percents = allPercents(state);
+  const game = useGame();
+  const level = levelFor(game?.xp ?? 0);
+  const accuracy = accuracyOverall(state);
+  const skills = skillStats(state);
+  const weak = weakCategories(state);
+  const unlocked = game?.achievements ?? [];
 
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-3xl">Мой прогресс</h1>
+        <h1 className="text-3xl">Твой прогресс</h1>
         <p className="mt-2 text-muted-foreground">
           Прогресс сохраняется в этом браузере — можно вернуться позже.
         </p>
       </header>
 
-      <div className="card-surface p-5">
+      <div className="card-surface space-y-4 p-5">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="stat-chip bg-primary/10 text-primary">
+            Уровень {level.level} · {level.title}
+          </span>
+          <span className="stat-chip bg-xp/15 text-foreground">⭐ {game?.xp ?? 0} XP</span>
+          <span className="stat-chip bg-streak/15 text-foreground">
+            🔥 {game?.currentStreak ?? 0} дн. подряд (лучшая {game?.bestStreak ?? 0})
+          </span>
+          <span className="stat-chip bg-muted text-foreground">🎯 {accuracy}% точность</span>
+        </div>
         <ProgressBar value={overall(state)} label="Общий прогресс" tone="success" />
+        {level.next ? (
+          <ProgressBar
+            value={level.progress}
+            label={`До уровня «${level.next.title}» — ${level.next.min - (game?.xp ?? 0)} XP`}
+          />
+        ) : null}
       </div>
+
+      <section className="card-surface space-y-4 p-5">
+        <h2 className="text-xl">Навыки грамматики</h2>
+        {skills.map((s) => (
+          <div key={s.id}>
+            <ProgressBar
+              value={s.accuracy}
+              label={`${s.title} · ${s.correct}/${s.total}`}
+              tone={s.accuracy >= 80 ? "success" : "primary"}
+            />
+          </div>
+        ))}
+      </section>
+
+      {weak.length ? (
+        <section className="card-surface space-y-3 border-2 border-warning/40 p-5">
+          <h2 className="text-xl">Что повторить</h2>
+          <ul className="space-y-1 text-sm">
+            {weak.slice(0, 4).map((w) => (
+              <li key={w.category} className="flex justify-between gap-3">
+                <span>{CATEGORY_TITLES[w.category] ?? w.category}</span>
+                <span className="font-bold text-warning">{w.accuracy}%</span>
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/quick"
+            search={{ mode: "weak" as const }}
+            className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
+          >
+            Потренировать
+          </Link>
+        </section>
+      ) : null}
+
+      <section className="card-surface p-5">
+        <h2 className="text-xl">Достижения</h2>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          {ACHIEVEMENTS.map((a) => {
+            const got = unlocked.includes(a.id);
+            return (
+              <div
+                key={a.id}
+                className={`rounded-xl border p-3 text-sm ${
+                  got ? "border-success/50 bg-success/10" : "border-border bg-muted/50 opacity-70"
+                }`}
+              >
+                <p className="font-display font-bold">
+                  <span aria-hidden>{a.icon}</span> {a.title} {got ? "✓" : "🔒"}
+                </p>
+                <p className="text-muted-foreground">{a.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <h2 className="text-xl">Навыки по временам</h2>
 
       <div className="space-y-3">
         {[
@@ -50,7 +136,10 @@ function ProgressPage() {
           return (
             <section key={t.id} className="card-surface space-y-3 p-5">
               <div className="flex items-center justify-between gap-3">
-                <h2 className="text-lg">{t.title}</h2>
+                <div className="min-w-0">
+                  <h3 className="font-display text-lg font-bold">{t.title}</h3>
+                  <TenseTypeBadge tenseId={t.id} showMeaning={false} />
+                </div>
                 <span className="font-display font-bold">{percents[t.id] ?? 0}%</span>
               </div>
               <ProgressBar value={percents[t.id] ?? 0} />

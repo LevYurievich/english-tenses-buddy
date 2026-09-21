@@ -6,6 +6,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { ErrorCategory } from "@/data/types";
 import { TENSES } from "@/data/tenses";
+import { awardAnswer, awardCorrectedMistake, awardLesson, awardTest } from "./gamification";
 
 const STORAGE_KEY = "ets-progress-v1";
 const EVENT = "ets-progress-change";
@@ -102,6 +103,7 @@ export function overallPercent(state: ProgressState, perTense: Record<string, nu
 }
 
 export function markTheoryDone(tenseId: string) {
+  if (!getTenseProgress(loadProgress(), tenseId).theoryDone) awardLesson();
   updateState((s) => ({
     ...s,
     tenses: { ...s.tenses, [tenseId]: { ...getTenseProgress(s, tenseId), theoryDone: true } },
@@ -118,6 +120,11 @@ export function recordAnswer(params: {
   correctAnswer: string;
   explanation: string;
 }) {
+  const before = getTenseProgress(loadProgress(), params.tenseId);
+  const previousResult = (before.results ?? {})[params.exerciseId];
+  awardAnswer(params.correct, previousResult === undefined);
+  if (params.correct && previousResult === false) awardCorrectedMistake();
+
   updateState((s) => {
     const prev = getTenseProgress(s, params.tenseId);
     const doneExercises = prev.doneExercises.includes(params.exerciseId)
@@ -156,6 +163,7 @@ export function recordAnswer(params: {
 }
 
 export function recordTest(tenseId: string, score: number, total: number) {
+  awardTest(score, total);
   updateState((s) => {
     const prev = getTenseProgress(s, tenseId);
     return {
