@@ -458,4 +458,16 @@ export const CATEGORY_RULES: Record<
     right: "Had Tom been studying?",
     wrong: "Tom had been studying?",
   },
+  past_tense_selection: {
+    rule: "Сначала смысл: событие ● / процесс ████ / раньше ✓ / длительность ⏱ — потом формула",
+    right: "When we arrived, the film had already started.",
+    wrong: "When we arrived, the film already started.",
+    tip: "СМЫСЛ → ВРЕМЯ → ФОРМУЛА.",
+  },
+  duration_selection: {
+    rule: "Длительность процесса до момента прошлого → had + been + V-ing",
+    right: "We had been waiting for 20 minutes when the bus came.",
+    wrong: "We waited for 20 minutes when the bus came.",
+    tip: "КАК ДОЛГО ДО ТОГО МОМЕНТА → had been + V-ing.",
+  },
 };
