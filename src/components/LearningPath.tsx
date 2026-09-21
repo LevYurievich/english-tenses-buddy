@@ -83,11 +83,24 @@ export const PATH_STEPS: Step[] = [
     to: "/compare/past",
     kind: "compare",
   },
+  {
+    id: "past-perfect",
+    title: "Past Perfect",
+    subtitle: "Раньше другого момента прошлого • had + V3",
+    to: "/learn/past-perfect",
+    kind: "tense",
+  },
+  {
+    id: "compare-past-perfect",
+    title: "Past Perfect vs Past Simple",
+    subtitle: "Что произошло раньше?",
+    to: "/compare/past-perfect",
+    kind: "compare",
+  },
 ];
 
 /** Следующие остановки маршрута PAST — пока закрыты. */
 const LOCKED_PAST = [
-  "Past Perfect",
   "Past Perfect Continuous",
   "Испытание Past",
 ];

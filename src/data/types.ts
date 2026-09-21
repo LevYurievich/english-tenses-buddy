@@ -57,7 +57,16 @@ export type ErrorCategory =
   | "past_simple_vs_continuous"
   | "wrong_background_event"
   | "wrong_when_while_interpretation"
-  | "question_order_past_continuous";
+  | "question_order_past_continuous"
+  // --- Past Perfect ---
+  | "wrong_past_perfect_v3"
+  | "used_v2_after_had"
+  | "missing_had"
+  | "used_did_with_past_perfect"
+  | "past_simple_vs_past_perfect"
+  | "wrong_event_order"
+  | "wrong_reference_point"
+  | "already_position_past_perfect";
 
 export type Difficulty = 1 | 2 | 3;
 
