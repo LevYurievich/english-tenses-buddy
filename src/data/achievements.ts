@@ -86,6 +86,13 @@ export const ACHIEVEMENTS: Achievement[] = [
     xp: 60,
   },
   {
+    id: "forward-to-future",
+    icon: "🚀",
+    title: "Вперёд в будущее!",
+    description: "Освоен Future Simple",
+    xp: 40,
+  },
+  {
     id: "present-master",
     icon: "🏆",
     title: "Present Master",

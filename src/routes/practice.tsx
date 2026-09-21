@@ -61,6 +61,13 @@ const CARDS = [
     description: "Четыре прошедших времени — выбираешь сам",
     id: "all-past",
   },
+  {
+    to: "/compare/future" as const,
+    icon: "🚀",
+    title: "Три способа о будущем",
+    description: "will · be going to · Present Continuous",
+    id: "compare-future",
+  },
 ];
 
 function PracticePage() {

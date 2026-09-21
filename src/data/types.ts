@@ -79,7 +79,18 @@ export type ErrorCategory =
   | "question_order_past_perfect_continuous"
   // --- Смешанный модуль «Все Past» ---
   | "past_tense_selection"
-  | "duration_selection";
+  | "duration_selection"
+  // --- Future Simple ---
+  | "will_plus_wrong_verb_form"
+  | "will_plus_to"
+  | "will_plus_ing"
+  | "will_plus_s"
+  | "wrong_wont_form"
+  | "future_question_order"
+  | "future_negative_form"
+  | "will_vs_going_to"
+  | "will_vs_present_continuous_future"
+  | "future_context_selection";
 
 export type Difficulty = 1 | 2 | 3;
 
