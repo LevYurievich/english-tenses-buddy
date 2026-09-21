@@ -16,6 +16,8 @@ export type GameState = {
   daily: { date: string; count: number };
   dailyGoal: number;
   achievements: string[];
+  /** Текущая серия правильных ответов подряд. */
+  answerStreak: number;
   /** Лучшая серия правильных ответов подряд. */
   bestAnswerStreak: number;
   /** Сколько ошибок разобрано повторно (правильный ответ после ошибки). */
@@ -43,6 +45,7 @@ export const emptyGame = (): GameState => ({
   daily: { date: "", count: 0 },
   dailyGoal: 10,
   achievements: [],
+  answerStreak: 0,
   bestAnswerStreak: 0,
   correctedMistakes: 0,
 });
@@ -108,13 +111,15 @@ function withActivity(g: GameState, tasks = 1): GameState {
   };
 }
 
-/** Ответ на задание. XP начисляется только за правильный ответ. */
-export function awardAnswer(correct: boolean, answerStreak = 0) {
+/** Ответ на задание. XP начисляется только за первый правильный ответ на задание. */
+export function awardAnswer(correct: boolean, countXp = true) {
   updateGame((g) => {
     const next = withActivity(g, 1);
+    const answerStreak = correct ? next.answerStreak + 1 : 0;
     return {
       ...next,
-      xp: next.xp + (correct ? XP_ANSWER : 0),
+      xp: next.xp + (correct && countXp ? XP_ANSWER : 0),
+      answerStreak,
       bestAnswerStreak: Math.max(next.bestAnswerStreak, answerStreak),
     };
   });
