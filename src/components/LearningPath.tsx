@@ -97,13 +97,24 @@ export const PATH_STEPS: Step[] = [
     to: "/compare/past-perfect",
     kind: "compare",
   },
+  {
+    id: "past-perfect-continuous",
+    title: "Past Perfect Continuous",
+    subtitle: "Процесс до момента прошлого • had been + V-ing",
+    to: "/learn/past-perfect-continuous",
+    kind: "tense",
+  },
+  {
+    id: "compare-past-perfect-continuous",
+    title: "Past Perfect vs Past Perfect Continuous",
+    subtitle: "Результат или длительность процесса?",
+    to: "/compare/past-perfect-continuous",
+    kind: "compare",
+  },
 ];
 
 /** Следующие остановки маршрута PAST — пока закрыты. */
-const LOCKED_PAST = [
-  "Past Perfect Continuous",
-  "Испытание Past",
-];
+const LOCKED_PAST = ["Испытание Past"];
 
 export type StepStatus = "done" | "current" | "open";
 

@@ -25,6 +25,12 @@ import {
   PAST_PERFECT_TEST,
 } from "@/data/past-perfect/exercises";
 import { COMPARE_PAST_PERFECT_EXERCISES } from "@/data/compare/past-perfect-simple";
+import {
+  PAST_PERFECT_CONTINUOUS_EXERCISES,
+  PAST_PERFECT_CONTINUOUS_TEST,
+  POINT_EXERCISES,
+} from "@/data/past-perfect-continuous/exercises";
+import { COMPARE_PFC_EXERCISES } from "@/data/compare/past-perfect-continuous";
 import { TENSES } from "@/data/tenses";
 import { getTenseProgress, tensePercent, type ProgressState } from "./progress";
 
@@ -63,6 +69,14 @@ export const COUNTS: Record<string, { exercises: number; test: number }> = {
   },
   "compare-past-perfect": {
     exercises: COMPARE_PAST_PERFECT_EXERCISES.length,
+    test: 0,
+  },
+  "past-perfect-continuous": {
+    exercises: POINT_EXERCISES.length + PAST_PERFECT_CONTINUOUS_EXERCISES.length,
+    test: PAST_PERFECT_CONTINUOUS_TEST.length,
+  },
+  "compare-past-perfect-continuous": {
+    exercises: COMPARE_PFC_EXERCISES.length,
     test: 0,
   },
   "all-present": {

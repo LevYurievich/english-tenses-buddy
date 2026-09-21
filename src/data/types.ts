@@ -66,7 +66,17 @@ export type ErrorCategory =
   | "past_simple_vs_past_perfect"
   | "wrong_event_order"
   | "wrong_reference_point"
-  | "already_position_past_perfect";
+  | "already_position_past_perfect"
+  // --- Past Perfect Continuous ---
+  | "missing_been_past_perfect_continuous"
+  | "missing_ing_past_perfect_continuous"
+  | "used_v3_instead_ing"
+  | "wrong_past_reference_point"
+  | "past_perfect_vs_past_perfect_continuous"
+  | "past_continuous_vs_past_perfect_continuous"
+  | "wrong_for_since_past"
+  | "used_did_with_past_perfect_continuous"
+  | "question_order_past_perfect_continuous";
 
 export type Difficulty = 1 | 2 | 3;
 
