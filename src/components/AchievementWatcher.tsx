@@ -3,7 +3,7 @@ import { ACHIEVEMENT_BY_ID } from "@/data/achievements";
 import { syncAchievements } from "@/lib/achievements";
 import { useProgress } from "@/lib/progress";
 import { Button } from "@/components/ui/app-button";
-import { TensyAvatar } from "@/components/Tensy";
+import { TENSY_ACHIEVEMENT, TensyAvatar } from "@/components/Tensy";
 
 /**
  * Следит за прогрессом и показывает экран нового достижения.
@@ -28,7 +28,7 @@ export function AchievementWatcher() {
     <div className="fixed inset-0 z-50 grid place-items-center bg-foreground/40 p-4">
       <div className="appear w-full max-w-sm rounded-3xl border border-border bg-card p-6 text-center shadow-lg">
         <div className="flex justify-center">
-          <TensyAvatar mood="cheer" size="lg" />
+          <TensyAvatar image={TENSY_ACHIEVEMENT} size="xl" />
         </div>
         <p className="mt-4 text-xs font-bold tracking-widest text-primary">НОВОЕ ДОСТИЖЕНИЕ</p>
         <p className="mt-2 font-display text-2xl">

@@ -113,7 +113,7 @@ function PracticePage() {
         </p>
       </Link>
 
-      <Tensy mood="hint">
+      <Tensy mood="motivation">
         Ошибка — это подсказка. Посмотри, какое правило повторяется чаще всего, и начни с него.
       </Tensy>
     </div>

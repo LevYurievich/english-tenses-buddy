@@ -84,7 +84,7 @@ function Home() {
               Путешествие по временам: понимай смысл, а не заучивай правила.
             </p>
           </div>
-          <TensyAvatar mood="hello" size="lg" />
+          <TensyAvatar mood="map" size="xl" />
         </div>
 
         <div className="mt-5 flex flex-wrap items-center gap-2">

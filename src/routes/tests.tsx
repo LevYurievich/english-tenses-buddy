@@ -87,7 +87,7 @@ function TestsPage() {
         </Link>
       </div>
 
-      <Tensy mood="hint">
+      <Tensy mood="test">
         В тесте нет подсказок по цвету и символам — это проверка, а не тренировка.
       </Tensy>
     </div>
