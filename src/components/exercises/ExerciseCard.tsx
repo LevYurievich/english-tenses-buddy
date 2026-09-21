@@ -7,6 +7,8 @@ import { GrammarChip } from "@/components/GrammarChip";
 import { Hint } from "@/components/Hint";
 import { Button } from "@/components/ui/app-button";
 import { ProgressBar } from "@/components/ProgressBar";
+import { TenseTypeBadge } from "@/components/TenseTypeBadge";
+import { useGame } from "@/lib/gamification";
 import {
   ErrorFinderInput,
   MultipleChoiceInput,
@@ -47,40 +49,57 @@ export function ExerciseCard({
   const [answer, setAnswer] = useState("");
   const [checked, setChecked] = useState(false);
   const [correct, setCorrect] = useState(false);
+  const [attempts, setAttempts] = useState(0);
+  const [showExplanation, setShowExplanation] = useState(false);
+  const game = useGame();
 
   useEffect(() => {
     setAnswer("");
     setChecked(false);
     setCorrect(false);
+    setAttempts(0);
+    setShowExplanation(false);
   }, [exercise.id]);
 
   const isTokenType = exercise.type === "sentence-builder" || exercise.type === "constructor";
   const finalAnswer = isTokenType ? tokensToSentence(answer) : answer;
+  const given = isTokenType ? finalAnswer : answer;
 
   const handleCheck = () => {
-    const ok = checkAnswer(exercise, isTokenType ? finalAnswer : answer);
+    const ok = checkAnswer(exercise, given);
     setCorrect(ok);
     setChecked(true);
-    onResult(ok, isTokenType ? finalAnswer : answer);
+    const attempt = attempts + 1;
+    setAttempts(attempt);
+    if (attempt === 1) onResult(ok, given);
+    if (ok || attempt > 1) setShowExplanation(true);
   };
 
   const inputProps = { exercise, answer, setAnswer, checked };
+  const streak = game?.answerStreak ?? 0;
+  // Подсказки типа времени показываем только в тренировке с подсказками.
+  const showTypeHint = showHint && showFeedback;
 
   return (
     <section className="card-surface p-5 sm:p-6">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div>
+      <div className="mb-3 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+        <div className="min-w-0">
           <p className="text-xs font-bold tracking-widest text-primary">
-            ЗАДАНИЕ {index + 1} ИЗ {total} · {TYPE_TITLES[exercise.type].toUpperCase()}
+            {index + 1} / {total} · {TYPE_TITLES[exercise.type].toUpperCase()}
           </p>
-          <h2 className="mt-1 text-xl">{exercise.task}</h2>
+          <h2 className="mt-1 truncate text-lg sm:text-xl">{exercise.task}</h2>
         </div>
-        <span className="rounded-full bg-muted px-3 py-1 text-xs font-bold text-muted-foreground">
-          Уровень {exercise.difficulty}
-        </span>
+        <div className="flex shrink-0 items-center gap-2">
+          {streak >= 3 ? (
+            <span className="stat-chip bg-streak/15 text-foreground">🔥 {streak} подряд</span>
+          ) : null}
+          <span className="stat-chip bg-muted text-muted-foreground">
+            Уровень {exercise.difficulty}
+          </span>
+        </div>
       </div>
 
-      <ProgressBar value={((index + (checked ? 1 : 0)) / total) * 100} />
+      <ProgressBar value={((index + (checked && correct ? 1 : 0)) / total) * 100} />
 
       {exercise.situation ? (
         <div className="mt-5 rounded-xl border-2 border-dashed border-primary/40 bg-primary/5 px-4 py-3">
@@ -89,9 +108,13 @@ export function ExerciseCard({
         </div>
       ) : null}
 
-      <p className="my-5 rounded-xl bg-muted/60 px-4 py-4 text-lg font-semibold sm:text-xl">
-        {exercise.question}
-      </p>
+      {showTypeHint && exercise.targetTense ? (
+        <div className="mt-4">
+          <TenseTypeBadge tenseId={exercise.targetTense} />
+        </div>
+      ) : null}
+
+      <p className="sentence-box my-5">{exercise.question}</p>
 
       <div className="space-y-4">
         {exercise.type === "multiple-choice" ? <MultipleChoiceInput {...inputProps} /> : null}
@@ -114,8 +137,12 @@ export function ExerciseCard({
             {showFeedback ? (
               <AnswerFeedback
                 correct={correct}
-                correctAnswer={exercise.correctAnswer}
-                explanation={exercise.explanation}
+                correctAnswer={
+                  showExplanation || correct ? exercise.correctAnswer : "попробуй ещё раз"
+                }
+                explanation={showExplanation || correct ? exercise.explanation : exercise.hint}
+                userAnswer={displayAnswer(exercise, given)}
+                tip={correct ? undefined : exercise.hint}
               />
             ) : (
               <p className="rounded-xl bg-muted px-4 py-3 text-sm font-semibold text-muted-foreground">
@@ -123,15 +150,15 @@ export function ExerciseCard({
               </p>
             )}
 
-            {showFeedback ? (
+            {showFeedback && (correct || showExplanation) ? (
               <WhyPanel
                 exercise={exercise}
                 correct={correct}
-                userAnswer={displayAnswer(exercise, isTokenType ? finalAnswer : answer)}
+                userAnswer={displayAnswer(exercise, given)}
               />
             ) : null}
 
-            {showFeedback && exercise.type === "constructor" ? (
+            {showFeedback && exercise.type === "constructor" && (correct || showExplanation) ? (
               <div className="flex flex-wrap gap-4 rounded-xl border border-border bg-muted/40 p-4">
                 {exercise.breakdown.map((part) => (
                   <GrammarChip key={part.text} role={part.role} note={part.note}>
@@ -141,9 +168,26 @@ export function ExerciseCard({
               </div>
             ) : null}
 
-            <Button variant="success" onClick={onNext}>
-              {nextLabel}
-            </Button>
+            <div className="flex flex-wrap gap-2">
+              {!correct && showFeedback && attempts === 1 ? (
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    setChecked(false);
+                  }}
+                >
+                  Попробовать ещё
+                </Button>
+              ) : null}
+              {!correct && showFeedback && !showExplanation ? (
+                <Button variant="ghost" onClick={() => setShowExplanation(true)}>
+                  Показать объяснение
+                </Button>
+              ) : null}
+              <Button variant="success" onClick={onNext}>
+                {nextLabel} →
+              </Button>
+            </div>
           </>
         )}
       </div>
