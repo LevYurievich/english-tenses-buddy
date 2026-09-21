@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AllPresentRouteImport } from './routes/all-present'
 import { Route as AllTensesRouteImport } from './routes/all-tenses'
 import { Route as MistakesRouteImport } from './routes/mistakes'
 import { Route as ProgressRouteImport } from './routes/progress'
@@ -27,6 +28,11 @@ import { Route as LearnPresentSimpleRouteImport } from './routes/learn.present-s
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AllPresentRoute = AllPresentRouteImport.update({
+  id: '/all-present',
+  path: '/all-present',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AllTensesRoute = AllTensesRouteImport.update({
@@ -99,6 +105,7 @@ const LearnPresentSimpleRoute = LearnPresentSimpleRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/all-present': typeof AllPresentRoute
   '/all-tenses': typeof AllTensesRoute
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/all-present': typeof AllPresentRoute
   '/all-tenses': typeof AllTensesRoute
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
@@ -132,6 +140,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/all-present': typeof AllPresentRoute
   '/all-tenses': typeof AllTensesRoute
   '/mistakes': typeof MistakesRoute
   '/progress': typeof ProgressRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/all-present'
     | '/all-tenses'
     | '/mistakes'
     | '/progress'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/all-present'
     | '/all-tenses'
     | '/mistakes'
     | '/progress'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/all-present'
     | '/all-tenses'
     | '/mistakes'
     | '/progress'
@@ -199,6 +211,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AllPresentRoute: typeof AllPresentRoute
   AllTensesRoute: typeof AllTensesRoute
   MistakesRoute: typeof MistakesRoute
   ProgressRoute: typeof ProgressRoute
@@ -221,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/all-present': {
+      id: '/all-present'
+      path: '/all-present'
+      fullPath: '/all-present'
+      preLoaderRoute: typeof AllPresentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/all-tenses': {
@@ -319,6 +339,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AllPresentRoute: AllPresentRoute,
   AllTensesRoute: AllTensesRoute,
   MistakesRoute: MistakesRoute,
   ProgressRoute: ProgressRoute,
