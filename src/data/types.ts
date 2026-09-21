@@ -40,7 +40,16 @@ export type ErrorCategory =
   | "auxiliary_error"
   | "verb_form_error"
   | "word_order_error"
-  | "for_since_error";
+  | "for_since_error"
+  // --- Past Simple ---
+  | "wrong_v2"
+  | "used_v3_instead_v2"
+  | "did_plus_v2"
+  | "didnt_plus_v2"
+  | "wrong_was_were"
+  | "used_did_with_be"
+  | "ed_spelling"
+  | "past_simple_selection";
 
 export type Difficulty = 1 | 2 | 3;
 

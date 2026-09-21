@@ -62,6 +62,21 @@ export const PATH_STEPS: Step[] = [
     to: "/all-present",
     kind: "challenge",
   },
+  {
+    id: "past-simple",
+    title: "Past Simple",
+    subtitle: "Было • закончилось • V2 / DID + V1",
+    to: "/learn/past-simple",
+    kind: "tense",
+  },
+];
+
+/** Следующие остановки маршрута PAST — пока закрыты. */
+const LOCKED_PAST = [
+  "Past Continuous",
+  "Past Perfect",
+  "Past Perfect Continuous",
+  "Испытание Past",
 ];
 
 export type StepStatus = "done" | "current" | "open";
@@ -139,14 +154,34 @@ export function LearningPath({ state }: { state: ProgressState | null }) {
         })}
       </ol>
 
+      <ul className="mt-2 space-y-2">
+        {LOCKED_PAST.map((title) => (
+          <li
+            key={title}
+            className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-dashed border-border p-3 sm:p-4"
+          >
+            <span
+              aria-hidden
+              className="grid size-8 shrink-0 place-items-center rounded-full border-2 border-border bg-muted text-sm"
+            >
+              🔒
+            </span>
+            <span className="min-w-0 truncate font-display font-bold text-muted-foreground">
+              {title}
+            </span>
+            <span className="text-xs font-bold text-muted-foreground">Скоро</span>
+          </li>
+        ))}
+      </ul>
+
       <div className="mt-5 rounded-2xl border border-dashed border-border p-4">
         <p className="text-xs font-bold tracking-widest text-muted-foreground">
-          PAST ←──── PRESENT ────→ FUTURE
+          PAST ●──── PRESENT ────→ FUTURE
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
           {steps.every((s) => s.status === "done")
-            ? "Present освоен! Машина времени готова двигаться дальше. Следующая остановка: PAST TENSES."
-            : "Сейчас активен маршрут PRESENT. Past и Future — скоро."}
+            ? "Present и Past Simple освоены! Следующие остановки маршрута PAST скоро откроются."
+            : "Present освоен — машина времени двинулась дальше: открыт Past Simple. Future пока закрыт."}
         </p>
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
           <TenseTypeBadge type="simple" />

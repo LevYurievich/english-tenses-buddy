@@ -37,6 +37,13 @@ export const ACHIEVEMENTS: Achievement[] = [
     xp: 40,
   },
   {
+    id: "back-in-time",
+    icon: "🕰",
+    title: "Назад во времени",
+    description: "Освоен Past Simple",
+    xp: 40,
+  },
+  {
     id: "on-target",
     icon: "🎯",
     title: "Точно в цель",
