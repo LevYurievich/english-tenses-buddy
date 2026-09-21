@@ -45,6 +45,16 @@
   --color-verb-soft: var(--verb-soft);
   --color-marker: var(--marker);
   --color-marker-soft: var(--marker-soft);
+  --color-type-simple: var(--type-simple);
+  --color-type-simple-soft: var(--type-simple-soft);
+  --color-type-continuous: var(--type-continuous);
+  --color-type-continuous-soft: var(--type-continuous-soft);
+  --color-type-perfect: var(--type-perfect);
+  --color-type-perfect-soft: var(--type-perfect-soft);
+  --color-type-duration: var(--type-duration);
+  --color-type-duration-soft: var(--type-duration-soft);
+  --color-xp: var(--xp);
+  --color-streak: var(--streak);
   --font-display: "Unbounded", system-ui, sans-serif;
   --font-sans: "Manrope", system-ui, sans-serif;
 }
@@ -88,6 +98,21 @@
   --marker: oklch(0.52 0.1 80);
   --marker-soft: oklch(0.95 0.05 85);
 
+  /* Типы времён: цвет всегда дополняется символом и названием. */
+  --type-simple: oklch(0.5 0.13 210);
+  --type-simple-soft: oklch(0.95 0.035 210);
+  --type-continuous: oklch(0.52 0.13 170);
+  --type-continuous-soft: oklch(0.95 0.04 170);
+  --type-perfect: oklch(0.5 0.14 285);
+  --type-perfect-soft: oklch(0.95 0.035 285);
+  --type-duration: oklch(0.52 0.12 60);
+  --type-duration-soft: oklch(0.95 0.04 70);
+
+  --xp: oklch(0.7 0.14 85);
+  --streak: oklch(0.63 0.17 40);
+
+  --shadow-soft: 0 6px 18px -12px oklch(0.3 0.08 240 / 40%);
+  --shadow-lift: 0 18px 38px -22px oklch(0.3 0.08 240 / 55%);
   --shadow-card: 0 12px 30px -18px oklch(0.3 0.08 240 / 45%);
   --gradient-hero: linear-gradient(135deg, oklch(0.62 0.14 200), oklch(0.58 0.14 250));
 }
@@ -121,4 +146,87 @@
 @utility hero-surface {
   background-image: var(--gradient-hero);
   color: var(--color-primary-foreground);
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility card-interactive {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-primary) 45%, transparent);
+    box-shadow: var(--shadow-lift);
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+}
+
+/** Формула как отдельный визуальный объект. */
+@utility formula-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid color-mix(in oklab, var(--color-primary) 35%, transparent);
+  background-color: color-mix(in oklab, var(--color-primary) 8%, var(--color-card));
+  border-radius: var(--radius-lg);
+  padding: 0.6rem 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/** Английское предложение — главный объект карточки упражнения. */
+@utility sentence-box {
+  background-color: color-mix(in oklab, var(--color-primary) 6%, var(--color-card));
+  border: 1px solid color-mix(in oklab, var(--color-primary) 18%, transparent);
+  border-radius: var(--radius-xl);
+  padding: 1.15rem 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+@utility stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+@utility appear {
+  animation: ets-appear 220ms ease-out both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes ets-appear {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
