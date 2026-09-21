@@ -42,3 +42,10 @@
 - «Почему?» с порядком событий и точкой отсчёта, 8 новых категорий ошибок, достижение «Ещё раньше!».
 - Маршруты /learn/past-perfect и /compare/past-perfect (15 сравнительных заданий).
 - Дальше (не начато): Past Perfect Continuous, All Past.
+
+## PAST PERFECT CONTINUOUS (выполнено)
+- Теория (19 карточек + шпаргалка): смысл, временные линии, связь с Present Perfect Continuous, HAD+BEEN+ING, how long, for/since, DID не нужен, BEEN не пропускаем, система Continuous, stative verbs.
+- Разогрев «Найди точку отсчёта» (6), основная тренировка 35 заданий, тест 15 новых заданий.
+- «Почему?» (точка отсчёта → процесс → длительность → HAD/BEEN/ING), 9 новых категорий ошибок, достижение «Долгое путешествие».
+- Маршруты /learn/past-perfect-continuous и /compare/past-perfect-continuous (15 сравнительных заданий: результат или длительность).
+- Дальше (не начато): All Past Tenses (Испытание Past).
