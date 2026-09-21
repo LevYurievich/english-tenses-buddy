@@ -109,7 +109,7 @@ function PracticePage() {
       <Link to="/mistakes" className="card-interactive block p-5">
         <p className="font-display text-lg font-bold">🧠 Разбор ошибок</p>
         <p className="mt-1 text-sm text-muted-foreground">
-          {mistakes ? `${mistakes} ошибок ждут повторения` : "Ошибок пока нет"}
+          {mistakes ? `Ошибок к повторению: ${mistakes}` : "Ошибок пока нет"}
         </p>
       </Link>
 

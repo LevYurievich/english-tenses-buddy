@@ -41,10 +41,12 @@ export function AnswerFeedback({
                   <span className="font-semibold">{userAnswer}</span>
                 </p>
               ) : null}
-              <p>
-                <span className="text-muted-foreground">Правильно: </span>
-                <span className="font-bold text-success">✓ {correctAnswer}</span>
-              </p>
+              {correctAnswer ? (
+                <p>
+                  <span className="text-muted-foreground">Правильно: </span>
+                  <span className="font-bold text-success">✓ {correctAnswer}</span>
+                </p>
+              ) : null}
               {tip ? <p className="text-sm font-semibold text-primary">{tip}</p> : null}
             </div>
           ) : null}

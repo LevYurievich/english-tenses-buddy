@@ -137,12 +137,14 @@ export function ExerciseCard({
             {showFeedback ? (
               <AnswerFeedback
                 correct={correct}
-                correctAnswer={
-                  showExplanation || correct ? exercise.correctAnswer : "попробуй ещё раз"
+                correctAnswer={showExplanation || correct ? exercise.correctAnswer : ""}
+                explanation={
+                  showExplanation || correct
+                    ? exercise.explanation
+                    : "Попробуй вспомнить правило и ответить ещё раз."
                 }
-                explanation={showExplanation || correct ? exercise.explanation : exercise.hint}
                 userAnswer={displayAnswer(exercise, given)}
-                tip={correct ? undefined : exercise.hint}
+                tip={correct || showExplanation ? undefined : exercise.hint}
               />
             ) : (
               <p className="rounded-xl bg-muted px-4 py-3 text-sm font-semibold text-muted-foreground">
