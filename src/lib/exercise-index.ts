@@ -62,6 +62,8 @@ export const BANKS: Record<string, Exercise[]> = {
   "compare-past-perfect": COMPARE_PAST_PERFECT_EXERCISES,
   "past-perfect-continuous": [...POINT_EXERCISES, ...PAST_PERFECT_CONTINUOUS_EXERCISES],
   "compare-past-perfect-continuous": COMPARE_PFC_EXERCISES,
+  "future-simple": [...WHY_WILL_EXERCISES, ...FUTURE_SIMPLE_EXERCISES],
+  "compare-future": COMPARE_FUTURE_EXERCISES,
 };
 
 export const ALL_EXERCISES: Exercise[] = [
@@ -75,6 +77,7 @@ export const ALL_EXERCISES: Exercise[] = [
   ...PAST_PERFECT_TEST,
   ...PAST_PERFECT_CONTINUOUS_TEST,
   ...PAST_FINAL_BANK,
+  ...FUTURE_SIMPLE_TEST,
 ];
 
 export const EXERCISE_BY_ID: Record<string, Exercise> = Object.fromEntries(
