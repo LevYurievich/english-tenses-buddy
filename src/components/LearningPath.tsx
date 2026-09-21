@@ -118,10 +118,24 @@ export const PATH_STEPS: Step[] = [
     to: "/all-past",
     kind: "challenge",
   },
+  {
+    id: "future-simple",
+    title: "Future Simple",
+    subtitle: "Решение сейчас • обещание • прогноз • will + V1",
+    to: "/learn/future-simple",
+    kind: "tense",
+  },
+  {
+    id: "compare-future",
+    title: "Три способа говорить о будущем",
+    subtitle: "will · be going to · Present Continuous",
+    to: "/compare/future",
+    kind: "compare",
+  },
 ];
 
-/** Следующая остановка маршрута — FUTURE, пока закрыт. */
-const LOCKED_PAST = ["Future Simple"];
+/** Следующая остановка маршрута — пока закрыта. */
+const LOCKED_PAST = ["Future Continuous"];
 
 export type StepStatus = "done" | "current" | "open";
 
@@ -220,12 +234,12 @@ export function LearningPath({ state }: { state: ProgressState | null }) {
 
       <div className="mt-5 rounded-2xl border border-dashed border-border p-4">
         <p className="text-xs font-bold tracking-widest text-muted-foreground">
-          PAST ●──── PRESENT ────→ FUTURE
+          PAST ✓ ← PRESENT ✓ → FUTURE ●
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
           {steps.every((s) => s.status === "done")
-            ? "PRESENT ✓ → PAST ✓ → FUTURE 🔒. Следующая остановка: FUTURE."
-            : "Present освоен, маршрут PAST открыт до самого испытания. Future пока закрыт."}
+            ? "PRESENT ✓ → PAST ✓ → FUTURE SIMPLE ✓. Следующая остановка: Future Continuous."
+            : "Маршрут открыт до Future Simple. Остальные времена будущего пока закрыты."}
         </p>
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
           <TenseTypeBadge type="simple" />
