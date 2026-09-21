@@ -24,7 +24,7 @@ export const Route = createFileRoute("/compare/")({
   component: ComparePage,
 });
 
-const SOON = ["Все времена Past", "Все времена Future"];
+const SOON = ["Все времена Future"];
 
 function ComparePage() {
   const progress = useProgress();
@@ -34,6 +34,7 @@ function ComparePage() {
   const percentPast = percentFor(progress, "compare-past");
   const percentPastPerfect = percentFor(progress, "compare-past-perfect");
   const percentPfc = percentFor(progress, "compare-past-perfect-continuous");
+  const percentFuture = percentFor(progress, "compare-future");
 
   return (
     <div className="space-y-6">
