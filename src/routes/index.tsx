@@ -2,6 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ProgressBar } from "@/components/ProgressBar";
 import { useProgress } from "@/lib/progress";
 import { overall } from "@/lib/tense-stats";
+import { levelFor, useGame } from "@/lib/gamification";
+import { accuracyOverall, weakCategories } from "@/lib/skill-stats";
+import { LearningPath, nextStep, pathStatuses } from "@/components/LearningPath";
+import { AchievementWatcher } from "@/components/AchievementWatcher";
+import { Tensy, TensyAvatar } from "@/components/Tensy";
+import { CATEGORY_TITLES } from "@/data/error-categories";
+import { TENSES } from "@/data/tenses";
+import { isCompleted } from "@/lib/tense-stats";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,83 +30,149 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const SECTIONS = [
+const MODES = [
   {
-    title: "Учим времена",
-    description: "Разбираем каждое время отдельно: правило → формула → практика.",
-    action: "Начать",
     to: "/learn" as const,
-    available: true,
+    icon: "📚",
+    title: "Учусь",
+    description: "Правило → примеры → практика",
+    accent: "from-primary/15 to-primary/5 border-primary/30",
   },
   {
-    title: "Сравниваем времена",
-    description: "Учимся понимать разницу между похожими временами.",
-    action: "Скоро",
-    to: "/compare" as const,
-    available: false,
+    to: "/practice" as const,
+    icon: "🎯",
+    title: "Тренируюсь",
+    description: "Сравнения, смешанные задания, слабые места",
+    accent: "from-type-continuous-soft to-card border-type-continuous/30",
   },
   {
-    title: "Все Present",
-    description: "Сам выбираешь время по смыслу: 50 упражнений и финальный тест.",
-    action: "Начать",
-    to: "/all-present" as const,
-    available: true,
-  },
-  {
-    title: "Все времена",
-    description: "Смешанная тренировка на все 12 времён.",
-    action: "Скоро",
-    to: "/all-tenses" as const,
-    available: false,
+    to: "/tests" as const,
+    icon: "🏆",
+    title: "Проверяю себя",
+    description: "Тесты без подсказок",
+    accent: "from-type-duration-soft to-card border-type-duration/30",
   },
 ];
 
 function Home() {
   const progress = useProgress();
+  const game = useGame();
   const percent = overall(progress);
-  const started = percent > 0;
+  const level = levelFor(game?.xp ?? 0);
+  const accuracy = accuracyOverall(progress);
+  const next = nextStep(progress);
+  const steps = pathStatuses(progress);
+  const learned = TENSES.filter((t) => isCompleted(progress, t.id)).length;
+  const weak = weakCategories(progress);
+  const mistakes = progress?.mistakes.length ?? 0;
+  const dailyDone = game && game.daily.date === new Date().toISOString().slice(0, 10)
+    ? game.daily.count
+    : 0;
 
   return (
     <div className="space-y-8">
-      <section className="hero-surface rounded-3xl p-6 sm:p-10">
-        <h1 className="text-3xl sm:text-4xl">English Tenses Trainer</h1>
-        <p className="mt-3 max-w-xl text-base opacity-90">
-          Разберись во временах английского, а не просто заучи правила
-        </p>
-        <div className="mt-6 max-w-sm rounded-2xl bg-card/95 p-4 text-foreground">
-          <ProgressBar value={percent} label="Твой прогресс" />
+      <AchievementWatcher />
+
+      <section className="hero-surface rounded-3xl p-6 sm:p-9">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+          <div className="min-w-0">
+            <p className="text-xs font-bold tracking-widest opacity-80">
+              PAST ●──── PRESENT ────→ FUTURE
+            </p>
+            <h1 className="mt-2 text-3xl sm:text-4xl">English Tenses Trainer</h1>
+            <p className="mt-2 max-w-xl text-base opacity-90">
+              Путешествие по временам: понимай смысл, а не заучивай правила.
+            </p>
+          </div>
+          <TensyAvatar mood="hello" size="lg" />
+        </div>
+
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <span className="stat-chip bg-card/90 text-foreground">📈 {percent}% курса</span>
+          <span className="stat-chip bg-card/90 text-foreground">⭐ {game?.xp ?? 0} XP</span>
+          <span className="stat-chip bg-card/90 text-foreground">
+            🔥 {game?.currentStreak ?? 0} дн. подряд
+          </span>
+          <span className="stat-chip bg-card/90 text-foreground">🎯 {accuracy}% точность</span>
+        </div>
+
+        <div className="mt-4 max-w-md rounded-2xl bg-card/95 p-4 text-foreground">
+          <ProgressBar value={percent} label={`Уровень ${level.level} · ${level.title}`} />
+          <p className="mt-3 text-xs font-bold tracking-widest text-primary">ПРОДОЛЖИМ?</p>
+          <p className="mt-1 font-display text-lg">{next ? next.title : "Present освоен"}</p>
+          <p className="text-sm text-muted-foreground">
+            {next ? next.subtitle : "Машина времени готова двигаться дальше."}
+          </p>
           <Link
-            to="/learn/present-simple"
+            to={(next?.to ?? "/all-present") as "/learn/present-simple"}
             className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground transition hover:brightness-110"
           >
-            {started ? "Продолжить обучение" : "Начать обучение"}
+            {percent > 0 ? "Продолжить →" : "Начать обучение →"}
           </Link>
         </div>
       </section>
 
       <section className="grid gap-4 md:grid-cols-3">
-        {SECTIONS.map((s) => (
-          <article key={s.title} className="card-surface flex flex-col gap-3 p-5">
-            <h2 className="text-lg">{s.title}</h2>
-            <p className="flex-1 text-sm text-muted-foreground">{s.description}</p>
-            {s.available ? (
-              <Link
-                to={s.to}
-                className="inline-flex items-center justify-center rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition hover:brightness-110"
-              >
-                {s.action}
-              </Link>
-            ) : (
-              <Link
-                to={s.to}
-                className="inline-flex items-center justify-center rounded-xl bg-muted px-4 py-2 text-sm font-bold text-muted-foreground"
-              >
-                Скоро
-              </Link>
-            )}
-          </article>
+        {MODES.map((m) => (
+          <Link
+            key={m.to}
+            to={m.to}
+            className={`card-interactive flex flex-col gap-2 bg-linear-to-br p-5 ${m.accent}`}
+          >
+            <span aria-hidden className="text-2xl">
+              {m.icon}
+            </span>
+            <span className="font-display text-lg font-bold">{m.title}</span>
+            <span className="flex-1 text-sm text-muted-foreground">{m.description}</span>
+            <span className="text-sm font-bold text-primary">
+              {m.title === "Учусь"
+                ? `${learned} из 12 времён · Продолжить →`
+                : m.title === "Тренируюсь"
+                  ? `${mistakes} ошибок ждут повторения · Тренироваться →`
+                  : "Начать тест →"}
+            </span>
+          </Link>
         ))}
       </section>
+
+      <section className="grid gap-4 sm:grid-cols-2">
+        <Link to="/quick" search={{ mode: "quick" }} className="card-interactive p-5">
+          <p className="font-display text-lg font-bold">⚡ Быстрая тренировка</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            10 коротких заданий из уже изученных тем.
+          </p>
+        </Link>
+        <Link to="/quick" search={{ mode: "weak" }} className="card-interactive p-5">
+          <p className="font-display text-lg font-bold">🎯 Слабые места</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {weak.length
+              ? `Повтори: ${weak
+                  .slice(0, 2)
+                  .map((w) => CATEGORY_TITLES[w.category] ?? w.category)
+                  .join(", ")}`
+              : "Пока слабых мест не видно — продолжай тренироваться."}
+          </p>
+        </Link>
+      </section>
+
+      <section className="card-surface p-5">
+        <ProgressBar
+          value={((dailyDone / (game?.dailyGoal ?? 10)) * 100) | 0}
+          label={`Сегодня ${dailyDone} / ${game?.dailyGoal ?? 10} заданий`}
+          tone="success"
+        />
+        <p className="mt-2 text-xs text-muted-foreground">
+          Цель необязательная — занимайся в своём темпе.
+        </p>
+      </section>
+
+      <LearningPath state={progress} />
+
+      <Tensy mood="hint">
+        {steps.every((s) => s.status === "done")
+          ? "Отличная работа. Present пройден целиком — дальше будет Past."
+          : "Совет: сначала пойми ситуацию, потом выбирай время. Формула — последний шаг."}
+      </Tensy>
     </div>
   );
 }
