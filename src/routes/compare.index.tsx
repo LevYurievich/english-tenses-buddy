@@ -24,13 +24,14 @@ export const Route = createFileRoute("/compare/")({
   component: ComparePage,
 });
 
-const SOON = ["Past Simple или Past Continuous", "Все времена Present", "Все времена Future"];
+const SOON = ["Все времена Past", "Все времена Future"];
 
 function ComparePage() {
   const progress = useProgress();
   const percent = percentFor(progress, "compare-present");
   const percentPerfect = percentFor(progress, "compare-perfect");
   const percentPpc = percentFor(progress, "compare-perfect-continuous");
+  const percentPast = percentFor(progress, "compare-past");
 
   return (
     <div className="space-y-6">
@@ -94,6 +95,25 @@ function ComparePage() {
           className="mt-1 inline-flex items-center justify-center rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition hover:brightness-110"
         >
           {percentPpc > 0 ? "Продолжить" : "Начать"}
+        </Link>
+      </article>
+
+      <article className="card-surface flex flex-col gap-3 p-5">
+        <div className="flex items-start justify-between gap-2">
+          <h2 className="text-lg">Past Simple или Past Continuous?</h2>
+          <span className="rounded-full bg-success/15 px-2.5 py-1 text-[11px] font-bold text-success">
+            Доступно
+          </span>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          ЧТО ПРОИЗОШЛО? → PAST SIMPLE • ЧТО ПРОИСХОДИЛО? → PAST CONTINUOUS
+        </p>
+        <ProgressBar value={percentPast} label="Прогресс" />
+        <Link
+          to="/compare/past"
+          className="mt-1 inline-flex items-center justify-center rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition hover:brightness-110"
+        >
+          {percentPast > 0 ? "Продолжить" : "Начать"}
         </Link>
       </article>
 

@@ -49,7 +49,15 @@ export type ErrorCategory =
   | "wrong_was_were"
   | "used_did_with_be"
   | "ed_spelling"
-  | "past_simple_selection";
+  | "past_simple_selection"
+  // --- Past Continuous ---
+  | "wrong_was_were_continuous"
+  | "missing_ing_past"
+  | "used_did_in_past_continuous"
+  | "past_simple_vs_continuous"
+  | "wrong_background_event"
+  | "wrong_when_while_interpretation"
+  | "question_order_past_continuous";
 
 export type Difficulty = 1 | 2 | 3;
 

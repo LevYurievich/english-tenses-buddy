@@ -14,6 +14,11 @@ import { COMPARE_PRESENT_EXERCISES } from "@/data/compare/present-simple-continu
 import { COMPARE_PERFECT_EXERCISES } from "@/data/compare/present-perfect-past-simple";
 import { ALL_PRESENT_TRAINING, FINAL_TEST_SIZE } from "@/data/all-present";
 import { PAST_SIMPLE_EXERCISES, PAST_SIMPLE_TEST } from "@/data/past-simple/exercises";
+import {
+  PAST_CONTINUOUS_EXERCISES,
+  PAST_CONTINUOUS_TEST,
+} from "@/data/past-continuous/exercises";
+import { COMPARE_PAST_EXERCISES } from "@/data/compare/past-simple-continuous";
 import { TENSES } from "@/data/tenses";
 import { getTenseProgress, tensePercent, type ProgressState } from "./progress";
 
@@ -37,6 +42,14 @@ export const COUNTS: Record<string, { exercises: number; test: number }> = {
   "past-simple": {
     exercises: PAST_SIMPLE_EXERCISES.length,
     test: PAST_SIMPLE_TEST.length,
+  },
+  "past-continuous": {
+    exercises: PAST_CONTINUOUS_EXERCISES.length,
+    test: PAST_CONTINUOUS_TEST.length,
+  },
+  "compare-past": {
+    exercises: COMPARE_PAST_EXERCISES.length,
+    test: 0,
   },
   "all-present": {
     exercises: ALL_PRESENT_TRAINING.length,

@@ -69,11 +69,24 @@ export const PATH_STEPS: Step[] = [
     to: "/learn/past-simple",
     kind: "tense",
   },
+  {
+    id: "past-continuous",
+    title: "Past Continuous",
+    subtitle: "Процесс в момент прошлого • was/were + V-ing",
+    to: "/learn/past-continuous",
+    kind: "tense",
+  },
+  {
+    id: "compare-past",
+    title: "Past Simple vs Past Continuous",
+    subtitle: "Событие ● или процесс ████",
+    to: "/compare/past",
+    kind: "compare",
+  },
 ];
 
 /** Следующие остановки маршрута PAST — пока закрыты. */
 const LOCKED_PAST = [
-  "Past Continuous",
   "Past Perfect",
   "Past Perfect Continuous",
   "Испытание Past",

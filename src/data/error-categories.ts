@@ -53,6 +53,14 @@ export const CATEGORY_TITLES: Record<string, string> = {
   used_did_with_be: "DID с глаголом BE",
   ed_spelling: "Написание окончания -ed",
   past_simple_selection: "Выбор Past Simple по смыслу",
+  // Past Continuous
+  wrong_was_were_continuous: "WAS или WERE + V-ing?",
+  missing_ing_past: "Пропущено -ing после was / were",
+  used_did_in_past_continuous: "DID или WAS/WERE?",
+  past_simple_vs_continuous: "Событие или процесс?",
+  wrong_background_event: "Фон и событие в одном предложении",
+  wrong_when_while_interpretation: "WHEN и WHILE",
+  question_order_past_continuous: "Вопрос в Past Continuous",
 };
 
 export const CATEGORY_RULES: Record<
@@ -296,5 +304,44 @@ export const CATEGORY_RULES: Record<
     right: "I lost my keys two days ago.",
     wrong: "I have lost my keys two days ago.",
     tip: "Слова-маркеры помогают, но решает смысл: действие уже закончилось.",
+  },
+  // Past Continuous
+  wrong_was_were_continuous: {
+    rule: "I / he / she / it → was, you / we / they → were + V-ing",
+    right: "They were playing.",
+    wrong: "They was playing.",
+  },
+  missing_ing_past: {
+    rule: "После was / were всегда V-ing",
+    right: "I was playing football.",
+    wrong: "I was play football.",
+  },
+  used_did_in_past_continuous: {
+    rule: "DID или WAS/WERE?",
+    right: "Were you playing?",
+    wrong: "Did you playing?",
+    tip: "Past Simple: Did you play? Past Continuous: Were you playing?",
+  },
+  past_simple_vs_continuous: {
+    rule: "● → событие, ████ → процесс",
+    right: "At 9 p.m. I was reading a book.",
+    wrong: "At 9 p.m. I read a book.",
+    tip: "Past Simple — что произошло. Past Continuous — что происходило.",
+  },
+  wrong_background_event: {
+    rule: "Фон → Past Continuous, событие → Past Simple",
+    right: "I was sleeping when the phone rang.",
+    wrong: "I slept when the phone was ringing.",
+  },
+  wrong_when_while_interpretation: {
+    rule: "while часто связывает процессы, when часто вводит событие",
+    right: "While I was studying, my sister was watching TV.",
+    wrong: "While I studied, my sister watched TV.",
+    tip: "Это не жёсткое правило: решает смысл ситуации.",
+  },
+  question_order_past_continuous: {
+    rule: "Was / Were + кто + V-ing ?",
+    right: "Was Anna reading?",
+    wrong: "Did Anna reading?",
   },
 };

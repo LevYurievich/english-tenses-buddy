@@ -60,8 +60,9 @@ export const TENSES: TenseMeta[] = [
     id: "past-continuous",
     title: "Past Continuous",
     group: "past",
-    tagline: "Длилось в момент прошлого",
-    available: false,
+    tagline: "Длилось в момент прошлого • was/were + V-ing",
+    available: true,
+    path: "/learn/past-continuous",
   },
   {
     id: "past-perfect",

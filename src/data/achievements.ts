@@ -44,6 +44,13 @@ export const ACHIEVEMENTS: Achievement[] = [
     xp: 40,
   },
   {
+    id: "past-in-process",
+    icon: "🎞",
+    title: "В процессе прошлого",
+    description: "Освоен Past Continuous",
+    xp: 40,
+  },
+  {
     id: "on-target",
     icon: "🎯",
     title: "Точно в цель",
