@@ -16,6 +16,7 @@ import { Route as MistakesRouteImport } from './routes/mistakes'
 import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as QuickRouteImport } from './routes/quick'
+import { Route as TestsRouteImport } from './routes/tests'
 import { Route as TimeMachineRouteImport } from './routes/time-machine'
 import { Route as CompareIndexRouteImport } from './routes/compare.index'
 import { Route as ComparePerfectRouteImport } from './routes/compare.perfect'
@@ -60,6 +61,11 @@ const ProgressRoute = ProgressRouteImport.update({
 const QuickRoute = QuickRouteImport.update({
   id: '/quick',
   path: '/quick',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestsRoute = TestsRouteImport.update({
+  id: '/tests',
+  path: '/tests',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TimeMachineRoute = TimeMachineRouteImport.update({
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/practice': typeof PracticeRoute
   '/progress': typeof ProgressRoute
   '/quick': typeof QuickRoute
+  '/tests': typeof TestsRoute
   '/time-machine': typeof TimeMachineRoute
   '/compare/perfect': typeof ComparePerfectRoute
   '/compare/perfect-continuous': typeof ComparePerfectContinuousRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/practice': typeof PracticeRoute
   '/progress': typeof ProgressRoute
   '/quick': typeof QuickRoute
+  '/tests': typeof TestsRoute
   '/time-machine': typeof TimeMachineRoute
   '/compare/perfect': typeof ComparePerfectRoute
   '/compare/perfect-continuous': typeof ComparePerfectContinuousRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/practice': typeof PracticeRoute
   '/progress': typeof ProgressRoute
   '/quick': typeof QuickRoute
+  '/tests': typeof TestsRoute
   '/time-machine': typeof TimeMachineRoute
   '/compare/perfect': typeof ComparePerfectRoute
   '/compare/perfect-continuous': typeof ComparePerfectContinuousRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
     | '/practice'
     | '/progress'
     | '/quick'
+    | '/tests'
     | '/time-machine'
     | '/compare/perfect'
     | '/compare/perfect-continuous'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/practice'
     | '/progress'
     | '/quick'
+    | '/tests'
     | '/time-machine'
     | '/compare/perfect'
     | '/compare/perfect-continuous'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/practice'
     | '/progress'
     | '/quick'
+    | '/tests'
     | '/time-machine'
     | '/compare/perfect'
     | '/compare/perfect-continuous'
@@ -241,6 +253,7 @@ export interface RootRouteChildren {
   PracticeRoute: typeof PracticeRoute
   ProgressRoute: typeof ProgressRoute
   QuickRoute: typeof QuickRoute
+  TestsRoute: typeof TestsRoute
   TimeMachineRoute: typeof TimeMachineRoute
   ComparePerfectRoute: typeof ComparePerfectRoute
   ComparePerfectContinuousRoute: typeof ComparePerfectContinuousRoute
@@ -302,6 +315,13 @@ declare module '@tanstack/react-router' {
       path: '/quick'
       fullPath: '/quick'
       preLoaderRoute: typeof QuickRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tests': {
+      id: '/tests'
+      path: '/tests'
+      fullPath: '/tests'
+      preLoaderRoute: typeof TestsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/time-machine': {
@@ -385,6 +405,7 @@ const rootRouteChildren: RootRouteChildren = {
   PracticeRoute: PracticeRoute,
   ProgressRoute: ProgressRoute,
   QuickRoute: QuickRoute,
+  TestsRoute: TestsRoute,
   TimeMachineRoute: TimeMachineRoute,
   ComparePerfectRoute: ComparePerfectRoute,
   ComparePerfectContinuousRoute: ComparePerfectContinuousRoute,
