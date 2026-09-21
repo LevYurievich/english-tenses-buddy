@@ -6,7 +6,7 @@ import { levelFor, useGame } from "@/lib/gamification";
 import { accuracyOverall, weakCategories } from "@/lib/skill-stats";
 import { LearningPath, nextStep, pathStatuses } from "@/components/LearningPath";
 import { AchievementWatcher } from "@/components/AchievementWatcher";
-import { Tensy, TensyAvatar } from "@/components/Tensy";
+import { Tensy } from "@/components/Tensy";
 import { CATEGORY_TITLES } from "@/data/error-categories";
 import { TENSES } from "@/data/tenses";
 import { isCompleted } from "@/lib/tense-stats";
@@ -74,17 +74,14 @@ function Home() {
       <AchievementWatcher />
 
       <section className="hero-surface rounded-3xl p-6 sm:p-9">
-        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
-          <div className="min-w-0">
-            <p className="text-xs font-bold tracking-widest opacity-80">
-              PAST ●──── PRESENT ────→ FUTURE
-            </p>
-            <h1 className="mt-2 text-3xl sm:text-4xl">English Tenses Trainer</h1>
-            <p className="mt-2 max-w-xl text-base opacity-90">
-              Путешествие по временам: понимай смысл, а не заучивай правила.
-            </p>
-          </div>
-          <TensyAvatar mood="map" size="xl" />
+        <div className="min-w-0">
+          <p className="text-xs font-bold tracking-widest opacity-80">
+            PAST ●──── PRESENT ────→ FUTURE
+          </p>
+          <h1 className="mt-2 text-3xl sm:text-4xl">English Tenses Trainer</h1>
+          <p className="mt-2 max-w-xl text-base opacity-90">
+            Путешествие по временам: понимай смысл, а не заучивай правила.
+          </p>
         </div>
 
         <div className="mt-5 flex flex-wrap items-center gap-2">
