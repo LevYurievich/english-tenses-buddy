@@ -70,6 +70,16 @@ export const CATEGORY_TITLES: Record<string, string> = {
   wrong_event_order: "Что было раньше?",
   wrong_reference_point: "Точка отсчёта",
   already_position_past_perfect: "Место ALREADY",
+  // Past Perfect Continuous
+  missing_been_past_perfect_continuous: "HAD BEEN + ING",
+  missing_ing_past_perfect_continuous: "Пропущено -ing после BEEN",
+  used_v3_instead_ing: "V3 или V-ing после BEEN?",
+  wrong_past_reference_point: "Точка отсчёта в прошлом",
+  past_perfect_vs_past_perfect_continuous: "Результат или процесс?",
+  past_continuous_vs_past_perfect_continuous: "В тот момент или до того момента?",
+  wrong_for_since_past: "FOR или SINCE?",
+  used_did_with_past_perfect_continuous: "DID с Past Perfect Continuous",
+  question_order_past_perfect_continuous: "Вопрос в Past Perfect Continuous",
 };
 
 export const CATEGORY_RULES: Record<
@@ -396,5 +406,53 @@ export const CATEGORY_RULES: Record<
     rule: "had + already + V3",
     right: "Tom had already left.",
     wrong: "Tom already had left.",
+  },
+  missing_been_past_perfect_continuous: {
+    rule: "HAD → BEEN → ING: все три части обязательны",
+    right: "I had been studying for two hours.",
+    wrong: "I had studying for two hours.",
+    tip: "❌ had studying · ❌ had been study · ✅ had been studying.",
+  },
+  missing_ing_past_perfect_continuous: {
+    rule: "После BEEN всегда форма с -ing",
+    right: "She had been studying all morning.",
+    wrong: "She had been study all morning.",
+  },
+  used_v3_instead_ing: {
+    rule: "После BEEN нужна V-ing, а не третья форма",
+    right: "They had been playing for an hour.",
+    wrong: "They had been played for an hour.",
+  },
+  wrong_past_reference_point: {
+    rule: "Сначала найди момент прошлого, до которого длился процесс",
+    right: "I had been waiting for 30 minutes when the bus arrived.",
+    wrong: "I was waiting for 30 minutes when the bus arrived.",
+    tip: "Точка отсчёта — короткое событие прошлого.",
+  },
+  past_perfect_vs_past_perfect_continuous: {
+    rule: "Результат → had + V3, процесс и длительность → had been + V-ing",
+    right: "Tom had been writing emails for two hours.",
+    wrong: "Tom had written emails for two hours.",
+    tip: "СКОЛЬКО СДЕЛАНО → результат. КАК ДОЛГО ДЕЛАЛ → процесс.",
+  },
+  past_continuous_vs_past_perfect_continuous: {
+    rule: "В тот момент → was/were + V-ing, до того момента → had been + V-ing",
+    right: "By 8 p.m. I had been studying for two hours.",
+    wrong: "By 8 p.m. I was studying for two hours.",
+  },
+  wrong_for_since_past: {
+    rule: "FOR — промежуток, SINCE — точка начала",
+    right: "He had been working since 7 a.m.",
+    wrong: "He had been working for 7 a.m.",
+  },
+  used_did_with_past_perfect_continuous: {
+    rule: "Помощник уже есть — HAD",
+    right: "Had she been waiting?",
+    wrong: "Did she had been waiting?",
+  },
+  question_order_past_perfect_continuous: {
+    rule: "Had + кто + been + V-ing ?",
+    right: "Had Tom been studying?",
+    wrong: "Tom had been studying?",
   },
 };
