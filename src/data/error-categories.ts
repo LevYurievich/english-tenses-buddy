@@ -94,6 +94,16 @@ export const CATEGORY_TITLES: Record<string, string> = {
   will_vs_going_to: "Решил сейчас или планировал раньше?",
   will_vs_present_continuous_future: "План или договорённость?",
   future_context_selection: "Какой смысл у будущего?",
+  // Future Continuous
+  missing_be_future_continuous: "WILL → BE → ING: пропущен BE",
+  wrong_ing_future_continuous: "Форма -ing в будущем процессе",
+  will_be_plus_v1: "После will be нужна форма -ing",
+  will_be_plus_v3: "will be + V3 вместо V-ing",
+  future_simple_vs_continuous: "Событие или процесс?",
+  future_continuous_question_order: "Порядок слов: Will + кто + be + V-ing",
+  future_continuous_negative: "Отрицание won't be + V-ing",
+  wrong_future_reference_point: "Момент будущего выбран неверно",
+  continuous_family_confusion: "Continuous family: сейчас / тогда / в будущем",
 };
 
 export const CATEGORY_RULES: Record<
