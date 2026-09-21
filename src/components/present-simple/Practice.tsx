@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { ExerciseCard } from "@/components/exercises/ExerciseCard";
 import { Button } from "@/components/ui/app-button";
 import { ProgressBar } from "@/components/ProgressBar";
@@ -12,12 +12,17 @@ export function Practice({
   title,
   onFinish,
   finishLabel = "К мини-тесту",
+  showHint = true,
+  header,
 }: {
   exercises: Exercise[];
   tenseId: string;
   title: string;
   onFinish: () => void;
   finishLabel?: string;
+  showHint?: boolean;
+  /** Дополнительный блок над заданием (например, шпаргалка). */
+  header?: ReactNode;
 }) {
   const [index, setIndex] = useState(0);
   const [stats, setStats] = useState({ correct: 0, total: 0 });
@@ -66,11 +71,13 @@ export function Practice({
   return (
     <div className="space-y-4">
       <p className="text-sm font-semibold text-muted-foreground">{title}</p>
+      {header}
       <ExerciseCard
         key={current.id}
         exercise={current}
         index={index}
         total={exercises.length}
+        showHint={showHint}
         onResult={(correct, userAnswer) => {
           setStats((s) => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }));
           recordAnswer({
