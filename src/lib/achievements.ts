@@ -13,6 +13,7 @@ const MASTERY: Record<string, string> = {
   "past-continuous": "past-in-process",
   "past-perfect": "even-earlier",
   "past-perfect-continuous": "long-journey",
+  "future-simple": "forward-to-future",
 };
 
 export function earnedAchievements(progress: ProgressState, game: GameState): string[] {
