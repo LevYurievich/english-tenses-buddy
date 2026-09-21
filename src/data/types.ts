@@ -76,7 +76,10 @@ export type ErrorCategory =
   | "past_continuous_vs_past_perfect_continuous"
   | "wrong_for_since_past"
   | "used_did_with_past_perfect_continuous"
-  | "question_order_past_perfect_continuous";
+  | "question_order_past_perfect_continuous"
+  // --- Смешанный модуль «Все Past» ---
+  | "past_tense_selection"
+  | "duration_selection";
 
 export type Difficulty = 1 | 2 | 3;
 

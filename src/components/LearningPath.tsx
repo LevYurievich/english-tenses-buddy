@@ -111,10 +111,17 @@ export const PATH_STEPS: Step[] = [
     to: "/compare/past-perfect-continuous",
     kind: "compare",
   },
+  {
+    id: "all-past",
+    title: "Испытание Past",
+    subtitle: "Сам выбираешь одно из четырёх времён прошлого",
+    to: "/all-past",
+    kind: "challenge",
+  },
 ];
 
-/** Следующие остановки маршрута PAST — пока закрыты. */
-const LOCKED_PAST = ["Испытание Past"];
+/** Следующая остановка маршрута — FUTURE, пока закрыт. */
+const LOCKED_PAST = ["Future Simple"];
 
 export type StepStatus = "done" | "current" | "open";
 
@@ -217,8 +224,8 @@ export function LearningPath({ state }: { state: ProgressState | null }) {
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
           {steps.every((s) => s.status === "done")
-            ? "Present и Past Simple освоены! Следующие остановки маршрута PAST скоро откроются."
-            : "Present освоен — машина времени двинулась дальше: открыт Past Simple. Future пока закрыт."}
+            ? "PRESENT ✓ → PAST ✓ → FUTURE 🔒. Следующая остановка: FUTURE."
+            : "Present освоен, маршрут PAST открыт до самого испытания. Future пока закрыт."}
         </p>
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
           <TenseTypeBadge type="simple" />

@@ -13,6 +13,7 @@ import { COMPARE_PPC_EXERCISES } from "@/data/compare/perfect-vs-perfect-continu
 import { COMPARE_PRESENT_EXERCISES } from "@/data/compare/present-simple-continuous";
 import { COMPARE_PERFECT_EXERCISES } from "@/data/compare/present-perfect-past-simple";
 import { ALL_PRESENT_TRAINING, FINAL_TEST_SIZE } from "@/data/all-present";
+import { ALL_PAST_TRAINING, PAST_FINAL_SIZE } from "@/data/all-past";
 import { PAST_SIMPLE_EXERCISES, PAST_SIMPLE_TEST } from "@/data/past-simple/exercises";
 import {
   PAST_CONTINUOUS_EXERCISES,
@@ -82,6 +83,10 @@ export const COUNTS: Record<string, { exercises: number; test: number }> = {
   "all-present": {
     exercises: ALL_PRESENT_TRAINING.length,
     test: FINAL_TEST_SIZE,
+  },
+  "all-past": {
+    exercises: ALL_PAST_TRAINING.length,
+    test: PAST_FINAL_SIZE,
   },
   "compare-perfect-continuous": {
     exercises: COMPARE_PPC_EXERCISES.length,

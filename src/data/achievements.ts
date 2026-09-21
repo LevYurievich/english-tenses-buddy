@@ -79,6 +79,13 @@ export const ACHIEVEMENTS: Achievement[] = [
     xp: 30,
   },
   {
+    id: "past-master",
+    icon: "🗺",
+    title: "Мастер прошлого",
+    description: "Past Challenge пройден",
+    xp: 60,
+  },
+  {
     id: "present-master",
     icon: "🏆",
     title: "Present Master",

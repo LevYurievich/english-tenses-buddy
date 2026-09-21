@@ -80,6 +80,9 @@ export const CATEGORY_TITLES: Record<string, string> = {
   wrong_for_since_past: "FOR или SINCE?",
   used_did_with_past_perfect_continuous: "DID с Past Perfect Continuous",
   question_order_past_perfect_continuous: "Вопрос в Past Perfect Continuous",
+  // Смешанный модуль «Все Past»
+  past_tense_selection: "Какое время прошлого выбрать?",
+  duration_selection: "Длительность до момента прошлого",
 };
 
 export const CATEGORY_RULES: Record<

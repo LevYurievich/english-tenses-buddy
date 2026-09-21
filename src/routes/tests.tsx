@@ -85,6 +85,17 @@ function TestsPage() {
           </p>
           <p className="mt-3 text-sm font-bold text-primary">Начать тест →</p>
         </Link>
+        <Link
+          to="/all-past"
+          search={{ tab: "exam" as const }}
+          className="card-interactive block p-5"
+        >
+          <p className="font-display text-lg font-bold">🏆 Past Challenge</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            20 заданий по всем временам прошлого. Никаких подсказок.
+          </p>
+          <p className="mt-3 text-sm font-bold text-primary">Начать тест →</p>
+        </Link>
       </div>
 
       <Tensy mood="test">

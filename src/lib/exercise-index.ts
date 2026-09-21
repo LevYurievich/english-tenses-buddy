@@ -14,6 +14,7 @@ import { COMPARE_PPC_EXERCISES } from "@/data/compare/perfect-vs-perfect-continu
 import { COMPARE_PRESENT_EXERCISES } from "@/data/compare/present-simple-continuous";
 import { COMPARE_PERFECT_EXERCISES } from "@/data/compare/present-perfect-past-simple";
 import { ALL_PRESENT_TRAINING } from "@/data/all-present";
+import { ALL_PAST_TRAINING, PAST_FINAL_BANK } from "@/data/all-past";
 import { PAST_SIMPLE_EXERCISES, PAST_SIMPLE_TEST } from "@/data/past-simple/exercises";
 import {
   PAST_CONTINUOUS_EXERCISES,
@@ -47,6 +48,7 @@ export const BANKS: Record<string, Exercise[]> = {
   "compare-perfect": COMPARE_PERFECT_EXERCISES,
   "compare-perfect-continuous": COMPARE_PPC_EXERCISES,
   "all-present": ALL_PRESENT_TRAINING,
+  "all-past": ALL_PAST_TRAINING,
   "past-simple": PAST_SIMPLE_EXERCISES,
   "past-continuous": PAST_CONTINUOUS_EXERCISES,
   "compare-past": COMPARE_PAST_EXERCISES,
@@ -66,6 +68,7 @@ export const ALL_EXERCISES: Exercise[] = [
   ...PAST_CONTINUOUS_TEST,
   ...PAST_PERFECT_TEST,
   ...PAST_PERFECT_CONTINUOUS_TEST,
+  ...PAST_FINAL_BANK,
 ];
 
 export const EXERCISE_BY_ID: Record<string, Exercise> = Object.fromEntries(
