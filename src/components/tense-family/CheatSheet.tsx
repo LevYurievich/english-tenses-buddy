@@ -1,9 +1,15 @@
 import { useState } from "react";
-import { PRESENT_MAP } from "@/data/all-present/theory";
+import { PRESENT_MAP, type TenseMapRow } from "@/data/all-present/theory";
 import { TenseMapTable } from "./FamilyTheory";
 
 /** Шпаргалка, доступная из любого тренировочного упражнения (в экзамене не показывается). */
-export function CheatSheet({ title = "Шпаргалка Present" }: { title?: string }) {
+export function CheatSheet({
+  title = "Шпаргалка Present",
+  rows = PRESENT_MAP,
+}: {
+  title?: string;
+  rows?: TenseMapRow[];
+}) {
   const [open, setOpen] = useState(false);
   return (
     <div className="rounded-xl border-2 border-border bg-card">
