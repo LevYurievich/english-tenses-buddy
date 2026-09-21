@@ -19,6 +19,7 @@ import { Route as QuickRouteImport } from './routes/quick'
 import { Route as TestsRouteImport } from './routes/tests'
 import { Route as TimeMachineRouteImport } from './routes/time-machine'
 import { Route as CompareIndexRouteImport } from './routes/compare.index'
+import { Route as ComparePastRouteImport } from './routes/compare.past'
 import { Route as ComparePerfectRouteImport } from './routes/compare.perfect'
 import { Route as ComparePerfectContinuousRouteImport } from './routes/compare.perfect-continuous'
 import { Route as ComparePresentRouteImport } from './routes/compare.present'
@@ -78,6 +79,11 @@ const TimeMachineRoute = TimeMachineRouteImport.update({
 const CompareIndexRoute = CompareIndexRouteImport.update({
   id: '/compare/',
   path: '/compare/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComparePastRoute = ComparePastRouteImport.update({
+  id: '/compare/past',
+  path: '/compare/past',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComparePerfectRoute = ComparePerfectRouteImport.update({
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/quick': typeof QuickRoute
   '/tests': typeof TestsRoute
   '/time-machine': typeof TimeMachineRoute
+  '/compare/past': typeof ComparePastRoute
   '/compare/perfect': typeof ComparePerfectRoute
   '/compare/perfect-continuous': typeof ComparePerfectContinuousRoute
   '/compare/present': typeof ComparePresentRoute
@@ -165,6 +172,7 @@ export interface FileRoutesByTo {
   '/quick': typeof QuickRoute
   '/tests': typeof TestsRoute
   '/time-machine': typeof TimeMachineRoute
+  '/compare/past': typeof ComparePastRoute
   '/compare/perfect': typeof ComparePerfectRoute
   '/compare/perfect-continuous': typeof ComparePerfectContinuousRoute
   '/compare/present': typeof ComparePresentRoute
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/quick': typeof QuickRoute
   '/tests': typeof TestsRoute
   '/time-machine': typeof TimeMachineRoute
+  '/compare/past': typeof ComparePastRoute
   '/compare/perfect': typeof ComparePerfectRoute
   '/compare/perfect-continuous': typeof ComparePerfectContinuousRoute
   '/compare/present': typeof ComparePresentRoute
@@ -212,6 +221,7 @@ export interface FileRouteTypes {
     | '/quick'
     | '/tests'
     | '/time-machine'
+    | '/compare/past'
     | '/compare/perfect'
     | '/compare/perfect-continuous'
     | '/compare/present'
@@ -234,6 +244,7 @@ export interface FileRouteTypes {
     | '/quick'
     | '/tests'
     | '/time-machine'
+    | '/compare/past'
     | '/compare/perfect'
     | '/compare/perfect-continuous'
     | '/compare/present'
@@ -256,6 +267,7 @@ export interface FileRouteTypes {
     | '/quick'
     | '/tests'
     | '/time-machine'
+    | '/compare/past'
     | '/compare/perfect'
     | '/compare/perfect-continuous'
     | '/compare/present'
@@ -279,6 +291,7 @@ export interface RootRouteChildren {
   QuickRoute: typeof QuickRoute
   TestsRoute: typeof TestsRoute
   TimeMachineRoute: typeof TimeMachineRoute
+  ComparePastRoute: typeof ComparePastRoute
   ComparePerfectRoute: typeof ComparePerfectRoute
   ComparePerfectContinuousRoute: typeof ComparePerfectContinuousRoute
   ComparePresentRoute: typeof ComparePresentRoute
@@ -364,6 +377,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompareIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare/past': {
+      id: '/compare/past'
+      path: '/compare/past'
+      fullPath: '/compare/past'
+      preLoaderRoute: typeof ComparePastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compare/perfect': {
       id: '/compare/perfect'
       path: '/compare/perfect'
@@ -447,6 +467,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuickRoute: QuickRoute,
   TestsRoute: TestsRoute,
   TimeMachineRoute: TimeMachineRoute,
+  ComparePastRoute: ComparePastRoute,
   ComparePerfectRoute: ComparePerfectRoute,
   ComparePerfectContinuousRoute: ComparePerfectContinuousRoute,
   ComparePresentRoute: ComparePresentRoute,
