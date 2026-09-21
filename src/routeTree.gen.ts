@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AllPresentRouteImport } from './routes/all-present'
 import { Route as AllTensesRouteImport } from './routes/all-tenses'
 import { Route as MistakesRouteImport } from './routes/mistakes'
+import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as QuickRouteImport } from './routes/quick'
 import { Route as TimeMachineRouteImport } from './routes/time-machine'
@@ -44,6 +45,11 @@ const AllTensesRoute = AllTensesRouteImport.update({
 const MistakesRoute = MistakesRouteImport.update({
   id: '/mistakes',
   path: '/mistakes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeRoute = PracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgressRoute = ProgressRouteImport.update({
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/all-present': typeof AllPresentRoute
   '/all-tenses': typeof AllTensesRoute
   '/mistakes': typeof MistakesRoute
+  '/practice': typeof PracticeRoute
   '/progress': typeof ProgressRoute
   '/quick': typeof QuickRoute
   '/time-machine': typeof TimeMachineRoute
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/all-present': typeof AllPresentRoute
   '/all-tenses': typeof AllTensesRoute
   '/mistakes': typeof MistakesRoute
+  '/practice': typeof PracticeRoute
   '/progress': typeof ProgressRoute
   '/quick': typeof QuickRoute
   '/time-machine': typeof TimeMachineRoute
@@ -151,6 +159,7 @@ export interface FileRoutesById {
   '/all-present': typeof AllPresentRoute
   '/all-tenses': typeof AllTensesRoute
   '/mistakes': typeof MistakesRoute
+  '/practice': typeof PracticeRoute
   '/progress': typeof ProgressRoute
   '/quick': typeof QuickRoute
   '/time-machine': typeof TimeMachineRoute
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/all-present'
     | '/all-tenses'
     | '/mistakes'
+    | '/practice'
     | '/progress'
     | '/quick'
     | '/time-machine'
@@ -189,6 +199,7 @@ export interface FileRouteTypes {
     | '/all-present'
     | '/all-tenses'
     | '/mistakes'
+    | '/practice'
     | '/progress'
     | '/quick'
     | '/time-machine'
@@ -207,6 +218,7 @@ export interface FileRouteTypes {
     | '/all-present'
     | '/all-tenses'
     | '/mistakes'
+    | '/practice'
     | '/progress'
     | '/quick'
     | '/time-machine'
@@ -226,6 +238,7 @@ export interface RootRouteChildren {
   AllPresentRoute: typeof AllPresentRoute
   AllTensesRoute: typeof AllTensesRoute
   MistakesRoute: typeof MistakesRoute
+  PracticeRoute: typeof PracticeRoute
   ProgressRoute: typeof ProgressRoute
   QuickRoute: typeof QuickRoute
   TimeMachineRoute: typeof TimeMachineRoute
@@ -268,6 +281,13 @@ declare module '@tanstack/react-router' {
       path: '/mistakes'
       fullPath: '/mistakes'
       preLoaderRoute: typeof MistakesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice': {
+      id: '/practice'
+      path: '/practice'
+      fullPath: '/practice'
+      preLoaderRoute: typeof PracticeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/progress': {
@@ -362,6 +382,7 @@ const rootRouteChildren: RootRouteChildren = {
   AllPresentRoute: AllPresentRoute,
   AllTensesRoute: AllTensesRoute,
   MistakesRoute: MistakesRoute,
+  PracticeRoute: PracticeRoute,
   ProgressRoute: ProgressRoute,
   QuickRoute: QuickRoute,
   TimeMachineRoute: TimeMachineRoute,
