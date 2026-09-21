@@ -31,6 +31,15 @@ const TESTS = [
     title: "Present Perfect Continuous",
     to: "/learn/present-perfect-continuous" as const,
   },
+  { id: "past-simple", title: "Past Simple", to: "/learn/past-simple" as const },
+  { id: "past-continuous", title: "Past Continuous", to: "/learn/past-continuous" as const },
+  { id: "past-perfect", title: "Past Perfect", to: "/learn/past-perfect" as const },
+  {
+    id: "past-perfect-continuous",
+    title: "Past Perfect Continuous",
+    to: "/learn/past-perfect-continuous" as const,
+  },
+  { id: "future-simple", title: "Future Simple", to: "/learn/future-simple" as const },
 ];
 
 function TestsPage() {
