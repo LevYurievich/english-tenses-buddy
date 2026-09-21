@@ -194,7 +194,7 @@ export const CATEGORY_RULES: Record<
     right: "She has been cleaning the kitchen for two hours.",
     wrong: "She has cleaned the kitchen for two hours and hasn't finished.",
     tip: "Спроси себя: важен готовый результат или сам процесс?",
-  },,
+  },
   simple_vs_continuous: {
     rule: "Обычно → Present Simple, сейчас / в процессе → Present Continuous",
     right: "Look! Tom is playing football.",
