@@ -12,6 +12,7 @@ const MASTERY: Record<string, string> = {
   "past-simple": "back-in-time",
   "past-continuous": "past-in-process",
   "past-perfect": "even-earlier",
+  "past-perfect-continuous": "long-journey",
 };
 
 export function earnedAchievements(progress: ProgressState, game: GameState): string[] {
