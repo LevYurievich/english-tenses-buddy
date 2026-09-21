@@ -91,6 +91,7 @@ export const ALL_EXERCISES: Exercise[] = [
   ...PAST_PERFECT_CONTINUOUS_TEST,
   ...PAST_FINAL_BANK,
   ...FUTURE_SIMPLE_TEST,
+  ...FUTURE_CONTINUOUS_TEST,
 ];
 
 export const EXERCISE_BY_ID: Record<string, Exercise> = Object.fromEntries(

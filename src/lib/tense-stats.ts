@@ -38,6 +38,13 @@ import {
   WHY_WILL_EXERCISES,
 } from "@/data/future-simple/exercises";
 import { COMPARE_FUTURE_EXERCISES } from "@/data/compare/future-ways";
+import {
+  CONTINUOUS_FAMILY_EXERCISES,
+  FUTURE_CONTINUOUS_EXERCISES,
+  FUTURE_CONTINUOUS_TEST,
+  LOOK_AHEAD_EXERCISES,
+} from "@/data/future-continuous/exercises";
+import { COMPARE_FC_EXERCISES } from "@/data/compare/future-simple-continuous";
 import { TENSES } from "@/data/tenses";
 import { getTenseProgress, tensePercent, type ProgressState } from "./progress";
 
@@ -112,6 +119,17 @@ export const COUNTS: Record<string, { exercises: number; test: number }> = {
   },
   "compare-future": {
     exercises: COMPARE_FUTURE_EXERCISES.length,
+    test: 0,
+  },
+  "future-continuous": {
+    exercises:
+      LOOK_AHEAD_EXERCISES.length +
+      FUTURE_CONTINUOUS_EXERCISES.length +
+      CONTINUOUS_FAMILY_EXERCISES.length,
+    test: FUTURE_CONTINUOUS_TEST.length,
+  },
+  "compare-future-continuous": {
+    exercises: COMPARE_FC_EXERCISES.length,
     test: 0,
   },
 };
