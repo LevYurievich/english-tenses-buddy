@@ -71,6 +71,12 @@ export const BANKS: Record<string, Exercise[]> = {
   "compare-past-perfect-continuous": COMPARE_PFC_EXERCISES,
   "future-simple": [...WHY_WILL_EXERCISES, ...FUTURE_SIMPLE_EXERCISES],
   "compare-future": COMPARE_FUTURE_EXERCISES,
+  "future-continuous": [
+    ...LOOK_AHEAD_EXERCISES,
+    ...FUTURE_CONTINUOUS_EXERCISES,
+    ...CONTINUOUS_FAMILY_EXERCISES,
+  ],
+  "compare-future-continuous": COMPARE_FC_EXERCISES,
 };
 
 export const ALL_EXERCISES: Exercise[] = [
