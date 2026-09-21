@@ -9,6 +9,8 @@ import { COMPARE_PPC_REASONING } from "@/data/compare/perfect-vs-perfect-continu
 import { PAST_SIMPLE_REASONING } from "@/data/past-simple/reasoning";
 import { PAST_CONTINUOUS_REASONING } from "@/data/past-continuous/reasoning";
 import { COMPARE_PAST_REASONING } from "@/data/compare/past-simple-continuous";
+import { PAST_PERFECT_REASONING } from "@/data/past-perfect/reasoning";
+import { COMPARE_PAST_PERFECT_REASONING } from "@/data/compare/past-perfect-simple";
 import { normalize } from "./answer-check";
 
 /**
@@ -26,6 +28,8 @@ export const REASONING_BY_TENSE: Record<string, Record<string, Reasoning>> = {
   "past-simple": PAST_SIMPLE_REASONING,
   "past-continuous": PAST_CONTINUOUS_REASONING,
   "compare-past": COMPARE_PAST_REASONING,
+  "past-perfect": PAST_PERFECT_REASONING,
+  "compare-past-perfect": COMPARE_PAST_PERFECT_REASONING,
 };
 
 /** Стандартные заголовки шагов (общие для всех времён). */

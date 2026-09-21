@@ -61,6 +61,15 @@ export const CATEGORY_TITLES: Record<string, string> = {
   wrong_background_event: "Фон и событие в одном предложении",
   wrong_when_while_interpretation: "WHEN и WHILE",
   question_order_past_continuous: "Вопрос в Past Continuous",
+  // Past Perfect
+  wrong_past_perfect_v3: "V3 в Past Perfect",
+  used_v2_after_had: "V2 или V3?",
+  missing_had: "Пропущено HAD",
+  used_did_with_past_perfect: "DID с Past Perfect",
+  past_simple_vs_past_perfect: "Past Simple или Past Perfect?",
+  wrong_event_order: "Что было раньше?",
+  wrong_reference_point: "Точка отсчёта",
+  already_position_past_perfect: "Место ALREADY",
 };
 
 export const CATEGORY_RULES: Record<
@@ -343,5 +352,49 @@ export const CATEGORY_RULES: Record<
     rule: "Was / Were + кто + V-ing ?",
     right: "Was Anna reading?",
     wrong: "Did Anna reading?",
+  },
+  wrong_past_perfect_v3: {
+    rule: "После HAD всегда третья форма — V3",
+    right: "Tom had gone home.",
+    wrong: "Tom had go home.",
+    tip: "go → went → gone.",
+  },
+  used_v2_after_had: {
+    rule: "V2 — для Past Simple, V3 — после HAD",
+    right: "had gone",
+    wrong: "had went",
+    tip: "Past Simple: went. Past Perfect: had gone.",
+  },
+  missing_had: {
+    rule: "Past Perfect = HAD + V3",
+    right: "When I arrived, Tom had left.",
+    wrong: "When I arrived, Tom left already.",
+  },
+  used_did_with_past_perfect: {
+    rule: "Помощник уже есть — HAD",
+    right: "Had Tom finished?",
+    wrong: "Did Tom had finished?",
+  },
+  past_simple_vs_past_perfect: {
+    rule: "Событие ● → Past Simple, раньше другого момента → Past Perfect",
+    right: "When I got to the stop, the bus had left.",
+    wrong: "When I got to the stop, the bus left.",
+  },
+  wrong_event_order: {
+    rule: "Сначала определи, что произошло раньше",
+    right: "The film had started before I arrived.",
+    wrong: "The film started before I had arrived.",
+    tip: "Порядок слов не равен порядку событий.",
+  },
+  wrong_reference_point: {
+    rule: "PERFECT = смотрим назад от точки",
+    right: "I had lost my key before I got home.",
+    wrong: "I have lost my key before I got home.",
+    tip: "Present Perfect — от NOW, Past Perfect — от момента прошлого.",
+  },
+  already_position_past_perfect: {
+    rule: "had + already + V3",
+    right: "Tom had already left.",
+    wrong: "Tom already had left.",
   },
 };

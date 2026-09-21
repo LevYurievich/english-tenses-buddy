@@ -20,11 +20,13 @@ import { Route as TestsRouteImport } from './routes/tests'
 import { Route as TimeMachineRouteImport } from './routes/time-machine'
 import { Route as CompareIndexRouteImport } from './routes/compare.index'
 import { Route as ComparePastRouteImport } from './routes/compare.past'
+import { Route as ComparePastPerfectRouteImport } from './routes/compare.past-perfect'
 import { Route as ComparePerfectRouteImport } from './routes/compare.perfect'
 import { Route as ComparePerfectContinuousRouteImport } from './routes/compare.perfect-continuous'
 import { Route as ComparePresentRouteImport } from './routes/compare.present'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnPastContinuousRouteImport } from './routes/learn.past-continuous'
+import { Route as LearnPastPerfectRouteImport } from './routes/learn.past-perfect'
 import { Route as LearnPastSimpleRouteImport } from './routes/learn.past-simple'
 import { Route as LearnPresentContinuousRouteImport } from './routes/learn.present-continuous'
 import { Route as LearnPresentPerfectRouteImport } from './routes/learn.present-perfect'
@@ -86,6 +88,11 @@ const ComparePastRoute = ComparePastRouteImport.update({
   path: '/compare/past',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComparePastPerfectRoute = ComparePastPerfectRouteImport.update({
+  id: '/compare/past-perfect',
+  path: '/compare/past-perfect',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComparePerfectRoute = ComparePerfectRouteImport.update({
   id: '/compare/perfect',
   path: '/compare/perfect',
@@ -110,6 +117,11 @@ const LearnIndexRoute = LearnIndexRouteImport.update({
 const LearnPastContinuousRoute = LearnPastContinuousRouteImport.update({
   id: '/learn/past-continuous',
   path: '/learn/past-continuous',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnPastPerfectRoute = LearnPastPerfectRouteImport.update({
+  id: '/learn/past-perfect',
+  path: '/learn/past-perfect',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnPastSimpleRoute = LearnPastSimpleRouteImport.update({
@@ -150,10 +162,12 @@ export interface FileRoutesByFullPath {
   '/tests': typeof TestsRoute
   '/time-machine': typeof TimeMachineRoute
   '/compare/past': typeof ComparePastRoute
+  '/compare/past-perfect': typeof ComparePastPerfectRoute
   '/compare/perfect': typeof ComparePerfectRoute
   '/compare/perfect-continuous': typeof ComparePerfectContinuousRoute
   '/compare/present': typeof ComparePresentRoute
   '/learn/past-continuous': typeof LearnPastContinuousRoute
+  '/learn/past-perfect': typeof LearnPastPerfectRoute
   '/learn/past-simple': typeof LearnPastSimpleRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-perfect': typeof LearnPresentPerfectRoute
@@ -173,10 +187,12 @@ export interface FileRoutesByTo {
   '/tests': typeof TestsRoute
   '/time-machine': typeof TimeMachineRoute
   '/compare/past': typeof ComparePastRoute
+  '/compare/past-perfect': typeof ComparePastPerfectRoute
   '/compare/perfect': typeof ComparePerfectRoute
   '/compare/perfect-continuous': typeof ComparePerfectContinuousRoute
   '/compare/present': typeof ComparePresentRoute
   '/learn/past-continuous': typeof LearnPastContinuousRoute
+  '/learn/past-perfect': typeof LearnPastPerfectRoute
   '/learn/past-simple': typeof LearnPastSimpleRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-perfect': typeof LearnPresentPerfectRoute
@@ -197,10 +213,12 @@ export interface FileRoutesById {
   '/tests': typeof TestsRoute
   '/time-machine': typeof TimeMachineRoute
   '/compare/past': typeof ComparePastRoute
+  '/compare/past-perfect': typeof ComparePastPerfectRoute
   '/compare/perfect': typeof ComparePerfectRoute
   '/compare/perfect-continuous': typeof ComparePerfectContinuousRoute
   '/compare/present': typeof ComparePresentRoute
   '/learn/past-continuous': typeof LearnPastContinuousRoute
+  '/learn/past-perfect': typeof LearnPastPerfectRoute
   '/learn/past-simple': typeof LearnPastSimpleRoute
   '/learn/present-continuous': typeof LearnPresentContinuousRoute
   '/learn/present-perfect': typeof LearnPresentPerfectRoute
@@ -222,10 +240,12 @@ export interface FileRouteTypes {
     | '/tests'
     | '/time-machine'
     | '/compare/past'
+    | '/compare/past-perfect'
     | '/compare/perfect'
     | '/compare/perfect-continuous'
     | '/compare/present'
     | '/learn/past-continuous'
+    | '/learn/past-perfect'
     | '/learn/past-simple'
     | '/learn/present-continuous'
     | '/learn/present-perfect'
@@ -245,10 +265,12 @@ export interface FileRouteTypes {
     | '/tests'
     | '/time-machine'
     | '/compare/past'
+    | '/compare/past-perfect'
     | '/compare/perfect'
     | '/compare/perfect-continuous'
     | '/compare/present'
     | '/learn/past-continuous'
+    | '/learn/past-perfect'
     | '/learn/past-simple'
     | '/learn/present-continuous'
     | '/learn/present-perfect'
@@ -268,10 +290,12 @@ export interface FileRouteTypes {
     | '/tests'
     | '/time-machine'
     | '/compare/past'
+    | '/compare/past-perfect'
     | '/compare/perfect'
     | '/compare/perfect-continuous'
     | '/compare/present'
     | '/learn/past-continuous'
+    | '/learn/past-perfect'
     | '/learn/past-simple'
     | '/learn/present-continuous'
     | '/learn/present-perfect'
@@ -292,10 +316,12 @@ export interface RootRouteChildren {
   TestsRoute: typeof TestsRoute
   TimeMachineRoute: typeof TimeMachineRoute
   ComparePastRoute: typeof ComparePastRoute
+  ComparePastPerfectRoute: typeof ComparePastPerfectRoute
   ComparePerfectRoute: typeof ComparePerfectRoute
   ComparePerfectContinuousRoute: typeof ComparePerfectContinuousRoute
   ComparePresentRoute: typeof ComparePresentRoute
   LearnPastContinuousRoute: typeof LearnPastContinuousRoute
+  LearnPastPerfectRoute: typeof LearnPastPerfectRoute
   LearnPastSimpleRoute: typeof LearnPastSimpleRoute
   LearnPresentContinuousRoute: typeof LearnPresentContinuousRoute
   LearnPresentPerfectRoute: typeof LearnPresentPerfectRoute
@@ -384,6 +410,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComparePastRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare/past-perfect': {
+      id: '/compare/past-perfect'
+      path: '/compare/past-perfect'
+      fullPath: '/compare/past-perfect'
+      preLoaderRoute: typeof ComparePastPerfectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compare/perfect': {
       id: '/compare/perfect'
       path: '/compare/perfect'
@@ -417,6 +450,13 @@ declare module '@tanstack/react-router' {
       path: '/learn/past-continuous'
       fullPath: '/learn/past-continuous'
       preLoaderRoute: typeof LearnPastContinuousRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/past-perfect': {
+      id: '/learn/past-perfect'
+      path: '/learn/past-perfect'
+      fullPath: '/learn/past-perfect'
+      preLoaderRoute: typeof LearnPastPerfectRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn/past-simple': {
@@ -468,10 +508,12 @@ const rootRouteChildren: RootRouteChildren = {
   TestsRoute: TestsRoute,
   TimeMachineRoute: TimeMachineRoute,
   ComparePastRoute: ComparePastRoute,
+  ComparePastPerfectRoute: ComparePastPerfectRoute,
   ComparePerfectRoute: ComparePerfectRoute,
   ComparePerfectContinuousRoute: ComparePerfectContinuousRoute,
   ComparePresentRoute: ComparePresentRoute,
   LearnPastContinuousRoute: LearnPastContinuousRoute,
+  LearnPastPerfectRoute: LearnPastPerfectRoute,
   LearnPastSimpleRoute: LearnPastSimpleRoute,
   LearnPresentContinuousRoute: LearnPresentContinuousRoute,
   LearnPresentPerfectRoute: LearnPresentPerfectRoute,

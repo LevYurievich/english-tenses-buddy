@@ -68,8 +68,9 @@ export const TENSES: TenseMeta[] = [
     id: "past-perfect",
     title: "Past Perfect",
     group: "past",
-    tagline: "Раньше другого прошлого",
-    available: false,
+    tagline: "Раньше другого прошлого • had + V3",
+    available: true,
+    path: "/learn/past-perfect",
   },
   {
     id: "past-perfect-continuous",
