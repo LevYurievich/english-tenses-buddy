@@ -42,3 +42,12 @@ export const ALL_EXERCISES: Exercise[] = [
 export const EXERCISE_BY_ID: Record<string, Exercise> = Object.fromEntries(
   ALL_EXERCISES.map((e) => [e.id, e]),
 );
+
+/** Какому модулю принадлежит упражнение (нужно для записи прогресса в смешанных тренировках). */
+export const MODULE_BY_EXERCISE: Record<string, string> = Object.fromEntries(
+  Object.entries(BANKS).flatMap(([module, list]) => list.map((e) => [e.id, module])),
+);
+
+export function moduleOf(exerciseId: string): string {
+  return MODULE_BY_EXERCISE[exerciseId] ?? "present-simple";
+}
