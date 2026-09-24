@@ -434,7 +434,7 @@ export const LEVEL_2: Exercise[] = [
     situation: "Друг предлагает посмотреть фильм, а ты его уже видел.",
     question: "Мы уже посмотрели этот фильм.",
     answer: "We have already seen this film.",
-    also: ["We have already seen this movie."],
+    also: ["We have already seen this movie.", "We've already seen this film.", "We've already seen this movie."],
     hint: "already — уже, есть результат.",
     explanation: "Результат важен сейчас → Present Perfect: have already seen.",
     category: "simple_vs_perfect",

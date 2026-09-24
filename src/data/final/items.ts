@@ -67,7 +67,7 @@ export const FINAL_NEW: FinalQuestion[] = [
     id: "fn-13", kind: "two", isNew: true,
     items: [
       f("13a", "past-continuous", "While Anna ___ home, ...", "walk", "was walking", "Всё произошло в прошлом.", "Прогулка — фон, процесс, который шёл.", { context: ["While Anna ___ (walk) home, it ___ (start) to rain."] }),
-      f("13b", "past-simple", "..., it ___ to rain.", "start", "started", "Дождь начался в прошлом.", "Короткое событие на фоне процесса.", { context: ["While Anna ___ (walk) home, it ___ (start) to rain."] }),
+      { ...f("13b", "past-simple", "..., it ___ to rain.", "start", "started", "Дождь начался в прошлом.", "Короткое событие на фоне процесса.", { context: ["While Anna ___ (walk) home, it ___ (start) to rain."] }), errorCategory: "past_simple_vs_continuous" },
     ],
   },
   {

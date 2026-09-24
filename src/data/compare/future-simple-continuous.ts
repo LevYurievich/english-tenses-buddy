@@ -164,11 +164,11 @@ export const COMPARE_FC_EXERCISES: Exercise[] = [
     task: "Договорённость или взгляд на момент?",
     situation: "Вы с Анной уже договорились встретиться завтра в 6 — ты просто сообщаешь об этом.",
     question: "___ Anna at 6 tomorrow.",
-    options: ["I'm meeting", "I'll be meeting", "I will meet"],
+    options: ["I'm meeting", "I meet", "I will meet"],
     correctAnswer: "I'm meeting",
     hint: "Договорённость уже есть, и ты сообщаешь именно о ней.",
     explanation:
-      "Arrangement → Present Continuous. Фраза «At 6 tomorrow, I'll be meeting Anna» тоже возможна, но там говорящий смотрит на то, что будет происходить в этот момент.",
+      "Встреча заранее согласована → Present Continuous: I'm meeting Anna. I will meet звучит как решение, принятое прямо сейчас, а I meet так о личных планах не говорят.",
     rule: "pc-vs-fc",
     errorCategory: "future_simple_vs_continuous",
   },
@@ -316,8 +316,7 @@ export const COMPARE_FC_REASONING: Record<string, Reasoning> = {
       { kind: "tense", text: "Arrangement → Present Continuous для будущего." },
     ],
     result: "I'm meeting Anna at 6 tomorrow.",
-    remember:
-      "At 6 tomorrow, I'll be meeting Anna — тоже правильное предложение, но фокус другой: что будет происходить в этот момент.",
+    remember: "Договорились заранее → I'm meeting. Решил прямо сейчас → I'll meet.",
   },
   "cfc-12": {
     title: "Почему will rain?",

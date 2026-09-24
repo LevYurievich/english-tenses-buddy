@@ -327,7 +327,7 @@ export const LEVEL_1: Exercise[] = [
     answer: "had been waiting",
     explanation: "Ожидание длилось 20 минут до прихода автобуса.",
     category: "duration_selection",
-    skill: "for-since",
+    skill: "tense-choice",
     why: [
       ["when", "Точка прошлого — автобус пришёл."],
       ["what", "Важна длительность ожидания до него."],

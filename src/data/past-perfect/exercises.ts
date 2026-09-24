@@ -592,6 +592,8 @@ export const PAST_PERFECT_EXERCISES: Exercise[] = [
     acceptableAnswers: [
       "When I arrived, Tom had already left.",
       "When I came, Tom had already left.",
+      "When I arrived, Tom had left already.",
+      "When I came, Tom had left already.",
     ],
     hint: "had + already + V3",
     explanation: "When I arrived, Tom had already left.",
@@ -678,7 +680,7 @@ export const PAST_PERFECT_EXERCISES: Exercise[] = [
     options: ["had finished", "was finishing"],
     correctAnswer: "had finished",
     hint: "Уроки закончились раньше игры.",
-    explanation: "After I had finished my homework, I played computer games.",
+    explanation: "After I had finished my homework, I played computer games. Past Perfect явно показывает, что уроки закончились раньше игры. Само слово after не требует Past Perfect: After I finished… тоже правильно, но в этом варианте такого ответа нет.",
     rule: "after",
     errorCategory: "wrong_event_order",
   },

@@ -15,7 +15,7 @@ export const LEVEL_3: Exercise[] = [
     task: "Поставь глагол в нужную форму: leave",
     question: "When Sarah finally reached the station, the train ___ already ___.",
     answer: "had already left",
-    also: ["had left"],
+    also: ["had left", "had, left"],
     explanation: "Поезд ушёл раньше, чем Сара дошла до станции.",
     category: "wrong_event_order",
     skill: "verb-form",

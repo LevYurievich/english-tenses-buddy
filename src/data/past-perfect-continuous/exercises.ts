@@ -559,7 +559,7 @@ export const PAST_PERFECT_CONTINUOUS_EXERCISES: Exercise[] = [
     question: "Did she had been waiting?",
     tokens: ["Did", "she", "had", "been", "waiting"],
     wrongIndex: 0,
-    correctAnswer: "Had",
+    correctAnswer: "Had she been waiting?",
     hint: "Помощник уже есть.",
     explanation: "DID не нужен: Had she been waiting?",
     rule: "no-did",
