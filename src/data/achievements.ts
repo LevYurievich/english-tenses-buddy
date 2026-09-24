@@ -107,6 +107,13 @@ export const ACHIEVEMENTS: Achievement[] = [
     xp: 40,
   },
   {
+    id: "twelve-of-twelve",
+    icon: "🌍",
+    title: "12 из 12",
+    description: "Освоен Future Perfect Continuous — пройдены уроки всех 12 времён",
+    xp: 80,
+  },
+  {
     id: "present-master",
     icon: "🏆",
     title: "Present Master",

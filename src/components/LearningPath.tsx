@@ -160,10 +160,24 @@ export const PATH_STEPS: Step[] = [
     to: "/compare/future-perfect",
     kind: "compare",
   },
+  {
+    id: "future-perfect-continuous",
+    title: "Future Perfect Continuous",
+    subtitle: "Как долго к будущей точке • will have been + V-ing",
+    to: "/learn/future-perfect-continuous",
+    kind: "tense",
+  },
+  {
+    id: "compare-future-perfect-continuous",
+    title: "Future Perfect vs Future Perfect Continuous",
+    subtitle: "Результат ✓ или длительность ⏱",
+    to: "/compare/future-perfect-continuous",
+    kind: "compare",
+  },
 ];
 
 /** Следующая остановка маршрута — пока закрыта. */
-const LOCKED_PAST = ["Future Perfect Continuous"];
+const LOCKED_PAST = ["All Future Tenses"];
 
 export type StepStatus = "done" | "current" | "open";
 

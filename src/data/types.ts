@@ -113,7 +113,18 @@ export type ErrorCategory =
   | "at_vs_by"
   | "future_time_clause_will"
   | "perfect_family_confusion"
-  | "future_perfect_question_order";
+  | "future_perfect_question_order"
+  // --- Future Perfect Continuous ---
+  | "missing_have_future_perfect_continuous"
+  | "missing_been_future_perfect_continuous"
+  | "wrong_ing_future_perfect_continuous"
+  | "wrong_for_since_future"
+  | "future_perfect_vs_perfect_continuous"
+  | "future_continuous_vs_perfect_continuous"
+  | "wrong_future_duration"
+  | "stative_future_perfect_continuous"
+  | "perfect_continuous_family_confusion"
+  | "question_order_future_perfect_continuous";
 
 export type Difficulty = 1 | 2 | 3;
 
