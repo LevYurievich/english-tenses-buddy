@@ -384,10 +384,16 @@ export function whereIErr(d: Diagnosis): string[] {
 }
 
 /** Слабые места: тренируем не конкретное время, а координату или смысл. */
-export function weakAreaItems(state: CoordState | null, limit = 12): { title: string; items: CoordItem[] } | null {
+export function weakAreaItems(
+  state: CoordState | null,
+  limit = 12,
+  bank: CoordItem[] = COORD_TRAINING,
+  focus?: string,
+): { title: string; items: CoordItem[] } | null {
+  const COORD_TRAINING_POOL = bank;
   const d = diagnose(state);
   const attempts = state?.attempts ?? {};
-  const top = d.confusions[0];
+  const top = focus ? { key: focus, title: PAIR_TITLES[focus] ?? "" } : d.confusions[0];
   let pool: CoordItem[] = [];
   let title = "";
   if (top) {
@@ -405,15 +411,15 @@ export function weakAreaItems(state: CoordState | null, limit = 12): { title: st
       continuous_vs_perfect_continuous_global: ["process", "duration"],
       wrong_aspect_selection: MEANINGS,
     };
-    if (zonePairs[top.key]) pool = COORD_TRAINING.filter((i) => zonePairs[top.key]!.includes(i.timeCoordinate));
+    if (zonePairs[top.key]) pool = COORD_TRAINING_POOL.filter((i) => zonePairs[top.key]!.includes(i.timeCoordinate));
     else if (meaningPairs[top.key])
-      pool = COORD_TRAINING.filter((i) => meaningPairs[top.key]!.includes(i.aspectMeaning));
+      pool = COORD_TRAINING_POOL.filter((i) => meaningPairs[top.key]!.includes(i.aspectMeaning));
   }
   if (!pool.length) {
     const weakTense = d.byTense.filter((t) => t.total && t.correct < t.total).map((t) => t.key);
     if (!weakTense.length) return null;
     title = "Времена, где были ошибки";
-    pool = COORD_TRAINING.filter((i) => weakTense.includes(i.tense));
+    pool = COORD_TRAINING_POOL.filter((i) => weakTense.includes(i.tense));
   }
   const rank = (i: CoordItem) => (attempts[i.id]?.correct === false ? 0 : attempts[i.id] ? 2 : 1);
   const sorted = [...pool].sort((a, b) => rank(a) - rank(b));

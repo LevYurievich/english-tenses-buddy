@@ -111,7 +111,7 @@ export const A12_LEVEL_2: CoordItem[] = [
   a(2, 7, PP, "Look! Someone ___ my sandwich!", "eat", "has eaten", "Look! — смотрим сейчас.", "Бутерброда нет — видим результат."),
   a(2, 8, PP, "We ___ this film, let's watch another one.", "already / see", "have already seen", "let's watch — решаем сейчас.", "Фильм уже видели — результат к сейчас."),
   a(2, 9, PP, "Tom ___ his leg, so he can't play today.", "break", "has broken", "can't play today — сейчас.", "Нога сломана — результат."),
-  a(2, 10, PPC, "— Why are your hands dirty? — I ___ in the garden.", "work", "have been working", "Руки грязные сейчас.", "Видим след процесса, который шёл до сейчас.", { variants: [{ answers: ["was working"], note: "was working ставит точку в прошлом, а грязные руки — это сейчас." }].slice(0, 0) }),
+  a(2, 10, PPC, "— Why are your hands dirty? — I ___ in the garden.", "work", "have been working", "Руки грязные сейчас.", "Видим след процесса, который шёл до сейчас."),
   a(2, 11, PPC, "It ___ since morning, and the streets are wet.", "rain", "has been raining", "streets are wet — сейчас.", "since morning — длительность до сейчас."),
   a(2, 12, PPC, "— How long have you been learning English? — I ___ it for four years.", "learn", "have been learning", "Вопрос о сейчас.", "for four years — длительность до сейчас."),
   a(2, 13, pS, "Anna ___ me a postcard from Spain last summer.", "send", "sent", "last summer — прошлое.", "Законченное событие."),
