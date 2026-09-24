@@ -124,7 +124,22 @@ export type ErrorCategory =
   | "wrong_future_duration"
   | "stative_future_perfect_continuous"
   | "perfect_continuous_family_confusion"
-  | "question_order_future_perfect_continuous";
+  | "question_order_future_perfect_continuous"
+  // --- Координаты времени (верхнеуровневые) ---
+  | "wrong_time_coordinate"
+  | "present_vs_past_reference"
+  | "present_vs_future_reference"
+  | "past_vs_future_reference"
+  | "wrong_aspect_selection"
+  | "simple_vs_continuous_global"
+  | "simple_vs_perfect_global"
+  | "continuous_vs_perfect_global"
+  | "perfect_vs_perfect_continuous_global"
+  | "continuous_vs_perfect_continuous_global"
+  | "result_vs_duration_global"
+  | "process_vs_result_global"
+  | "reference_point_error"
+  | "verb_form_after_tense_selection";
 
 export type Difficulty = 1 | 2 | 3;
 

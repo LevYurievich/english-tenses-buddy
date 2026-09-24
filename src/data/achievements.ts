@@ -121,6 +121,13 @@ export const ACHIEVEMENTS: Achievement[] = [
     xp: 60,
   },
   {
+    id: "time-navigator",
+    icon: "🧭",
+    title: "Навигатор времени",
+    description: "Ты научился находить время по двум координатам",
+    xp: 60,
+  },
+  {
     id: "present-master",
     icon: "🏆",
     title: "Present Master",

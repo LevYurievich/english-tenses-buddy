@@ -117,6 +117,15 @@ function TestsPage() {
           <p className="mt-3 text-sm font-bold text-primary">Начать тест →</p>
         </Link>
         <Link
+          to="/coordinates"
+          search={{ tab: "checkpoint" as const }}
+          className="card-interactive block p-5"
+        >
+          <p className="font-display text-lg font-bold">🧭 Checkpoint: координаты</p>
+          <p className="mt-1 text-sm text-muted-foreground">12 новых заданий — по одному на каждое время.</p>
+          <p className="mt-3 text-sm font-bold text-primary">Начать →</p>
+        </Link>
+        <Link
           to="/all-future"
           search={{ tab: "exam" as const }}
           className="card-interactive block p-5"

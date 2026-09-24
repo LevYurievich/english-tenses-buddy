@@ -48,6 +48,11 @@ export function earnedAchievements(progress: ProgressState, game: GameState): st
     ids.push("future-master");
   }
 
+  const coord = getTenseProgress(progress, "coordinates");
+  if (coord.bestTestScore !== null && coord.testTotal && coord.bestTestScore / coord.testTotal >= 0.75) {
+    ids.push("time-navigator");
+  }
+
   return ids;
 }
 
