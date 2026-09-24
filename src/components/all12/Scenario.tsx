@@ -5,7 +5,7 @@ import { analyze, recordCoordAnswer, type Analysis } from "@/lib/coordinates-sta
 import { ALL12_STORE } from "@/lib/all12-stats";
 import { scenarioItems, type Scenario } from "@/data/all12/items";
 import type { CoordItem } from "@/data/coordinates/items";
-import { MEANING_INFO, TENSE_INFO, ZONE_INFO, type TenseKey } from "@/data/coordinates/model";
+import { coordsOf, MEANING_INFO, TENSE_INFO, ZONE_INFO, type TenseKey } from "@/data/coordinates/model";
 import type { SessionRow } from "@/components/coordinates/Trainer";
 
 /** Куда «переехала» точка отсчёта — показывается только после ответа. */
@@ -166,7 +166,7 @@ function BlankFeedback({ item, n, user, a, note }: { item: CoordItem; n: number;
   let text = "";
   if (!a.correct) {
     if (a.formOk === false) text = `Время выбрано верно, ошибка в форме: ${TENSE_INFO[item.tense].formula}.`;
-    else if (a.chosen && a.coordOk && !a.meaningOk) text = `Зона ${z.label} ✓, но смысл другой: нужен ${m.label}, а не ${MEANING_INFO[item.aspectMeaning === "simple" ? "simple" : item.aspectMeaning].label === m.label && a.chosen ? MEANING_INFO[(a.chosen.includes("perfect-continuous") ? "duration" : a.chosen.includes("perfect") ? "result" : a.chosen.includes("continuous") ? "process" : "simple")].label : ""}. Это ошибка смысла.`;
+    else if (a.chosen && a.coordOk && !a.meaningOk) text = `Зона ${z.label} ✓, но нужен смысл ${m.label}, а не ${MEANING_INFO[coordsOf(a.chosen).meaning].label}. Это ошибка смысла, а не координаты.`;
     else if (a.chosen && !a.coordOk && a.meaningOk) text = `Смысл ${m.label} ✓, но точка отсчёта здесь — ${z.label}. Это ошибка координаты.`;
     else if (a.chosen) text = `Нужны другие координаты: ${z.label} + ${m.label}.`;
   }
