@@ -44,17 +44,31 @@ const ZONES = [
 ];
 
 const FUTURE_STOPS = [
-  { id: "future-simple", title: "Future Simple", open: true },
-  { id: "future-continuous", title: "Future Continuous", open: false },
-  { id: "future-perfect", title: "Future Perfect", open: false },
-  { id: "future-perfect-continuous", title: "Future Perfect Continuous", open: false },
-  { id: "all-future", title: "All Future Tenses", open: false },
+  { id: "future-simple", title: "Future Simple", to: "/learn/future-simple" as const, open: true },
+  {
+    id: "future-continuous",
+    title: "Future Continuous",
+    to: "/learn/future-continuous" as const,
+    open: true,
+  },
+  { id: "future-perfect", title: "Future Perfect", to: undefined, open: false },
+  {
+    id: "future-perfect-continuous",
+    title: "Future Perfect Continuous",
+    to: undefined,
+    open: false,
+  },
+  { id: "all-future", title: "All Future Tenses", to: undefined, open: false },
 ];
 
 function TimeMachinePage() {
   const progress = useProgress();
-  const futurePercent = percentFor(progress, "future-simple");
-  const futureDone = isCompleted(progress, "future-simple");
+  const futurePercent = Math.round(
+    (percentFor(progress, "future-simple") + percentFor(progress, "future-continuous")) / 2,
+  );
+  const doneIds = new Set(
+    ["future-simple", "future-continuous"].filter((id) => isCompleted(progress, id)),
+  );
 
   return (
     <div className="space-y-6">
