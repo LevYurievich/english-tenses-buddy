@@ -10,7 +10,6 @@ import {
   TENSE_INFO,
   ZONES,
   ZONE_INFO,
-  tenseOf,
   type Meaning,
   type Zone,
 } from "@/data/coordinates/model";
@@ -32,6 +31,7 @@ export function Trainer({
   onFinish,
   finishLabel,
   renderSummary,
+  onComplete,
 }: {
   items: CoordItem[];
   mode: TrainerMode;
@@ -39,6 +39,7 @@ export function Trainer({
   onFinish?: () => void;
   finishLabel?: string;
   renderSummary?: (rows: SessionRow[]) => ReactNode;
+  onComplete?: (rows: SessionRow[]) => void;
 }) {
   const [i, setI] = useState(0);
   const [rows, setRows] = useState<SessionRow[]>([]);
@@ -76,7 +77,11 @@ export function Trainer({
         key={items[i]!.id}
         item={items[i]!}
         mode={mode}
-        onDone={(analysis) => setRows((r) => [...r, { item: items[i]!, analysis }])}
+        onDone={(analysis) => {
+          const next = [...rows, { item: items[i]!, analysis }];
+          setRows(next);
+          if (next.length === items.length) onComplete?.(next);
+        }}
         onNext={() => setI(i + 1)}
       />
     </div>
@@ -339,4 +344,3 @@ function Feedback({
   );
 }
 
-export { tenseOf };
