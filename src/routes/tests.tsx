@@ -99,7 +99,7 @@ function TestsPage() {
           search={{ tab: "exam" as const }}
           className="card-interactive block p-5"
         >
-          <p className="font-display text-lg font-bold">🏆 Испытание Present</p>
+          <p className="font-display text-lg font-bold">🏆 Present Challenge</p>
           <p className="mt-1 text-sm text-muted-foreground">
             20 заданий: сам выбираешь время, интерфейс нейтральный.
           </p>
