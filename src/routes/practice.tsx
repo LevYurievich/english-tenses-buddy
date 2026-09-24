@@ -68,6 +68,13 @@ const CARDS = [
     description: "will · be going to · Present Continuous",
     id: "compare-future",
   },
+  {
+    to: "/compare/future-continuous" as const,
+    icon: "🔭",
+    title: "Future Simple vs Future Continuous",
+    description: "Событие или процесс в момент будущего?",
+    id: "compare-future-continuous",
+  },
 ];
 
 function PracticePage() {
