@@ -75,6 +75,13 @@ const CARDS = [
     description: "Событие или процесс в момент будущего?",
     id: "compare-future-continuous",
   },
+  {
+    to: "/compare/future-perfect" as const,
+    icon: "🎯",
+    title: "Future Simple vs Future Perfect",
+    description: "Событие, процесс в момент или результат к моменту?",
+    id: "compare-future-perfect",
+  },
 ];
 
 function PracticePage() {

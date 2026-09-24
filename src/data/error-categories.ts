@@ -104,6 +104,19 @@ export const CATEGORY_TITLES: Record<string, string> = {
   future_continuous_negative: "Отрицание won't be + V-ing",
   wrong_future_reference_point: "Момент будущего выбран неверно",
   continuous_family_confusion: "Continuous family: сейчас / тогда / в будущем",
+  // Future Perfect
+  missing_have_future_perfect: "WILL → HAVE → V3: пропущен HAVE",
+  wrong_have_has_future_perfect: "После WILL — HAVE, не HAS",
+  wrong_v3_future_perfect: "Неверная V3 в Future Perfect",
+  used_v2_instead_v3_future: "V2 вместо V3 после will have",
+  will_have_plus_v1: "will have + V1 вместо V3",
+  future_simple_vs_future_perfect: "Событие или результат к точке?",
+  future_continuous_vs_future_perfect: "В момент или к моменту?",
+  wrong_future_deadline: "Будущая точка (дедлайн) выбрана неверно",
+  at_vs_by: "AT — в момент, BY — к моменту",
+  future_time_clause_will: "После by the time / when — без will",
+  perfect_family_confusion: "Perfect family: сейчас / тогда / в будущем",
+  future_perfect_question_order: "Порядок слов: Will + кто + have + V3",
 };
 
 export const CATEGORY_RULES: Record<
@@ -545,5 +558,67 @@ export const CATEGORY_RULES: Record<
     right: "The phone is ringing. I'll answer it.",
     wrong: "The phone is ringing. I'm going to answer it.",
     tip: "tomorrow говорит КОГДА, но не выбирает конструкцию.",
+  },
+  missing_have_future_perfect: {
+    rule: "WILL → HAVE → V3",
+    right: "She will have finished by Friday.",
+    wrong: "She will finished by Friday.",
+    tip: "❌ will has finished · ❌ will have finish · ❌ will have went · ✅ will have gone",
+  },
+  wrong_have_has_future_perfect: {
+    rule: "После WILL всегда HAVE — даже с he / she / it",
+    right: "He will have finished.",
+    wrong: "He will has finished.",
+  },
+  wrong_v3_future_perfect: {
+    rule: "will have + V3 (третья колонка)",
+    right: "By Friday, Anna will have written five pages.",
+    wrong: "By Friday, Anna will have wrote five pages.",
+  },
+  used_v2_instead_v3_future: {
+    rule: "V2 и V3 — разные формы: went ≠ gone",
+    right: "Tom will have gone home.",
+    wrong: "Tom will have went home.",
+  },
+  will_have_plus_v1: {
+    rule: "После have нельзя V1",
+    right: "They will have finished the work.",
+    wrong: "They will have finish the work.",
+  },
+  future_simple_vs_future_perfect: {
+    rule: "Что произойдёт? → will + V1. Что уже будет готово к точке? → will have + V3",
+    right: "When you wake up, I will have left.",
+    wrong: "When you wake up, I will leave (хотя уйду раньше).",
+  },
+  future_continuous_vs_future_perfect: {
+    rule: "В МОМЕНТ или К МОМЕНТУ?",
+    right: "At 8 → will be doing (процесс). By 8 → will have done (результат).",
+    wrong: "By 8, Tom will be finishing (хотя к 8 всё уже готово).",
+    tip: "Спроси: что будет происходить В этот момент или что уже будет готово К нему?",
+  },
+  wrong_future_deadline: {
+    rule: "Сначала найди будущую точку: by 8, by Friday, by the time…",
+    right: "By the time his friend arrives, Tom will have finished.",
+    wrong: "By the time his friend arrives, Tom will finish.",
+  },
+  at_vs_by: {
+    rule: "AT 8 — в этот момент. BY 8 — не позже 8",
+    right: "I will have written the report by 9.",
+    wrong: "I will have written the report at 9.",
+  },
+  future_time_clause_will: {
+    rule: "После by the time / when / before / after — Present Simple",
+    right: "By the time you come back, I will have cleaned the flat.",
+    wrong: "By the time you will come back, I will have cleaned the flat.",
+  },
+  perfect_family_confusion: {
+    rule: "PERFECT FAMILY: NOW → have/has + V3 · PAST → had + V3 · FUTURE → will have + V3",
+    right: "Tom had finished before his friend arrived.",
+    wrong: "Tom has finished before his friend arrived.",
+  },
+  future_perfect_question_order: {
+    rule: "Will + кто + have + V3?",
+    right: "Will Tom have finished by 8?",
+    wrong: "Will Tom has finished by 8?",
   },
 };

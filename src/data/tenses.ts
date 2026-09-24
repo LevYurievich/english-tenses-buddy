@@ -100,8 +100,9 @@ export const TENSES: TenseMeta[] = [
     id: "future-perfect",
     title: "Future Perfect",
     group: "future",
-    tagline: "Закончится к моменту в будущем",
-    available: false,
+    tagline: "Результат к моменту будущего • will have + V3",
+    available: true,
+    path: "/learn/future-perfect",
   },
   {
     id: "future-perfect-continuous",
