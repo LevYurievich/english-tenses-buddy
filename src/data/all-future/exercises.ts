@@ -3,8 +3,8 @@
  * Каждое задание описано кратко; варианты, «Почему?» и «Почему не другие?» собираются из смысла времени.
  * Ничего не генерируется на лету — данные статичны.
  */
-import type { ErrorCategory, Exercise } from "@/data/types";
-import { fb, mc, tl } from "./helpers";
+import type { ErrorCategory, Exercise, TimelineSpec } from "@/data/types";
+import { ef, fb, mc, tl } from "./helpers";
 
 export const FS = "future-simple";
 export const FC = "future-continuous";
@@ -89,9 +89,63 @@ type Item = {
   what: string;
   situation?: string;
   also?: string[];
+  /** Дополнительные навыки поверх автоматически определённых. */
+  skills?: string[];
+  timeline?: TimelineSpec;
+  category?: ErrorCategory;
 };
 
-function common(i: Item, answer: string) {
+/** Навыки задания: из смысла времени, текста вопроса и механики. */
+function skillsOf(i: Item, kind: "choice" | "form" | "fix"): string[] {
+  const q = i.q.toLowerCase();
+  const s = new Set<string>(["future_tense_selection"]);
+  const hasAt = /\bat\b|this time/.test(q);
+  const hasBy = /\bby\b/.test(q);
+  const clause = /(by the time|when|if|before) [a-z]+ (arrives?|comes?|finishes|gets?|lands|wake|wakes|reach|starts?)/.test(q);
+  if (i.t === FS) s.add("decision_prediction").add("v1_form");
+  if (i.t === FC) s.add("process_at_future_point").add("future_reference_point").add("ing_form");
+  if (i.t === FP) s.add("result_by_future_point").add("future_reference_point").add("v3_form");
+  if (i.t === FPC)
+    s.add("duration_by_future_point").add("future_reference_point").add("result_vs_duration").add("ing_form");
+  if (i.t !== FS && (hasAt || hasBy)) s.add("at_vs_by");
+  if (/\bfor\b|\bsince\b/.test(q) && i.t === FPC) s.add("for_since");
+  if (clause || /by the time/.test(q)) s.add("future_time_clause");
+  if (kind !== "choice") s.add("auxiliary_structure");
+  if (q.trim().endsWith("?")) s.add("question_order");
+  if (/won't|not /.test(q)) s.add("negative_form");
+  (i.skills ?? []).forEach((x) => s.add(x));
+  return [...s];
+}
+
+/** «Почему не другие?» — объяснение через смысл конкретной ситуации. */
+function whyNot(target: T, other: T, i: Item): string {
+  const ctx = i.when.replace(/\.$/, "");
+  const table: Partial<Record<T, Partial<Record<T, string>>>> = {
+    [FS]: {
+      [FC]: `не подходит: мы не «заглядываем» в конкретный момент, чтобы увидеть процесс (${ctx}) — это просто решение или прогноз.`,
+      [FP]: `не подходит: нет срока, к которому что-то должно быть готово. Речь о самом событии.`,
+      [FPC]: `не подходит: никто не спрашивает, как долго что-то будет длиться к моменту.`,
+    },
+    [FC]: {
+      [FS]: `не подходит: нас интересует не факт «произойдёт», а что будет в разгаре в этот момент (${ctx}).`,
+      [FP]: `не подходит: предложение не говорит о результате, который должен быть готов К этому моменту — мы смотрим В него.`,
+      [FPC]: `не подходит: длительность процесса до этой точки здесь не важна — нет «как долго?».`,
+    },
+    [FP]: {
+      [FS]: `не подходит: важно не просто событие, а то, что оно будет завершено к сроку (${ctx}).`,
+      [FC]: `не подходит: мы не смотрим, что будет происходить В этот момент, — к нему дело уже будет сделано.`,
+      [FPC]: `не подходит: главное — готовый результат (${i.what.replace(/\.$/, "").toLowerCase()}), а не то, сколько времени шёл процесс.`,
+    },
+    [FPC]: {
+      [FS]: `не подходит: это не разовое событие или решение — процесс тянется и мы считаем его длительность.`,
+      [FC]: `не подходит: мало сказать, что процесс идёт в этот момент — важно, как долго он уже идёт (${ctx}).`,
+      [FP]: `не подходит: мы не говорим о готовом результате — процесс ещё продолжается, важна длительность.`,
+    },
+  };
+  return `${TITLE[other]} ${table[target]?.[other] ?? WHY_NOT[other]}`;
+}
+
+function common(i: Item, answer: string, kind: "choice" | "form" | "fix" = "choice") {
   const others = ([FS, FC, FP, FPC] as T[]).filter((x) => x !== i.t);
   return {
     id: i.id,
@@ -101,11 +155,13 @@ function common(i: Item, answer: string) {
     ...(i.situation ? { situation: i.situation } : {}),
     hint:
       i.level === 1
-        ? "Найди подсказку: AT (в момент) или BY (к моменту)? Есть ли «как долго»?"
+        ? "Что здесь важно: событие, процесс В момент, результат К моменту или длительность К моменту?"
         : "Где точка в будущем? Смотрим В неё или К ней? Результат или длительность?",
     explanation: `${MEANING[i.t]} ${FORMULA[i.t]}.`,
-    category: CATEGORY[i.t],
+    category: i.category ?? CATEGORY[i.t],
     skill: "tense-choice" as const,
+    skills: skillsOf(i, kind),
+    ...(i.timeline ? { timeline: i.timeline } : {}),
     title: `Почему ${answer}?`,
     chain: CHAIN[i.t],
     why: [
@@ -115,23 +171,59 @@ function common(i: Item, answer: string) {
       ["form", `${FORMULA[i.t]} → ${answer}.`],
     ] as [import("@/data/types").ReasoningStepKind, string][],
     remember: REMEMBER[i.t],
-    alt: others.map((o) => [TITLE[o], WHY_NOT[o]] as [string, string]),
+    alt: others.map((o) => [TITLE[o], whyNot(i.t, o, i)] as [string, string]),
   };
 }
 
 function MC(i: Item) {
   const answer = formOf(i.t, i.v);
-  return mc({ ...common(i, answer), options: options(i.v), answer });
+  return mc({
+    ...common(i, answer),
+    ...(i.timeline ? { task: "Посмотри на линию времени и выбери форму" } : {}),
+    options: options(i.v),
+    answer,
+  });
 }
 
 function FB(i: Item) {
   const answer = formOf(i.t, i.v);
   const alt = [contracted(answer), ...(i.also ?? [])];
-  return fb({ ...common(i, answer), task: "Поставь глагол в нужное время", answer, also: alt });
+  return fb({
+    ...common(i, answer, "form"),
+    task: i.timeline ? "Посмотри на линию времени и поставь глагол" : "Поставь глагол в нужное время",
+    answer,
+    also: alt,
+  });
 }
 
 function TL(i: Item & { answer: string }) {
-  return tl({ ...common(i, formOf(i.t, i.v)), answer: i.answer, also: i.also ?? [] });
+  return tl({ ...common(i, formOf(i.t, i.v), "form"), answer: i.answer, also: i.also ?? [] });
+}
+
+/** Найди и исправь ошибку: нажать на неправильное слово, после ответа — правильное предложение. */
+function EF(i: Item & { tokens: string[]; wrongIndex: number; fixed: string; mistake: string }) {
+  const c = common(i, i.fixed, "fix");
+  return ef({
+    ...c,
+    question: "Найди слово с ошибкой.",
+    task: "Найди и исправь ошибку",
+    explanation: `Правильно: ${i.fixed} ${i.mistake}`,
+    tokens: i.tokens,
+    wrongIndex: i.wrongIndex,
+    answer: i.fixed,
+    result: i.fixed,
+    title: "Почему здесь ошибка?",
+  });
+}
+
+/** Два глагола в одном предложении: выбрать правильную пару форм. */
+function PAIR(i: Item & { pairs: string[]; answer: string }) {
+  return mc({
+    ...common(i, i.answer),
+    task: "Выбери пару форм для двух глаголов",
+    options: i.pairs,
+    answer: i.answer,
+  });
 }
 
 // ———————————————————— LEVEL 1 «Вижу подсказку» ————————————————————
