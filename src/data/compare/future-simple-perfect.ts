@@ -1,8 +1,6 @@
 import type { ErrorCategory, Exercise, Reasoning } from "../types";
-import { variants } from "../future-perfect/exercises";
 
 const T = "compare-future-perfect";
-void variants;
 
 function mc(
   id: string,
