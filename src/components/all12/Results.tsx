@@ -64,7 +64,8 @@ export function Heatmap({ d }: { d: Diagnosis }) {
   return (
     <section className="card-surface space-y-3 p-5 sm:p-6">
       <h2 className="text-xl">Карта 12 времён</h2>
-      <div className="overflow-x-auto">
+      <p className="text-xs text-muted-foreground sm:hidden">← Проведи, чтобы увидеть всю таблицу →</p>
+      <div className="overflow-x-auto overscroll-x-contain">
         <table className="w-full min-w-[480px] border-separate border-spacing-1 text-xs sm:text-sm">
           <thead>
             <tr>
