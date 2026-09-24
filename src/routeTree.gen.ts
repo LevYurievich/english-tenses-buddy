@@ -14,7 +14,6 @@ import { Route as All12RouteImport } from './routes/all-12'
 import { Route as AllFutureRouteImport } from './routes/all-future'
 import { Route as AllPastRouteImport } from './routes/all-past'
 import { Route as AllPresentRouteImport } from './routes/all-present'
-import { Route as AllTensesRouteImport } from './routes/all-tenses'
 import { Route as CoordinatesRouteImport } from './routes/coordinates'
 import { Route as FinalRouteImport } from './routes/final'
 import { Route as MistakesRouteImport } from './routes/mistakes'
@@ -72,11 +71,6 @@ const AllPastRoute = AllPastRouteImport.update({
 const AllPresentRoute = AllPresentRouteImport.update({
   id: '/all-present',
   path: '/all-present',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AllTensesRoute = AllTensesRouteImport.update({
-  id: '/all-tenses',
-  path: '/all-tenses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CoordinatesRoute = CoordinatesRouteImport.update({
@@ -257,7 +251,6 @@ export interface FileRoutesByFullPath {
   '/all-future': typeof AllFutureRoute
   '/all-past': typeof AllPastRoute
   '/all-present': typeof AllPresentRoute
-  '/all-tenses': typeof AllTensesRoute
   '/coordinates': typeof CoordinatesRoute
   '/final': typeof FinalRoute
   '/mistakes': typeof MistakesRoute
@@ -298,7 +291,6 @@ export interface FileRoutesByTo {
   '/all-future': typeof AllFutureRoute
   '/all-past': typeof AllPastRoute
   '/all-present': typeof AllPresentRoute
-  '/all-tenses': typeof AllTensesRoute
   '/coordinates': typeof CoordinatesRoute
   '/final': typeof FinalRoute
   '/mistakes': typeof MistakesRoute
@@ -340,7 +332,6 @@ export interface FileRoutesById {
   '/all-future': typeof AllFutureRoute
   '/all-past': typeof AllPastRoute
   '/all-present': typeof AllPresentRoute
-  '/all-tenses': typeof AllTensesRoute
   '/coordinates': typeof CoordinatesRoute
   '/final': typeof FinalRoute
   '/mistakes': typeof MistakesRoute
@@ -383,7 +374,6 @@ export interface FileRouteTypes {
     | '/all-future'
     | '/all-past'
     | '/all-present'
-    | '/all-tenses'
     | '/coordinates'
     | '/final'
     | '/mistakes'
@@ -424,7 +414,6 @@ export interface FileRouteTypes {
     | '/all-future'
     | '/all-past'
     | '/all-present'
-    | '/all-tenses'
     | '/coordinates'
     | '/final'
     | '/mistakes'
@@ -465,7 +454,6 @@ export interface FileRouteTypes {
     | '/all-future'
     | '/all-past'
     | '/all-present'
-    | '/all-tenses'
     | '/coordinates'
     | '/final'
     | '/mistakes'
@@ -507,7 +495,6 @@ export interface RootRouteChildren {
   AllFutureRoute: typeof AllFutureRoute
   AllPastRoute: typeof AllPastRoute
   AllPresentRoute: typeof AllPresentRoute
-  AllTensesRoute: typeof AllTensesRoute
   CoordinatesRoute: typeof CoordinatesRoute
   FinalRoute: typeof FinalRoute
   MistakesRoute: typeof MistakesRoute
@@ -578,13 +565,6 @@ declare module '@tanstack/react-router' {
       path: '/all-present'
       fullPath: '/all-present'
       preLoaderRoute: typeof AllPresentRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/all-tenses': {
-      id: '/all-tenses'
-      path: '/all-tenses'
-      fullPath: '/all-tenses'
-      preLoaderRoute: typeof AllTensesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/coordinates': {
@@ -827,7 +807,6 @@ const rootRouteChildren: RootRouteChildren = {
   AllFutureRoute: AllFutureRoute,
   AllPastRoute: AllPastRoute,
   AllPresentRoute: AllPresentRoute,
-  AllTensesRoute: AllTensesRoute,
   CoordinatesRoute: CoordinatesRoute,
   FinalRoute: FinalRoute,
   MistakesRoute: MistakesRoute,

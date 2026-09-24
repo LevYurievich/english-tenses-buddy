@@ -15,7 +15,7 @@ export const Route = createFileRoute("/tests")({
       { property: "og:title", content: "Проверяю себя — English Tenses Trainer" },
       {
         property: "og:description",
-        content: "Проверь себя: тесты без подсказок и итоговое испытание Present.",
+        content: "Проверь себя: тесты без подсказок, Present, Past и Future Challenge и Final Challenge.",
       },
     ],
   }),
@@ -135,6 +135,12 @@ function TestsPage() {
             20 заданий по всем временам будущего. Никаких подсказок.
           </p>
           <p className="mt-3 text-sm font-bold text-primary">Начать тест →</p>
+        </Link>
+        <Link to="/final" className="card-interactive block p-5">
+          <p className="font-display text-lg font-bold">🏁 Final Challenge</p>
+          <p className="mt-1 text-sm text-muted-foreground">Итоговая проверка всех 12 времён</p>
+          <p className="mt-1 text-xs text-muted-foreground">30 заданий • все 12 времён • без подсказок</p>
+          <p className="mt-3 text-sm font-bold text-primary">Пройти Final Challenge →</p>
         </Link>
       </div>
 
