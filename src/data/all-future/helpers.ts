@@ -42,6 +42,8 @@ export type Common = {
   /** Разбор конкретных неверных вариантов. */
   wrong?: [string, string][];
   title?: string;
+  skills?: string[];
+  timeline?: import("@/data/types").TimelineSpec;
 };
 
 function buildReasoning(o: Common, answer: string): Reasoning {
@@ -73,6 +75,8 @@ function base(o: Common, answer: string) {
     errorCategory: o.category,
     skill: o.skill,
     reasoning: buildReasoning(o, answer),
+    ...(o.skills ? { skills: o.skills } : {}),
+    ...(o.timeline ? { timeline: o.timeline } : {}),
   } as const;
 }
 
