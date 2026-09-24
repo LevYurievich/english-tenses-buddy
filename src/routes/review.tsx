@@ -140,7 +140,7 @@ function ReviewPage() {
           </section>
           {top && top.count >= 2 ? (
             <section className="space-y-3">
-              <Tensy mood="think" title="Похоже, здесь есть сложность">Вот короткая подсказка.</Tensy>
+              <Tensy mood="hint" title="Похоже, здесь есть сложность">Вот короткая подсказка.</Tensy>
               <HelpCardView card={top.card} />
               <button type="button" onClick={() => start(top.card.id)} className="rounded-xl border-2 border-primary/40 px-4 py-2 text-sm font-bold text-primary">Потренировать</button>
             </section>

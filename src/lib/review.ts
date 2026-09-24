@@ -114,7 +114,7 @@ export function reviewTopics(state: ProgressState | null): ReviewTopic[] {
 /* ---------------- История показов (чтобы не повторять одно и то же) ---------------- */
 
 const KEY = "ets-review-v1";
-type ReviewStore = { recent: string[]; last?: { score: number; total: number; at: number } };
+type ReviewStore = { recent: string[]; last?: { score: number; total: number; at: number } | undefined };
 
 export function loadReview(): ReviewStore {
   if (typeof window === "undefined") return { recent: [] };
