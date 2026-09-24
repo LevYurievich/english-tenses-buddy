@@ -51,7 +51,12 @@ const FUTURE_STOPS = [
     to: "/learn/future-continuous" as const,
     open: true,
   },
-  { id: "future-perfect", title: "Future Perfect", to: undefined, open: false },
+  {
+    id: "future-perfect",
+    title: "Future Perfect",
+    to: "/learn/future-perfect" as const,
+    open: true,
+  },
   {
     id: "future-perfect-continuous",
     title: "Future Perfect Continuous",
@@ -64,10 +69,13 @@ const FUTURE_STOPS = [
 function TimeMachinePage() {
   const progress = useProgress();
   const futurePercent = Math.round(
-    (percentFor(progress, "future-simple") + percentFor(progress, "future-continuous")) / 2,
+    (percentFor(progress, "future-simple") +
+      percentFor(progress, "future-continuous") +
+      percentFor(progress, "future-perfect")) /
+      3,
   );
   const doneIds = new Set(
-    ["future-simple", "future-continuous"].filter((id) => isCompleted(progress, id)),
+    ["future-simple", "future-continuous", "future-perfect"].filter((id) => isCompleted(progress, id)),
   );
 
   return (

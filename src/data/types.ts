@@ -100,7 +100,20 @@ export type ErrorCategory =
   | "future_continuous_question_order"
   | "future_continuous_negative"
   | "wrong_future_reference_point"
-  | "continuous_family_confusion";
+  | "continuous_family_confusion"
+  // --- Future Perfect ---
+  | "missing_have_future_perfect"
+  | "wrong_have_has_future_perfect"
+  | "wrong_v3_future_perfect"
+  | "used_v2_instead_v3_future"
+  | "will_have_plus_v1"
+  | "future_simple_vs_future_perfect"
+  | "future_continuous_vs_future_perfect"
+  | "wrong_future_deadline"
+  | "at_vs_by"
+  | "future_time_clause_will"
+  | "perfect_family_confusion"
+  | "future_perfect_question_order";
 
 export type Difficulty = 1 | 2 | 3;
 

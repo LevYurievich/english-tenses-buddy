@@ -15,6 +15,7 @@ const MASTERY: Record<string, string> = {
   "past-perfect-continuous": "long-journey",
   "future-simple": "forward-to-future",
   "future-continuous": "looked-into-future",
+  "future-perfect": "mission-on-time",
 };
 
 export function earnedAchievements(progress: ProgressState, game: GameState): string[] {

@@ -45,6 +45,7 @@ const TESTS = [
     title: "Future Continuous",
     to: "/learn/future-continuous" as const,
   },
+  { id: "future-perfect", title: "Future Perfect", to: "/learn/future-perfect" as const },
 ];
 
 function TestsPage() {

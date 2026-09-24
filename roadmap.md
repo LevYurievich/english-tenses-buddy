@@ -76,3 +76,10 @@
 - Маршруты /learn/future-continuous (вкладки: теория, тренировка, Continuous family, тест, мои ошибки) и /compare/future-continuous (15 новых сравнительных заданий, механика «Поставь камеру», оговорка про неоднозначность).
 - Карта «Машина времени», учебный путь, «Сравниваю», «Проверяю себя» и «Тренируюсь» обновлены; следующая остановка — Future Perfect.
 - Дальше (не начато): Future Perfect, Future Perfect Continuous, All Future Tenses.
+
+## FUTURE PERFECT (выполнено)
+- Маршрут /learn/future-perfect: теория «результат к дедлайну», WILL → HAVE → V3, V2 vs V3, AT vs BY, by the time + Present Simple.
+- 6 заданий «Найди дедлайн / К дедлайну», 35 основных, Perfect family (9), итоговый тест из 15 новых заданий.
+- /compare/future-perfect: 12 заданий Future Simple vs Future Perfect + 10 «В момент или к моменту?».
+- Переиспользуемый блок Perfect family, 12 категорий ошибок, достижение «Миссия выполнена к сроку».
+- FUTURE: ✓ Future Simple · ✓ Future Continuous · ✓ Future Perfect · ○ Future Perfect Continuous · ○ Future Challenge

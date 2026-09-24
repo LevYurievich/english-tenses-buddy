@@ -100,6 +100,13 @@ export const ACHIEVEMENTS: Achievement[] = [
     xp: 40,
   },
   {
+    id: "mission-on-time",
+    icon: "🎯",
+    title: "Миссия выполнена к сроку",
+    description: "Освоен Future Perfect",
+    xp: 40,
+  },
+  {
     id: "present-master",
     icon: "🏆",
     title: "Present Master",
