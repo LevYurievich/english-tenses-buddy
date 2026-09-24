@@ -118,7 +118,7 @@ WILL + HAVE + BEEN + V-ing   → длительность К моменту`}</p
         </ul>
       </section>
 
-      <Tensy mood="think">Сначала найди точку в будущем. Потом реши: смотрим В неё или К ней?</Tensy>
+      <Tensy mood="hint">Сначала найди точку в будущем. Потом реши: смотрим В неё или К ней?</Tensy>
 
       <button
         type="button"
