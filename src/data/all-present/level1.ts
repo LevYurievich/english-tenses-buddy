@@ -327,7 +327,7 @@ export const LEVEL_1: Exercise[] = [
     tokens: ["Anna", "is", "reading", "a book", "now"],
     answer: "Anna is reading a book now",
     also: ["Anna is reading a book now."],
-    hint: "Кто → помощник → V-ing → что → когда.",
+    hint: "Подумай: это обычное действие или процесс, который происходит прямо сейчас? Начни с того, кто действует.",
     explanation: "Порядок: подлежащее + is + V-ing + дополнение + маркер времени.",
     category: "word_order_error",
     skill: "order",

@@ -28,7 +28,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "level2", label: "Уровень 2" },
   { id: "level3", label: "Уровень 3" },
   { id: "diagnostics", label: "Диагностика" },
-  { id: "exam", label: "Финальный тест" },
+  { id: "exam", label: "Present Challenge" },
   { id: "weak", label: "Слабые места" },
 ];
 
@@ -165,7 +165,7 @@ function AllPresentPage() {
                 onClick={() => go("exam")}
                 className="inline-flex items-center justify-center rounded-xl border-2 border-primary/40 px-4 py-2 text-sm font-bold text-primary transition hover:bg-primary/10"
               >
-                Финальный тест
+                Present Challenge
               </button>
             </>
           }
