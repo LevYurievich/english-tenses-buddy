@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as All12RouteImport } from './routes/all-12'
 import { Route as AllFutureRouteImport } from './routes/all-future'
 import { Route as AllPastRouteImport } from './routes/all-past'
 import { Route as AllPresentRouteImport } from './routes/all-present'
@@ -49,6 +50,11 @@ import { Route as LearnPresentSimpleRouteImport } from './routes/learn.present-s
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const All12Route = All12RouteImport.update({
+  id: '/all-12',
+  path: '/all-12',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AllFutureRoute = AllFutureRouteImport.update({
@@ -235,6 +241,7 @@ const LearnPresentSimpleRoute = LearnPresentSimpleRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/all-12': typeof All12Route
   '/all-future': typeof AllFutureRoute
   '/all-past': typeof AllPastRoute
   '/all-present': typeof AllPresentRoute
@@ -273,6 +280,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/all-12': typeof All12Route
   '/all-future': typeof AllFutureRoute
   '/all-past': typeof AllPastRoute
   '/all-present': typeof AllPresentRoute
@@ -312,6 +320,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/all-12': typeof All12Route
   '/all-future': typeof AllFutureRoute
   '/all-past': typeof AllPastRoute
   '/all-present': typeof AllPresentRoute
@@ -352,6 +361,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/all-12'
     | '/all-future'
     | '/all-past'
     | '/all-present'
@@ -390,6 +400,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/all-12'
     | '/all-future'
     | '/all-past'
     | '/all-present'
@@ -428,6 +439,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/all-12'
     | '/all-future'
     | '/all-past'
     | '/all-present'
@@ -467,6 +479,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  All12Route: typeof All12Route
   AllFutureRoute: typeof AllFutureRoute
   AllPastRoute: typeof AllPastRoute
   AllPresentRoute: typeof AllPresentRoute
@@ -511,6 +524,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/all-12': {
+      id: '/all-12'
+      path: '/all-12'
+      fullPath: '/all-12'
+      preLoaderRoute: typeof All12RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/all-future': {
@@ -763,6 +783,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  All12Route: All12Route,
   AllFutureRoute: AllFutureRoute,
   AllPastRoute: AllPastRoute,
   AllPresentRoute: AllPresentRoute,

@@ -98,16 +98,20 @@ export type CoordItem = {
   whyWhere: string;
   /** Почему именно этот смысл. */
   whyWhat: string;
+  /** Контекст перед предложением (диалог, мини-ситуация). */
+  context?: string[] | undefined;
+  /** Допустимые варианты, которые меняют фокус: засчитываются с пояснением. */
+  variants?: { answers: string[]; note: string }[] | undefined;
 };
 
-const HINTS: Record<Meaning, string> = {
+export const HINTS: Record<Meaning, string> = {
   simple: "Спроси себя: это обычность, факт или просто событие?",
   process: "Есть ли конкретный момент, в который что-то идёт?",
   result: "Что уже готово к точке отсчёта?",
   duration: "Есть ли вопрос «как долго» до точки?",
 };
 
-const CATEGORY_BY_TENSE: Record<TenseKey, ErrorCategory> = {
+export const CATEGORY_BY_TENSE: Record<TenseKey, ErrorCategory> = {
   "present-simple": "simple_vs_continuous",
   "present-continuous": "simple_vs_continuous",
   "present-perfect": "present_perfect_vs_past_simple",

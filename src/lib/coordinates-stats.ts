@@ -29,7 +29,10 @@ const KEY = "ets-coordinates-v1";
 const EVENT = "ets-coordinates-change";
 
 export type Attempt = {
-  source: "where" | "what" | "level" | "checkpoint" | "workshop";
+  source: "where" | "what" | "level" | "checkpoint" | "workshop" | "all12";
+  /** Какая часть формы подвела (только при formOk === false). */
+  formSkill?: string | undefined;
+  answer?: string;
   correct: boolean;
   targetZone?: Zone;
   targetMeaning?: Meaning;
@@ -48,10 +51,18 @@ export type Attempt = {
 
 export type CoordState = { attempts: Record<string, Attempt> };
 
+/** Хранилище попыток: модуль координат и All 12 используют одну логику, но разные ключи. */
+export type Store = { key: string; event: string; tenseId: string };
+export const COORD_STORE: Store = { key: KEY, event: EVENT, tenseId: COORDINATES_ID };
+
 export function loadCoord(): CoordState {
+  return loadStore(COORD_STORE);
+}
+
+export function loadStore(store: Store): CoordState {
   if (typeof window === "undefined") return { attempts: {} };
   try {
-    const raw = window.localStorage.getItem(KEY);
+    const raw = window.localStorage.getItem(store.key);
     const parsed = raw ? (JSON.parse(raw) as CoordState) : null;
     return { attempts: parsed?.attempts ?? {} };
   } catch {
@@ -59,26 +70,48 @@ export function loadCoord(): CoordState {
   }
 }
 
-function saveAttempt(id: string, a: Attempt) {
-  const s = loadCoord();
+function saveAttempt(id: string, a: Attempt, store: Store = COORD_STORE) {
+  const s = loadStore(store);
   s.attempts[id] = a;
-  window.localStorage.setItem(KEY, JSON.stringify(s));
-  window.dispatchEvent(new Event(EVENT));
+  window.localStorage.setItem(store.key, JSON.stringify(s));
+  window.dispatchEvent(new Event(store.event));
 }
 
 export function useCoord(): CoordState | null {
+  return useStore(COORD_STORE);
+}
+
+export function useStore(store: Store): CoordState | null {
   const [s, set] = useState<CoordState | null>(null);
   useEffect(() => {
-    const on = () => set(loadCoord());
+    const on = () => set(loadStore(store));
     on();
-    window.addEventListener(EVENT, on);
+    window.addEventListener(store.event, on);
     window.addEventListener("storage", on);
     return () => {
-      window.removeEventListener(EVENT, on);
+      window.removeEventListener(store.event, on);
       window.removeEventListener("storage", on);
     };
-  }, []);
+  }, [store]);
   return s;
+}
+
+/** Какая часть формы подвела, если время выбрано верно. */
+export function formSkillOf(tense: TenseKey, user: string, correct: string): string {
+  const aux = (x: string) =>
+    normalize(x)
+      .split(" ")
+      .filter((w) => ["am", "is", "are", "was", "were", "have", "has", "had", "been", "will", "be", "do", "does", "did", "not"].includes(w))
+      .join(" ");
+  if (aux(user) !== aux(correct)) {
+    if (/\bnot\b|n't/.test(correct) !== /\bnot\b|n't/.test(user)) return "Отрицание";
+    return "Вспомогательный глагол";
+  }
+  const { zone, meaning } = coordsOf(tense);
+  if (meaning === "process" || meaning === "duration") return "V-ing";
+  if (meaning === "result") return "V3";
+  if (zone === "past") return "V2";
+  return "V1";
 }
 
 /* ---------------- Распознавание времени по форме ---------------- */
@@ -228,12 +261,15 @@ export function recordCoordAnswer(
   userAnswer: string,
   a: Analysis,
   override?: { coordOk?: boolean; meaningOk?: boolean },
+  store: Store = COORD_STORE,
 ) {
   const coordOk = override?.coordOk ?? a.coordOk;
   const meaningOk = override?.meaningOk ?? a.meaningOk;
   const c = a.chosen ? coordsOf(a.chosen) : null;
   saveAttempt(item.id, {
-    source: item.level === 4 ? "checkpoint" : "level",
+    source: store !== COORD_STORE ? "all12" : item.level === 4 ? "checkpoint" : "level",
+    answer: userAnswer,
+    formSkill: a.formOk === false ? formSkillOf(item.tense, userAnswer, item.correctAnswer) : undefined,
     correct: a.correct,
     target: item.tense,
     targetZone: item.timeCoordinate,
@@ -247,9 +283,9 @@ export function recordCoordAnswer(
     highLevelError: a.highLevelError,
     errorCategory: item.errorCategory,
     at: Date.now(),
-  });
+  }, store);
   recordAnswer({
-    tenseId: COORDINATES_ID,
+    tenseId: store.tenseId,
     exerciseId: item.id,
     correct: a.correct,
     category: a.highLevelError ?? item.errorCategory,
@@ -294,17 +330,25 @@ export function diagnose(state: CoordState | null) {
     metric(t, TENSE_INFO[t].title, tenseRows.filter((a) => a.target === t).map((a) => a.correct)),
   );
 
+  // Накопительно, но свежие ошибки (последние 3 дня) весят больше — для выбора тренировки.
+  const now = Date.now();
+  const weight = (a: Attempt) => (now - a.at < 3 * 86400000 ? 2 : 1);
   const pairs = new Map<string, number>();
   list.forEach((a) => {
     if (a.highLevelError && PAIR_TITLES[a.highLevelError]) {
-      pairs.set(a.highLevelError, (pairs.get(a.highLevelError) ?? 0) + 1);
+      pairs.set(a.highLevelError, (pairs.get(a.highLevelError) ?? 0) + weight(a));
     }
   });
+  const formMap = new Map<string, number>();
+  list.forEach((a) => {
+    if (a.formOk === false && a.formSkill) formMap.set(a.formSkill, (formMap.get(a.formSkill) ?? 0) + 1);
+  });
+  const formIssues = [...formMap.entries()].map(([skill, count]) => ({ skill, count })).sort((a, b) => b.count - a.count);
   const confusions = [...pairs.entries()]
     .map(([key, count]) => ({ key, title: PAIR_TITLES[key]!, count }))
     .sort((a, b) => b.count - a.count);
 
-  return { coordinate, meaning, form, byZone, byMeaning, byTense, confusions, answered: list.length };
+  return { coordinate, meaning, form, byZone, byMeaning, byTense, confusions, formIssues, answered: list.length };
 }
 
 export type Diagnosis = ReturnType<typeof diagnose>;
@@ -342,10 +386,16 @@ export function whereIErr(d: Diagnosis): string[] {
 }
 
 /** Слабые места: тренируем не конкретное время, а координату или смысл. */
-export function weakAreaItems(state: CoordState | null, limit = 12): { title: string; items: CoordItem[] } | null {
+export function weakAreaItems(
+  state: CoordState | null,
+  limit = 12,
+  bank: CoordItem[] = COORD_TRAINING,
+  focus?: string,
+): { title: string; items: CoordItem[] } | null {
+  const COORD_TRAINING_POOL = bank;
   const d = diagnose(state);
   const attempts = state?.attempts ?? {};
-  const top = d.confusions[0];
+  const top = focus ? { key: focus, title: PAIR_TITLES[focus] ?? "" } : d.confusions[0];
   let pool: CoordItem[] = [];
   let title = "";
   if (top) {
@@ -363,15 +413,15 @@ export function weakAreaItems(state: CoordState | null, limit = 12): { title: st
       continuous_vs_perfect_continuous_global: ["process", "duration"],
       wrong_aspect_selection: MEANINGS,
     };
-    if (zonePairs[top.key]) pool = COORD_TRAINING.filter((i) => zonePairs[top.key]!.includes(i.timeCoordinate));
+    if (zonePairs[top.key]) pool = COORD_TRAINING_POOL.filter((i) => zonePairs[top.key]!.includes(i.timeCoordinate));
     else if (meaningPairs[top.key])
-      pool = COORD_TRAINING.filter((i) => meaningPairs[top.key]!.includes(i.aspectMeaning));
+      pool = COORD_TRAINING_POOL.filter((i) => meaningPairs[top.key]!.includes(i.aspectMeaning));
   }
   if (!pool.length) {
     const weakTense = d.byTense.filter((t) => t.total && t.correct < t.total).map((t) => t.key);
     if (!weakTense.length) return null;
     title = "Времена, где были ошибки";
-    pool = COORD_TRAINING.filter((i) => weakTense.includes(i.tense));
+    pool = COORD_TRAINING_POOL.filter((i) => weakTense.includes(i.tense));
   }
   const rank = (i: CoordItem) => (attempts[i.id]?.correct === false ? 0 : attempts[i.id] ? 2 : 1);
   const sorted = [...pool].sort((a, b) => rank(a) - rank(b));

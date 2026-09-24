@@ -121,6 +121,13 @@ export const ACHIEVEMENTS: Achievement[] = [
     xp: 60,
   },
   {
+    id: "all12-master",
+    icon: "🌐",
+    title: "Мастер 12 времён",
+    description: "Ты сам переключаешься между всеми 12 временами в одной истории",
+    xp: 80,
+  },
+  {
     id: "time-navigator",
     icon: "🧭",
     title: "Навигатор времени",

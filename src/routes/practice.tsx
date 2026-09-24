@@ -69,6 +69,13 @@ const CARDS = [
     id: "coordinates",
   },
   {
+    to: "/all-12" as const,
+    icon: "🌐",
+    title: "Все 12 времён",
+    description: "Смешанная тренировка без подсказки категории",
+    id: "all-12",
+  },
+  {
     to: "/all-future" as const,
     icon: "🔮",
     title: "Все времена Future",
