@@ -127,6 +127,10 @@ function PracticePage() {
       </header>
 
       <div className="grid gap-4 sm:grid-cols-2">
+        <Link to="/review" className="card-interactive border-primary/40 p-5 sm:col-span-2">
+          <p className="font-display text-lg font-bold">🔁 Умное повторение</p>
+          <p className="mt-1 text-sm text-muted-foreground">10 заданий по темам, где были ошибки</p>
+        </Link>
         <Link to="/quick" search={{ mode: "quick" }} className="card-interactive p-5">
           <p className="font-display text-lg font-bold">⚡ Быстрая тренировка</p>
           <p className="mt-1 text-sm text-muted-foreground">10 вопросов из изученных тем</p>
