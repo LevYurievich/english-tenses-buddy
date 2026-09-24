@@ -307,7 +307,6 @@ function FinalMap({ items }: { items: ItemResult[] }) {
           </tbody>
         </table>
       </div>
-      <p className="text-xs text-muted-foreground">Прогресс хранится на этом устройстве в браузере.</p>
     </section>
   );
 }

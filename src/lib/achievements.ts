@@ -58,6 +58,10 @@ export function earnedAchievements(progress: ProgressState, game: GameState): st
     ids.push("all12-master");
   }
 
+  if ((getTenseProgress(progress, "final-challenge").testAttempts ?? 0) > 0) {
+    ids.push("final-master");
+  }
+
   return ids;
 }
 
