@@ -32,6 +32,7 @@ export type Attempt = {
   source: "where" | "what" | "level" | "checkpoint" | "workshop" | "all12";
   /** Какая часть формы подвела (только при formOk === false). */
   formSkill?: string;
+  answer?: string;
   correct: boolean;
   targetZone?: Zone;
   targetMeaning?: Meaning;
@@ -267,6 +268,7 @@ export function recordCoordAnswer(
   const c = a.chosen ? coordsOf(a.chosen) : null;
   saveAttempt(item.id, {
     source: store !== COORD_STORE ? "all12" : item.level === 4 ? "checkpoint" : "level",
+    answer: userAnswer,
     formSkill: a.formOk === false ? formSkillOf(item.tense, userAnswer, item.correctAnswer) : undefined,
     correct: a.correct,
     target: item.tense,
