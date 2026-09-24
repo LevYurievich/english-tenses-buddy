@@ -24,7 +24,6 @@ export const Route = createFileRoute("/compare/")({
   component: ComparePage,
 });
 
-const SOON = ["Все времена Future"];
 
 function ComparePage() {
   const progress = useProgress();
@@ -233,22 +232,6 @@ function ComparePage() {
         </Link>
       </article>
 
-
-
-      <section className="card-surface space-y-3 p-5">
-        <h2 className="text-lg">Скоро</h2>
-        <ul className="space-y-2">
-          {SOON.map((item) => (
-            <li
-              key={item}
-              className="flex items-center justify-between gap-2 rounded-xl bg-muted/60 px-4 py-3 text-sm"
-            >
-              <span>{item}</span>
-              <span className="text-xs font-bold text-muted-foreground">Скоро</span>
-            </li>
-          ))}
-        </ul>
-      </section>
     </div>
   );
 }
