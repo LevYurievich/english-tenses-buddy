@@ -43,6 +43,11 @@ export function earnedAchievements(progress: ProgressState, game: GameState): st
     ids.push("past-master");
   }
 
+  const allFuture = getTenseProgress(progress, "all-future");
+  if ((allFuture.testAttempts ?? 0) > 0 && allFuture.bestTestScore !== null) {
+    ids.push("future-master");
+  }
+
   return ids;
 }
 

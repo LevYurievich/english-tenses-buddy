@@ -62,6 +62,13 @@ const CARDS = [
     id: "all-past",
   },
   {
+    to: "/all-future" as const,
+    icon: "🔮",
+    title: "Все времена Future",
+    description: "Четыре времени будущего — выбираешь сам",
+    id: "all-future",
+  },
+  {
     to: "/compare/future" as const,
     icon: "🚀",
     title: "Три способа о будущем",

@@ -89,4 +89,4 @@
 - 6 заданий «Запусти таймер», 35 основных, Perfect Continuous family (9), тест из 15 новых заданий.
 - /compare/future-perfect-continuous: 15 заданий (явные → контекст → без подсказок).
 - 10 новых категорий ошибок, достижение «12 из 12».
-- FUTURE: ✓ все четыре времени · ○ All Future Tenses (не начато)
+- FUTURE: ✓ все четыре времени · ✓ All Future Tenses + Future Challenge · ○ All 12 Tenses (не начато)
