@@ -98,6 +98,10 @@ export type CoordItem = {
   whyWhere: string;
   /** Почему именно этот смысл. */
   whyWhat: string;
+  /** Контекст перед предложением (диалог, мини-ситуация). */
+  context?: string[];
+  /** Допустимые варианты, которые меняют фокус: засчитываются с пояснением. */
+  variants?: { answers: string[]; note: string }[];
 };
 
 const HINTS: Record<Meaning, string> = {

@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { ProgressBar } from "@/components/ProgressBar";
 import { isCorrect } from "@/lib/answer-check";
-import { analyze, recordCoordAnswer, type Analysis } from "@/lib/coordinates-stats";
+import { analyze, COORD_STORE, recordCoordAnswer, type Analysis, type Store } from "@/lib/coordinates-stats";
 import type { CoordItem } from "@/data/coordinates/items";
 import {
   coordsOf,
@@ -15,7 +15,7 @@ import {
 } from "@/data/coordinates/model";
 import { Matrix } from "./Matrix";
 
-export type TrainerMode = "guided" | "free" | "blind";
+export type TrainerMode = "guided" | "free" | "help" | "blind";
 
 export type SessionRow = { item: CoordItem; analysis: Analysis };
 
@@ -32,7 +32,9 @@ export function Trainer({
   finishLabel,
   renderSummary,
   onComplete,
+  store = COORD_STORE,
 }: {
+  store?: Store;
   items: CoordItem[];
   mode: TrainerMode;
   intro: string;
@@ -77,6 +79,7 @@ export function Trainer({
         key={items[i]!.id}
         item={items[i]!}
         mode={mode}
+        store={store}
         onDone={(analysis) => {
           const next = [...rows, { item: items[i]!, analysis }];
           setRows(next);
@@ -127,11 +130,13 @@ const meaningLabel = (m: Meaning) => `${MEANING_INFO[m].icon} ${MEANING_INFO[m].
 function Card({
   item,
   mode,
+  store,
   onDone,
   onNext,
 }: {
   item: CoordItem;
   mode: TrainerMode;
+  store: Store;
   onDone: (a: Analysis) => void;
   onNext: () => void;
 }) {
@@ -142,6 +147,7 @@ function Card({
   const [result, setResult] = useState<Analysis | null>(null);
   const [showWhy, setShowWhy] = useState(false);
   const [showMap, setShowMap] = useState(false);
+  const [variantNote, setVariantNote] = useState<string | null>(null);
 
   const guided = mode === "guided";
   const stepsDone = zone !== null && meaning !== null;
@@ -149,7 +155,9 @@ function Card({
 
   const submit = (answer: string) => {
     if (result || !answer.trim()) return;
-    const ok = isCorrect(answer, item.acceptableAnswers);
+    const variant = item.variants?.find((v) => isCorrect(answer, v.answers));
+    const ok = isCorrect(answer, item.acceptableAnswers) || !!variant;
+    setVariantNote(variant ? variant.note : null);
     const a = analyze(item, answer, ok);
     recordCoordAnswer(
       item,
@@ -158,6 +166,7 @@ function Card({
       guided && zone && meaning
         ? { coordOk: zone === item.timeCoordinate, meaningOk: meaning === item.aspectMeaning }
         : undefined,
+      store,
     );
     setValue(answer);
     setResult(a);
@@ -168,6 +177,13 @@ function Card({
 
   return (
     <section className="card-surface space-y-5 p-5 sm:p-6">
+      {item.context?.length ? (
+        <div className="space-y-1 rounded-xl bg-muted/60 p-3 text-lg leading-snug">
+          {item.context.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
+      ) : null}
       <p className="text-xl font-medium leading-snug">
         {before}
         <span className="mx-1 inline-block min-w-16 border-b-2 border-primary/60 text-center font-bold text-primary">
@@ -197,17 +213,22 @@ function Card({
         </div>
       ) : null}
 
-      {mode === "free" && !result ? (
+      {(mode === "free" || mode === "help") && !result ? (
         <div>
           {!breakdown ? (
             <button type="button" onClick={() => setBreakdown(true)} className="text-sm font-bold text-primary underline-offset-4 hover:underline">
-              🧭 Разобрать по координатам
+              {mode === "help" ? "🧭 Нужна помощь" : "🧭 Разобрать по координатам"}
             </button>
           ) : (
             <div className="space-y-3 rounded-xl bg-muted/60 p-3">
               <Choice label="ГДЕ?" values={ZONES} render={zoneLabel} target={item.timeCoordinate} picked={zone} onPick={setZone} />
               {zone ? <Choice label="ЧТО?" values={MEANINGS} render={meaningLabel} target={item.aspectMeaning} picked={meaning} onPick={setMeaning} /> : null}
-              {stepsDone ? (
+              {stepsDone && mode === "help" ? (
+                <p className="text-sm">
+                  {ZONE_INFO[item.timeCoordinate].label} + {MEANING_INFO[item.aspectMeaning].label} →{" "}
+                  <b>{TENSE_INFO[item.tense].title}</b> ({TENSE_INFO[item.tense].formula}). Теперь построй форму.
+                </p>
+              ) : stepsDone ? (
                 <p className="text-sm">
                   {ZONE_INFO[item.timeCoordinate].label} + {MEANING_INFO[item.aspectMeaning].label} → теперь найди пересечение сам и построй форму.
                 </p>
@@ -261,7 +282,7 @@ function Card({
       ) : null}
 
       {result ? (
-        <Feedback item={item} result={result} userAnswer={value} showWhy={showWhy} setShowWhy={setShowWhy} showMap={showMap} setShowMap={setShowMap} onNext={onNext} />
+        <Feedback item={item} variantNote={variantNote} result={result} userAnswer={value} showWhy={showWhy} setShowWhy={setShowWhy} showMap={showMap} setShowMap={setShowMap} onNext={onNext} />
       ) : null}
     </section>
   );
@@ -269,6 +290,7 @@ function Card({
 
 function Feedback({
   item,
+  variantNote,
   result,
   userAnswer,
   showWhy,
@@ -278,6 +300,7 @@ function Feedback({
   onNext,
 }: {
   item: CoordItem;
+  variantNote: string | null;
   result: Analysis;
   userAnswer: string;
   showWhy: boolean;
@@ -313,7 +336,13 @@ function Feedback({
       <div className={`rounded-xl p-3 text-sm ${result.correct ? "bg-success/10" : "bg-destructive/10"}`}>
         <p className="font-bold">{result.correct ? "Верно!" : `Правильно: ${item.correctAnswer}`}</p>
         {!result.correct ? <p className="mt-1 text-muted-foreground">Твой ответ: {userAnswer}</p> : null}
-        {diagnosis ? <p className="mt-1">{diagnosis}</p> : null}
+        {variantNote ? <p className="mt-1">Этот вариант грамматически возможен, но меняет фокус предложения. {variantNote} Основной ответ: {item.correctAnswer}.</p> : null}
+        {!result.correct && result.chosen && result.formOk !== false ? (
+          <p className="mt-2 font-mono text-xs">
+            ГДЕ? {z.label} {result.coordOk ? "✓" : "✗"} · ЧТО? {m.label} {result.meaningOk ? "✓" : "✗"}
+          </p>
+        ) : null}
+        {diagnosis ? <p className="mt-1"><b>Почему мой ответ не подходит?</b> {diagnosis}</p> : null}
       </div>
       <div className="flex flex-wrap gap-2">
         <button type="button" onClick={() => setShowWhy(!showWhy)} aria-expanded={showWhy} className="rounded-xl border-2 border-primary/40 px-3 py-1.5 text-sm font-bold text-primary">
