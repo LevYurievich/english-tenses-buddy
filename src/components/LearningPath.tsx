@@ -188,10 +188,17 @@ export const PATH_STEPS: Step[] = [
     to: "/coordinates",
     kind: "tense",
   },
+  {
+    id: "all-12",
+    title: "Все 12 времён",
+    subtitle: "Ситуация — и ты сам выбираешь время",
+    to: "/all-12",
+    kind: "tense",
+  },
 ];
 
 /** Следующая остановка маршрута — пока закрыта. */
-const LOCKED_PAST = ["All 12 Tenses", "Final Challenge"];
+const LOCKED_PAST = ["Final Challenge"];
 
 export type StepStatus = "done" | "current" | "open";
 
@@ -294,8 +301,8 @@ export function LearningPath({ state }: { state: ProgressState | null }) {
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
           {steps.every((s) => s.status === "done")
-            ? "PAST ✓ PRESENT ✓ FUTURE ✓ — три временные зоны пройдены. Следующая остановка: All 12 Tenses."
-            : "Маршрут открыт до Испытания Future. All 12 Tenses пока закрыт."}
+            ? "PAST ✓ PRESENT ✓ FUTURE ✓ — три временные зоны пройдены. Следующая остановка: Final Challenge."
+            : "Маршрут открыт до Испытания Future. Final Challenge пока закрыт."}
         </p>
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
           <TenseTypeBadge type="simple" />

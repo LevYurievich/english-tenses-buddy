@@ -53,6 +53,11 @@ export function earnedAchievements(progress: ProgressState, game: GameState): st
     ids.push("time-navigator");
   }
 
+  const all12 = getTenseProgress(progress, "all-12");
+  if (all12.bestTestScore !== null && all12.testTotal && all12.bestTestScore / all12.testTotal >= 0.75) {
+    ids.push("all12-master");
+  }
+
   return ids;
 }
 

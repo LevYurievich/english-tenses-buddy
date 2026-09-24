@@ -62,6 +62,7 @@ import {
 import { COMPARE_FPC_FUTURE_EXERCISES } from "@/data/compare/future-perfect-continuous";
 import { TENSES } from "@/data/tenses";
 import { COORD_ALL_COUNT, CHECKPOINT } from "@/data/coordinates/items";
+import { A12_ALL_COUNT, A12_SCENARIO_ITEMS } from "@/data/all12/items";
 import { getTenseProgress, tensePercent, type ProgressState } from "./progress";
 
 export const COUNTS: Record<string, { exercises: number; test: number }> = {
@@ -112,6 +113,10 @@ export const COUNTS: Record<string, { exercises: number; test: number }> = {
   "all-present": {
     exercises: ALL_PRESENT_TRAINING.length,
     test: FINAL_TEST_SIZE,
+  },
+  "all-12": {
+    exercises: A12_ALL_COUNT,
+    test: A12_SCENARIO_ITEMS.length,
   },
   coordinates: {
     exercises: COORD_ALL_COUNT,
