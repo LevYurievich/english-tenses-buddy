@@ -3,6 +3,21 @@
  * Новое время добавляет сюда свои категории, страница «Мои ошибки» менять не нужно.
  */
 export const CATEGORY_TITLES: Record<string, string> = {
+  // Координаты времени
+  wrong_time_coordinate: "Временная зона (Present / Past / Future)",
+  present_vs_past_reference: "Present или Past: где точка отсчёта",
+  present_vs_future_reference: "Present или Future: где точка отсчёта",
+  past_vs_future_reference: "Past или Future: где точка отсчёта",
+  wrong_aspect_selection: "Выбор смысла (Simple / Continuous / Perfect)",
+  simple_vs_continuous_global: "Факт или процесс",
+  simple_vs_perfect_global: "Факт или результат",
+  continuous_vs_perfect_global: "Процесс или результат",
+  perfect_vs_perfect_continuous_global: "Результат или длительность",
+  continuous_vs_perfect_continuous_global: "Процесс в момент или длительность до точки",
+  result_vs_duration_global: "Результат или длительность",
+  process_vs_result_global: "Процесс или результат",
+  reference_point_error: "Точка отсчёта",
+  verb_form_after_tense_selection: "Время выбрано верно, ошибка в форме глагола",
   // Present Simple
   third_person_s: "Окончание -s у he / she / it",
   do_does: "Do / Does + V1",
