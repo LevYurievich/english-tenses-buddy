@@ -328,17 +328,25 @@ export function diagnose(state: CoordState | null) {
     metric(t, TENSE_INFO[t].title, tenseRows.filter((a) => a.target === t).map((a) => a.correct)),
   );
 
+  // Накопительно, но свежие ошибки (последние 3 дня) весят больше — для выбора тренировки.
+  const now = Date.now();
+  const weight = (a: Attempt) => (now - a.at < 3 * 86400000 ? 2 : 1);
   const pairs = new Map<string, number>();
   list.forEach((a) => {
     if (a.highLevelError && PAIR_TITLES[a.highLevelError]) {
-      pairs.set(a.highLevelError, (pairs.get(a.highLevelError) ?? 0) + 1);
+      pairs.set(a.highLevelError, (pairs.get(a.highLevelError) ?? 0) + weight(a));
     }
   });
+  const formMap = new Map<string, number>();
+  list.forEach((a) => {
+    if (a.formOk === false && a.formSkill) formMap.set(a.formSkill, (formMap.get(a.formSkill) ?? 0) + 1);
+  });
+  const formIssues = [...formMap.entries()].map(([skill, count]) => ({ skill, count })).sort((a, b) => b.count - a.count);
   const confusions = [...pairs.entries()]
     .map(([key, count]) => ({ key, title: PAIR_TITLES[key]!, count }))
     .sort((a, b) => b.count - a.count);
 
-  return { coordinate, meaning, form, byZone, byMeaning, byTense, confusions, answered: list.length };
+  return { coordinate, meaning, form, byZone, byMeaning, byTense, confusions, formIssues, answered: list.length };
 }
 
 export type Diagnosis = ReturnType<typeof diagnose>;
