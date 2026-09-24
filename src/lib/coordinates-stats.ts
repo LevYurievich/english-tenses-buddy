@@ -31,7 +31,7 @@ const EVENT = "ets-coordinates-change";
 export type Attempt = {
   source: "where" | "what" | "level" | "checkpoint" | "workshop" | "all12";
   /** Какая часть формы подвела (только при formOk === false). */
-  formSkill?: string;
+  formSkill?: string | undefined;
   answer?: string;
   correct: boolean;
   targetZone?: Zone;

@@ -99,9 +99,9 @@ export type CoordItem = {
   /** Почему именно этот смысл. */
   whyWhat: string;
   /** Контекст перед предложением (диалог, мини-ситуация). */
-  context?: string[];
+  context?: string[] | undefined;
   /** Допустимые варианты, которые меняют фокус: засчитываются с пояснением. */
-  variants?: { answers: string[]; note: string }[];
+  variants?: { answers: string[]; note: string }[] | undefined;
 };
 
 export const HINTS: Record<Meaning, string> = {
