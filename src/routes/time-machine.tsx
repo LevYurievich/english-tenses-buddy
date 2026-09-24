@@ -90,7 +90,7 @@ function TimeMachinePage() {
 
       <section className="card-surface space-y-4 p-5">
         <h2 className="text-xl">Зона FUTURE</h2>
-        <ProgressBar value={futurePercent} label="Future Simple" />
+        <ProgressBar value={futurePercent} label="Future Simple + Future Continuous" />
         <ul className="space-y-2">
           {FUTURE_STOPS.map((s) => (
             <li
@@ -100,13 +100,11 @@ function TimeMachinePage() {
               }`}
             >
               <span className="font-semibold">
-                <span aria-hidden>
-                  {s.open ? (futureDone ? "✓" : "●") : "○"}
-                </span>{" "}
+                <span aria-hidden>{s.open ? (doneIds.has(s.id) ? "✓" : "●") : "○"}</span>{" "}
                 {s.title}
               </span>
-              {s.open ? (
-                <Link to="/learn/future-simple" className="text-xs font-bold text-primary">
+              {s.open && s.to ? (
+                <Link to={s.to} className="text-xs font-bold text-primary">
                   Перейти →
                 </Link>
               ) : (
@@ -118,7 +116,7 @@ function TimeMachinePage() {
       </section>
 
       <Tensy mood="map">
-        Мы разобрались с прошлым. Теперь посмотрим, что ждёт нас впереди — начинаем с Future Simple.
+        Настроим машину времени на конкретный момент будущего. Что мы увидим в этот момент?
       </Tensy>
     </div>
   );
