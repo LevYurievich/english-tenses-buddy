@@ -103,7 +103,7 @@ export function Matrix({
             </div>
           ))}
         </div>
-        <MiniMap zone={zone} meaning={meaning} />
+        <MiniMap zone={zone ?? null} meaning={meaning ?? null} />
       </div>
     </div>
   );
