@@ -131,6 +131,7 @@ function ProgressPage() {
           ...TENSES.map((t) => ({ id: t.id, title: t.title, available: t.available })),
           { id: "all-present", title: "Все Present", available: true },
           { id: "all-past", title: "Все времена Past", available: true },
+          { id: "all-future", title: "Все времена Future", available: true },
         ].map((t) => {
           const p = state ? getTenseProgress(state, t.id) : null;
           const accuracy = p && p.total ? Math.round((p.correct / p.total) * 100) : 0;

@@ -116,6 +116,17 @@ function TestsPage() {
           </p>
           <p className="mt-3 text-sm font-bold text-primary">Начать тест →</p>
         </Link>
+        <Link
+          to="/all-future"
+          search={{ tab: "exam" as const }}
+          className="card-interactive block p-5"
+        >
+          <p className="font-display text-lg font-bold">🏆 Future Challenge</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            20 заданий по всем временам будущего. Никаких подсказок.
+          </p>
+          <p className="mt-3 text-sm font-bold text-primary">Начать тест →</p>
+        </Link>
       </div>
 
       <Tensy mood="test">

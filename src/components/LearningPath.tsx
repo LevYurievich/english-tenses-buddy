@@ -174,10 +174,17 @@ export const PATH_STEPS: Step[] = [
     to: "/compare/future-perfect-continuous",
     kind: "compare",
   },
+  {
+    id: "all-future",
+    title: "Испытание Future",
+    subtitle: "Сам выбираешь одно из четырёх времён будущего",
+    to: "/all-future",
+    kind: "challenge",
+  },
 ];
 
 /** Следующая остановка маршрута — пока закрыта. */
-const LOCKED_PAST = ["All Future Tenses"];
+const LOCKED_PAST = ["All 12 Tenses"];
 
 export type StepStatus = "done" | "current" | "open";
 
@@ -280,8 +287,8 @@ export function LearningPath({ state }: { state: ProgressState | null }) {
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
           {steps.every((s) => s.status === "done")
-            ? "PRESENT ✓ → PAST ✓ → FUTURE SIMPLE ✓. Следующая остановка: Future Continuous."
-            : "Маршрут открыт до Future Simple. Остальные времена будущего пока закрыты."}
+            ? "PAST ✓ PRESENT ✓ FUTURE ✓ — три временные зоны пройдены. Следующая остановка: All 12 Tenses."
+            : "Маршрут открыт до Испытания Future. All 12 Tenses пока закрыт."}
         </p>
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
           <TenseTypeBadge type="simple" />

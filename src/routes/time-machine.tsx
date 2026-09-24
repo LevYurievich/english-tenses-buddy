@@ -63,7 +63,7 @@ const FUTURE_STOPS = [
     to: "/learn/future-perfect-continuous" as const,
     open: true,
   },
-  { id: "all-future", title: "All Future Tenses", to: undefined, open: false },
+  { id: "all-future", title: "All Future Tenses", to: "/all-future" as const, open: true },
 ];
 
 function TimeMachinePage() {
@@ -76,7 +76,7 @@ function TimeMachinePage() {
       4,
   );
   const doneIds = new Set(
-    ["future-simple", "future-continuous", "future-perfect", "future-perfect-continuous"].filter((id) => isCompleted(progress, id)),
+    ["future-simple", "future-continuous", "future-perfect", "future-perfect-continuous", "all-future"].filter((id) => isCompleted(progress, id)),
   );
 
   return (
@@ -99,7 +99,7 @@ function TimeMachinePage() {
 
       <section className="card-surface space-y-4 p-5">
         <h2 className="text-xl">Зона FUTURE</h2>
-        <ProgressBar value={futurePercent} label="Future Simple + Future Continuous" />
+        <ProgressBar value={futurePercent} label="Четыре времени Future" />
         <ul className="space-y-2">
           {FUTURE_STOPS.map((s) => (
             <li

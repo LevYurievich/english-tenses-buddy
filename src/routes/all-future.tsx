@@ -126,7 +126,7 @@ function AllFuturePage() {
         ))}
       </div>
 
-      {tab === "map" ? <PastFamilyTheory onDone={() => go("build")} /> : null}
+      {tab === "map" ? <FutureFamilyTheory onDone={() => go("level1")} /> : null}
 
       {tab === "level1" ? (
         <Practice

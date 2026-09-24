@@ -60,6 +60,7 @@ import {
   TIMER_EXERCISES,
 } from "@/data/future-perfect-continuous/exercises";
 import { COMPARE_FPC_FUTURE_EXERCISES } from "@/data/compare/future-perfect-continuous";
+import { ALL_FUTURE_TRAINING, FUTURE_FINAL_BANK } from "@/data/all-future";
 import type { Exercise } from "@/data/types";
 
 /** Тренировочные упражнения, сгруппированные по времени/модулю. */
@@ -99,6 +100,7 @@ export const BANKS: Record<string, Exercise[]> = {
     ...PERFECT_CONTINUOUS_FAMILY_EXERCISES,
   ],
   "compare-future-perfect-continuous": COMPARE_FPC_FUTURE_EXERCISES,
+  "all-future": ALL_FUTURE_TRAINING,
 };
 
 export const ALL_EXERCISES: Exercise[] = [
@@ -112,6 +114,7 @@ export const ALL_EXERCISES: Exercise[] = [
   ...PAST_PERFECT_TEST,
   ...PAST_PERFECT_CONTINUOUS_TEST,
   ...PAST_FINAL_BANK,
+  ...FUTURE_FINAL_BANK,
   ...FUTURE_SIMPLE_TEST,
   ...FUTURE_CONTINUOUS_TEST,
   ...FUTURE_PERFECT_TEST,
