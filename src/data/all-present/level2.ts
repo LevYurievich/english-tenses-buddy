@@ -455,7 +455,7 @@ export const LEVEL_2: Exercise[] = [
     tokens: ["My friends", "have been", "playing", "computer games", "for two hours"],
     answer: "My friends have been playing computer games for two hours",
     also: ["My friends have been playing computer games for two hours."],
-    hint: "Кто → have been → V-ing → что → как долго.",
+    hint: "Подумай: действие началось раньше и всё ещё продолжается? Важно ли, как долго оно длится?",
     explanation: "Present Perfect Continuous: have + been + V-ing + for + промежуток.",
     category: "word_order_error",
     skill: "order",
