@@ -90,7 +90,7 @@ export function ExerciseCard({
           <p className="text-xs font-bold tracking-widest text-primary">
             {index + 1} / {total} · {TYPE_TITLES[exercise.type].toUpperCase()}
           </p>
-          <h2 className="mt-1 truncate text-lg sm:text-xl">{exercise.task}</h2>
+          <h2 className="mt-1 text-lg leading-snug sm:text-xl">{exercise.task}</h2>
         </div>
         <div className="flex shrink-0 items-center gap-2">
           {streak >= 3 ? (
