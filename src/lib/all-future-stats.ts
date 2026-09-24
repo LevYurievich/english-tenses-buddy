@@ -19,19 +19,21 @@ const BANK: Exercise[] = [...ALL_FUTURE_TRAINING, ...FUTURE_FINAL_BANK];
 
 function group(
   results: Record<string, boolean>,
-  keyOf: (ex: Exercise) => string | undefined,
+  keyOf: (ex: Exercise) => string | string[] | undefined,
   titleOf: (key: string) => string,
 ): Stat[] {
   const map = new Map<string, { correct: number; total: number }>();
   BANK.forEach((ex) => {
     const value = results[ex.id];
     if (value === undefined) return;
-    const key = keyOf(ex);
-    if (!key) return;
-    const row = map.get(key) ?? { correct: 0, total: 0 };
-    row.total += 1;
-    if (value) row.correct += 1;
-    map.set(key, row);
+    const raw = keyOf(ex);
+    if (!raw) return;
+    (Array.isArray(raw) ? raw : [raw]).forEach((key) => {
+      const row = map.get(key) ?? { correct: 0, total: 0 };
+      row.total += 1;
+      if (value) row.correct += 1;
+      map.set(key, row);
+    });
   });
   return [...map.entries()].map(([key, row]) => ({ key, title: titleOf(key), ...row }));
 }
@@ -51,12 +53,17 @@ export function futureByTense(results: Record<string, boolean>): Stat[] {
   return stats.sort((a, b) => order.indexOf(a.key) - order.indexOf(b.key));
 }
 
+/** Минимум ответов, чтобы показывать процент по навыку (без ложной точности). */
+export const MIN_SKILL_ANSWERS = 3;
+
 export function futureBySkill(results: Record<string, boolean>): Stat[] {
   return group(
     results,
-    (ex) => ex.skill,
+    (ex) => ex.skills ?? ex.skill,
     (k) => SKILL_TITLES[k] ?? k,
-  ).sort((a, b) => a.correct / a.total - b.correct / b.total);
+  )
+    .filter((s) => s.total >= MIN_SKILL_ANSWERS)
+    .sort((a, b) => a.correct / a.total - b.correct / b.total);
 }
 
 export function futureByCategory(results: Record<string, boolean>): Stat[] {
@@ -83,7 +90,7 @@ export function futureLevelsCompleted(state: ProgressState | null): boolean {
 
 /** 1–3 самых слабых навыка — для блока «Твои слабые места». */
 export function futureWeakSpots(results: Record<string, boolean>): Stat[] {
-  return [...futureByCategory(results), ...futureByTense(results)]
+  return [...futureBySkill(results), ...futureByCategory(results)]
     .filter((s) => s.total >= 2 && s.correct / s.total < 0.85)
     .sort((a, b) => a.correct / a.total - b.correct / b.total)
     .slice(0, 3);
@@ -127,11 +134,16 @@ export function futureWeakAreaExercises(results: Record<string, boolean>, limit 
     futureByTense(results).map((s) => [s.key, s.total ? s.correct / s.total : 1]),
   );
 
+  // Навыки с достаточным числом ответов: слабый навык тянет вверх задания, где он проверяется.
+  const skillScore = new Map(futureBySkill(results).map((s) => [s.key, s.correct / s.total]));
+
   const scored = ALL_FUTURE_TRAINING.map((ex) => {
     const answered = results[ex.id];
     const cat = catScore.get(ex.errorCategory) ?? 1;
     const tense = tenseScore.get(ex.targetTense ?? "") ?? 1;
-    const score = cat * 0.6 + tense * 0.4 - (answered === false ? 0.5 : 0);
+    const skills = (ex.skills ?? []).filter((k) => k !== "future_tense_selection");
+    const skill = skills.length ? Math.min(...skills.map((k) => skillScore.get(k) ?? 1)) : 1;
+    const score = skill * 0.5 + cat * 0.3 + tense * 0.2 - (answered === false ? 0.5 : 0);
     return { ex, score };
   })
     .filter((row) => row.score < 0.95)
