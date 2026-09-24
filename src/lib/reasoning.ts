@@ -19,6 +19,8 @@ import { FUTURE_CONTINUOUS_REASONING } from "@/data/future-continuous/reasoning"
 import { COMPARE_FC_REASONING } from "@/data/compare/future-simple-continuous";
 import { FUTURE_PERFECT_REASONING } from "@/data/future-perfect/reasoning";
 import { COMPARE_FP_REASONING } from "@/data/compare/future-simple-perfect";
+import { FUTURE_PERFECT_CONTINUOUS_REASONING } from "@/data/future-perfect-continuous/reasoning";
+import { COMPARE_FPC_FUTURE_REASONING } from "@/data/compare/future-perfect-continuous";
 import { normalize } from "./answer-check";
 
 /**
@@ -46,6 +48,8 @@ export const REASONING_BY_TENSE: Record<string, Record<string, Reasoning>> = {
   "compare-future-continuous": COMPARE_FC_REASONING,
   "future-perfect": FUTURE_PERFECT_REASONING,
   "compare-future-perfect": COMPARE_FP_REASONING,
+  "future-perfect-continuous": FUTURE_PERFECT_CONTINUOUS_REASONING,
+  "compare-future-perfect-continuous": COMPARE_FPC_FUTURE_REASONING,
 };
 
 /** Стандартные заголовки шагов (общие для всех времён). */

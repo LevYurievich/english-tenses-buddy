@@ -52,6 +52,13 @@ import {
   PERFECT_FAMILY_EXERCISES,
 } from "@/data/future-perfect/exercises";
 import { COMPARE_FP_EXERCISES } from "@/data/compare/future-simple-perfect";
+import {
+  FUTURE_PERFECT_CONTINUOUS_EXERCISES,
+  FUTURE_PERFECT_CONTINUOUS_TEST,
+  PERFECT_CONTINUOUS_FAMILY_EXERCISES,
+  TIMER_EXERCISES,
+} from "@/data/future-perfect-continuous/exercises";
+import { COMPARE_FPC_FUTURE_EXERCISES } from "@/data/compare/future-perfect-continuous";
 import { TENSES } from "@/data/tenses";
 import { getTenseProgress, tensePercent, type ProgressState } from "./progress";
 
@@ -146,6 +153,17 @@ export const COUNTS: Record<string, { exercises: number; test: number }> = {
   },
   "compare-future-perfect": {
     exercises: COMPARE_FP_EXERCISES.length,
+    test: 0,
+  },
+  "future-perfect-continuous": {
+    exercises:
+      TIMER_EXERCISES.length +
+      FUTURE_PERFECT_CONTINUOUS_EXERCISES.length +
+      PERFECT_CONTINUOUS_FAMILY_EXERCISES.length,
+    test: FUTURE_PERFECT_CONTINUOUS_TEST.length,
+  },
+  "compare-future-perfect-continuous": {
+    exercises: COMPARE_FPC_FUTURE_EXERCISES.length,
     test: 0,
   },
 };

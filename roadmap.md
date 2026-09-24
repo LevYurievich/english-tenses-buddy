@@ -83,3 +83,10 @@
 - /compare/future-perfect: 12 заданий Future Simple vs Future Perfect + 10 «В момент или к моменту?».
 - Переиспользуемый блок Perfect family, 12 категорий ошибок, достижение «Миссия выполнена к сроку».
 - FUTURE: ✓ Future Simple · ✓ Future Continuous · ✓ Future Perfect · ○ Future Perfect Continuous · ○ Future Challenge
+
+## FUTURE PERFECT CONTINUOUS (выполнено)
+- /learn/future-perfect-continuous: теория «как долго к будущей точке», таймер, WILL → HAVE → BEEN → ING, for/since, глаголы состояния.
+- 6 заданий «Запусти таймер», 35 основных, Perfect Continuous family (9), тест из 15 новых заданий.
+- /compare/future-perfect-continuous: 15 заданий (явные → контекст → без подсказок).
+- 10 новых категорий ошибок, достижение «12 из 12».
+- FUTURE: ✓ все четыре времени · ○ All Future Tenses (не начато)

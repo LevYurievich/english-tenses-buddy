@@ -117,6 +117,17 @@ export const CATEGORY_TITLES: Record<string, string> = {
   future_time_clause_will: "После by the time / when — без will",
   perfect_family_confusion: "Perfect family: сейчас / тогда / в будущем",
   future_perfect_question_order: "Порядок слов: Will + кто + have + V3",
+  // Future Perfect Continuous
+  missing_have_future_perfect_continuous: "WILL → HAVE → BEEN → ING: пропущен HAVE",
+  missing_been_future_perfect_continuous: "WILL → HAVE → BEEN → ING: пропущен BEEN",
+  wrong_ing_future_perfect_continuous: "Форма -ing после will have been",
+  wrong_for_since_future: "FOR или SINCE в будущем",
+  future_perfect_vs_perfect_continuous: "Что будет готово или как долго?",
+  future_continuous_vs_perfect_continuous: "В момент или как долго к моменту?",
+  wrong_future_duration: "Длительность к будущей точке",
+  stative_future_perfect_continuous: "Глаголы состояния без -ing",
+  perfect_continuous_family_confusion: "Perfect Continuous family: сейчас / тогда / в будущем",
+  question_order_future_perfect_continuous: "Порядок слов: Will + кто + have been + V-ing",
 };
 
 export const CATEGORY_RULES: Record<
@@ -621,4 +632,14 @@ export const CATEGORY_RULES: Record<
     right: "Will Tom have finished by 8?",
     wrong: "Will Tom has finished by 8?",
   },
+  missing_have_future_perfect_continuous: { rule: "WILL → HAVE → BEEN → ING", right: "By 6, Tom will have been studying.", wrong: "By 6, Tom will been studying." },
+  missing_been_future_perfect_continuous: { rule: "WILL → HAVE → BEEN → ING: been обязателен", right: "She will have been studying for two hours.", wrong: "She will have studying for two hours." },
+  wrong_ing_future_perfect_continuous: { rule: "После will have been — V-ing", right: "will have been swimming", wrong: "will have been swim / swiming" },
+  wrong_for_since_future: { rule: "FOR — отрезок, SINCE — точка старта", right: "for three hours · since 3 p.m.", wrong: "since three hours" },
+  future_perfect_vs_perfect_continuous: { rule: "Сколько будет готово? → will have + V3. Как долго? → will have been + V-ing", right: "By 6, Tom will have been reading for three hours.", wrong: "By 6, Tom will have been reading three chapters.", tip: "Спроси: ЧТО БУДЕТ ГОТОВО? или КАК ДОЛГО ЭТО УЖЕ БУДЕТ ПРОИСХОДИТЬ?" },
+  future_continuous_vs_perfect_continuous: { rule: "В момент → will be + V-ing. Как долго к моменту → will have been + V-ing", right: "At 6, Tom will be studying. By 6, he will have been studying for three hours.", wrong: "At 6, Tom will have been studying." },
+  wrong_future_duration: { rule: "START → FUTURE POINT → DURATION", right: "By 7, Tom will have been playing for three hours (с 4 до 7).", wrong: "By 7, Tom will have been playing for seven hours." },
+  stative_future_perfect_continuous: { rule: "know, be, have (иметь), like — без -ing", right: "By June, I will have known him for a year.", wrong: "By June, I will have been knowing him for a year." },
+  perfect_continuous_family_confusion: { rule: "NOW → have been + V-ing · PAST → had been + V-ing · FUTURE → will have been + V-ing", right: "Before Tom arrived, I had been studying for two hours.", wrong: "Before Tom arrived, I have been studying for two hours." },
+  question_order_future_perfect_continuous: { rule: "Will + кто + have been + V-ing?", right: "Will she have been sleeping for ten hours?", wrong: "Will she has been sleeping for ten hours?" },
 };
