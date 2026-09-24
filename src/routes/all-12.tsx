@@ -1,36 +1,30 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useMemo } from "react";
 import { ProgressBar } from "@/components/ProgressBar";
 import { Tensy } from "@/components/Tensy";
-import { Matrix } from "@/components/coordinates/Matrix";
 import { Trainer, type SessionRow } from "@/components/coordinates/Trainer";
 import { CoordDiagnostics } from "@/components/coordinates/Diagnostics";
 import { Scenarios } from "@/components/all12/Scenario";
 import { Lab, MarkerTraps } from "@/components/all12/Lab";
-import { Heatmap, MistakeGroups, SessionSummary } from "@/components/all12/Results";
-import { ALL12_ID, A12_LEVEL_1, A12_LEVEL_2, A12_LEVEL_3, A12_LEVEL_4, A12_SCENARIO_ITEMS, A12_TRAINING } from "@/data/all12/items";
-import type { CoordItem } from "@/data/coordinates/items";
-import { diagnose, useStore, weakAreaItems } from "@/lib/coordinates-stats";
+import { Heatmap, SessionSummary } from "@/components/all12/Results";
+import { ALL12_ID, A12_LEVEL_1, A12_LEVEL_2, A12_LEVEL_3, A12_LEVEL_4, A12_SCENARIO_ITEMS } from "@/data/all12/items";
+import { diagnose, useStore } from "@/lib/coordinates-stats";
 import { ALL12_STORE } from "@/lib/all12-stats";
 import { getTenseProgress, recordTest, useProgress } from "@/lib/progress";
 import { percentFor } from "@/lib/tense-stats";
 
-type Tab = "start" | "map" | "level1" | "level2" | "level3" | "lab" | "level4" | "results" | "mistakes" | "weak";
+type Tab = "start" | "level1" | "level2" | "level3" | "lab" | "level4" | "results";
 
 const TABS: { id: Tab; label: string }[] = [
   { id: "start", label: "Старт" },
-  { id: "map", label: "Карта 12 времён" },
   { id: "level1", label: "1. Нахожу координаты" },
   { id: "level2", label: "2. Выбираю время" },
   { id: "level3", label: "3. Читаю контекст" },
   { id: "lab", label: "Лаборатория" },
   { id: "level4", label: "4. Переключаюсь" },
   { id: "results", label: "Результаты" },
-  { id: "mistakes", label: "Мои ошибки" },
-  { id: "weak", label: "Слабые места" },
 ];
 const TAB_IDS = TABS.map((t) => t.id) as string[];
-const BANK: CoordItem[] = [...A12_TRAINING, ...A12_SCENARIO_ITEMS];
 
 export const Route = createFileRoute("/all-12")({
   validateSearch: (search: Record<string, unknown>): { tab?: Tab } => {
@@ -57,8 +51,6 @@ function All12Page() {
   const progress = useProgress();
   const state = useStore(ALL12_STORE);
   const d = useMemo(() => diagnose(state), [state]);
-  const [focus, setFocus] = useState<string | undefined>(undefined);
-  const weak = useMemo(() => weakAreaItems(state, 12, BANK, focus), [state, focus]);
   const done = progress ? getTenseProgress(progress, ALL12_ID).doneExercises : [];
 
   const summary = (rows: SessionRow[]) => <SessionSummary rows={rows} />;
@@ -110,18 +102,11 @@ function All12Page() {
             <p className="text-sm text-muted-foreground">Главное правило: смысл → время → форма. Не «слово-маркер → время».</p>
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={() => go("level1")} className="rounded-xl bg-primary px-5 py-2.5 font-bold text-primary-foreground">Начать смешанную тренировку</button>
-              <button type="button" onClick={() => go("map")} className="rounded-xl border-2 border-primary/40 px-5 py-2.5 font-bold text-primary">Открыть карту 12 времён</button>
+              <Link to="/coordinates" search={{ tab: "map" }} className="rounded-xl border-2 border-primary/40 px-5 py-2.5 font-bold text-primary">Повторить координаты времени</Link>
             </div>
           </section>
           <MarkerTraps />
         </div>
-      ) : null}
-
-      {tab === "map" ? (
-        <section className="card-surface space-y-3 p-5 sm:p-6">
-          <p className="text-sm text-muted-foreground">Справочная карта. Во время заданий она не подсказывает ответ.</p>
-          <Matrix />
-        </section>
       ) : null}
 
       {tab === "level1" ? (
@@ -160,19 +145,14 @@ function All12Page() {
               <ul className="mt-1">{d.formIssues.map((f) => <li key={f.skill}>{f.skill}: {f.count}</li>)}</ul>
             </section>
           ) : null}
-          <button type="button" onClick={() => { setFocus(undefined); go("weak"); }} className="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground">Потренировать слабые места</button>
+          <div className="flex flex-wrap gap-2">
+            <Link to="/review" className="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground">Умное повторение</Link>
+            <Link to="/mistakes" className="rounded-xl border-2 border-primary/40 px-4 py-2 text-sm font-bold text-primary">Мои ошибки</Link>
+            <Link to="/progress" className="rounded-xl border-2 border-primary/40 px-4 py-2 text-sm font-bold text-primary">Смотреть прогресс</Link>
+          </div>
         </div>
       ) : null}
 
-      {tab === "mistakes" ? <MistakeGroups state={state} bank={BANK} onTrain={(f) => { setFocus(f); go("weak"); }} /> : null}
-
-      {tab === "weak" ? (
-        weak && weak.items.length ? (
-          <Trainer key={weak.title} store={ALL12_STORE} items={weak.items} mode="help" intro={`Тренируем: ${weak.title}. Задания из разных зон вперемешку.`} renderSummary={summary} onFinish={() => go("results")} finishLabel="К результатам →" />
-        ) : (
-          <section className="card-surface p-6 text-sm">Пока нет данных для подбора. Пройди несколько уровней — и здесь появятся задания на твои путаницы.</section>
-        )
-      ) : null}
     </div>
   );
 }
