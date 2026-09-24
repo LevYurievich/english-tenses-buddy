@@ -41,7 +41,8 @@ export function WhyPanel({
       {open ? (
         <div className="space-y-4 border-t border-primary/20 px-4 py-4">
           <p className="font-display text-lg font-bold">
-            {reasoning.title ?? `Почему ${exercise.correctAnswer}?`}
+            {reasoning.title ??
+              `Почему ${exercise.correctAnswer.trim().replace(/\.$/, "")}${/[?!]$/.test(exercise.correctAnswer.trim()) ? "" : "?"}`}
           </p>
 
           {reasoning.chain?.length ? (
