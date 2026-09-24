@@ -29,7 +29,9 @@ const KEY = "ets-coordinates-v1";
 const EVENT = "ets-coordinates-change";
 
 export type Attempt = {
-  source: "where" | "what" | "level" | "checkpoint" | "workshop";
+  source: "where" | "what" | "level" | "checkpoint" | "workshop" | "all12";
+  /** Какая часть формы подвела (только при formOk === false). */
+  formSkill?: string;
   correct: boolean;
   targetZone?: Zone;
   targetMeaning?: Meaning;
@@ -48,10 +50,18 @@ export type Attempt = {
 
 export type CoordState = { attempts: Record<string, Attempt> };
 
+/** Хранилище попыток: модуль координат и All 12 используют одну логику, но разные ключи. */
+export type Store = { key: string; event: string; tenseId: string };
+export const COORD_STORE: Store = { key: KEY, event: EVENT, tenseId: COORDINATES_ID };
+
 export function loadCoord(): CoordState {
+  return loadStore(COORD_STORE);
+}
+
+export function loadStore(store: Store): CoordState {
   if (typeof window === "undefined") return { attempts: {} };
   try {
-    const raw = window.localStorage.getItem(KEY);
+    const raw = window.localStorage.getItem(store.key);
     const parsed = raw ? (JSON.parse(raw) as CoordState) : null;
     return { attempts: parsed?.attempts ?? {} };
   } catch {
@@ -59,26 +69,48 @@ export function loadCoord(): CoordState {
   }
 }
 
-function saveAttempt(id: string, a: Attempt) {
-  const s = loadCoord();
+function saveAttempt(id: string, a: Attempt, store: Store = COORD_STORE) {
+  const s = loadStore(store);
   s.attempts[id] = a;
-  window.localStorage.setItem(KEY, JSON.stringify(s));
-  window.dispatchEvent(new Event(EVENT));
+  window.localStorage.setItem(store.key, JSON.stringify(s));
+  window.dispatchEvent(new Event(store.event));
 }
 
 export function useCoord(): CoordState | null {
+  return useStore(COORD_STORE);
+}
+
+export function useStore(store: Store): CoordState | null {
   const [s, set] = useState<CoordState | null>(null);
   useEffect(() => {
-    const on = () => set(loadCoord());
+    const on = () => set(loadStore(store));
     on();
-    window.addEventListener(EVENT, on);
+    window.addEventListener(store.event, on);
     window.addEventListener("storage", on);
     return () => {
-      window.removeEventListener(EVENT, on);
+      window.removeEventListener(store.event, on);
       window.removeEventListener("storage", on);
     };
-  }, []);
+  }, [store]);
   return s;
+}
+
+/** Какая часть формы подвела, если время выбрано верно. */
+export function formSkillOf(tense: TenseKey, user: string, correct: string): string {
+  const aux = (x: string) =>
+    normalize(x)
+      .split(" ")
+      .filter((w) => ["am", "is", "are", "was", "were", "have", "has", "had", "been", "will", "be", "do", "does", "did", "not"].includes(w))
+      .join(" ");
+  if (aux(user) !== aux(correct)) {
+    if (/\bnot\b|n't/.test(correct) !== /\bnot\b|n't/.test(user)) return "Отрицание";
+    return "Вспомогательный глагол";
+  }
+  const { zone, meaning } = coordsOf(tense);
+  if (meaning === "process" || meaning === "duration") return "V-ing";
+  if (meaning === "result") return "V3";
+  if (zone === "past") return "V2";
+  return "V1";
 }
 
 /* ---------------- Распознавание времени по форме ---------------- */
@@ -228,12 +260,14 @@ export function recordCoordAnswer(
   userAnswer: string,
   a: Analysis,
   override?: { coordOk?: boolean; meaningOk?: boolean },
+  store: Store = COORD_STORE,
 ) {
   const coordOk = override?.coordOk ?? a.coordOk;
   const meaningOk = override?.meaningOk ?? a.meaningOk;
   const c = a.chosen ? coordsOf(a.chosen) : null;
   saveAttempt(item.id, {
-    source: item.level === 4 ? "checkpoint" : "level",
+    source: store !== COORD_STORE ? "all12" : item.level === 4 ? "checkpoint" : "level",
+    formSkill: a.formOk === false ? formSkillOf(item.tense, userAnswer, item.correctAnswer) : undefined,
     correct: a.correct,
     target: item.tense,
     targetZone: item.timeCoordinate,
@@ -247,9 +281,9 @@ export function recordCoordAnswer(
     highLevelError: a.highLevelError,
     errorCategory: item.errorCategory,
     at: Date.now(),
-  });
+  }, store);
   recordAnswer({
-    tenseId: COORDINATES_ID,
+    tenseId: store.tenseId,
     exerciseId: item.id,
     correct: a.correct,
     category: a.highLevelError ?? item.errorCategory,
