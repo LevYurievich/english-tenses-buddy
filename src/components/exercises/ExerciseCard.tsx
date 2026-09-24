@@ -8,6 +8,7 @@ import { Hint } from "@/components/Hint";
 import { Button } from "@/components/ui/app-button";
 import { ProgressBar } from "@/components/ProgressBar";
 import { TenseTypeBadge } from "@/components/TenseTypeBadge";
+import { TimelineDiagram } from "./TimelineDiagram";
 import { useGame } from "@/lib/gamification";
 import {
   ErrorFinderInput,
@@ -79,6 +80,8 @@ export function ExerciseCard({
   const streak = game?.answerStreak ?? 0;
   // Подсказки типа времени показываем только в тренировке с подсказками.
   const showTypeHint = showHint && showFeedback;
+  // В смешанных модулях тип времени и есть ответ — показываем его только после проверки.
+  const isMixed = exercise.tense.startsWith("all-");
 
   return (
     <section className="card-surface p-5 sm:p-6">
@@ -108,11 +111,13 @@ export function ExerciseCard({
         </div>
       ) : null}
 
-      {showTypeHint && exercise.targetTense ? (
+      {showTypeHint && exercise.targetTense && (!isMixed || checked) ? (
         <div className="mt-4">
           <TenseTypeBadge tenseId={exercise.targetTense} />
         </div>
       ) : null}
+
+      {exercise.timeline ? <TimelineDiagram spec={exercise.timeline} /> : null}
 
       <p className="sentence-box my-5">{exercise.question}</p>
 
