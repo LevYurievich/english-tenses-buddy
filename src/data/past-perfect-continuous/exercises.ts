@@ -579,7 +579,6 @@ export const PAST_PERFECT_CONTINUOUS_EXERCISES: Exercise[] = [
     acceptableAnswers: [
       "Tom had been studying for two hours when his friend arrived.",
       "Tom had been studying for two hours when his friend came.",
-      "Tom had been studying for two hours when his friend came.",
     ],
     hint: "had been + V-ing + for two hours.",
     explanation: "Tom had been studying for two hours when his friend arrived.",
