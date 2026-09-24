@@ -37,7 +37,10 @@ export function ExerciseCard({
   showHint = true,
   showFeedback = true,
   nextLabel = "Дальше",
+  mixed = false,
 }: {
+  /** Смешанная тренировка: тип времени показываем только после ответа. */
+  mixed?: boolean;
   exercise: Exercise;
   index: number;
   total: number;
@@ -81,7 +84,7 @@ export function ExerciseCard({
   // Подсказки типа времени показываем только в тренировке с подсказками.
   const showTypeHint = showHint && showFeedback;
   // В смешанных модулях тип времени и есть ответ — показываем его только после проверки.
-  const isMixed = exercise.tense.startsWith("all-");
+  const isMixed = mixed || exercise.tense.startsWith("all-");
 
   return (
     <section className="card-surface p-5 sm:p-6">

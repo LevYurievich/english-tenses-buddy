@@ -56,6 +56,9 @@ function MistakesPage() {
         <p className="mt-2 text-muted-foreground">
           Ошибки показывают, что стоит потренировать.
         </p>
+        <Link to="/review" className="mt-3 inline-block rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground">
+          🔁 Потренировать мои ошибки
+        </Link>
       </header>
 
       {!byTense.length ? (

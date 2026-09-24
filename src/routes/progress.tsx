@@ -44,7 +44,7 @@ function ProgressPage() {
       <header>
         <h1 className="text-3xl">Твой прогресс</h1>
         <p className="mt-2 text-muted-foreground">
-          Прогресс сохраняется в этом браузере — можно вернуться позже.
+          ⓘ Прогресс хранится на этом устройстве в браузере. Регистрация не требуется.
         </p>
       </header>
 
