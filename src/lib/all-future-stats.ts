@@ -71,7 +71,7 @@ export function futureLevelProgress(state: ProgressState | null) {
   const done = state ? getTenseProgress(state, ALL_FUTURE_ID).doneExercises : [];
   return FUTURE_LEVELS.map((level) => ({
     id: level.id,
-    title: level.title,
+    title: `Уровень ${level.id}`,
     done: level.exercises.filter((e) => done.includes(e.id)).length,
     total: level.exercises.length,
   }));
