@@ -104,14 +104,14 @@ export type CoordItem = {
   variants?: { answers: string[]; note: string }[];
 };
 
-const HINTS: Record<Meaning, string> = {
+export const HINTS: Record<Meaning, string> = {
   simple: "Спроси себя: это обычность, факт или просто событие?",
   process: "Есть ли конкретный момент, в который что-то идёт?",
   result: "Что уже готово к точке отсчёта?",
   duration: "Есть ли вопрос «как долго» до точки?",
 };
 
-const CATEGORY_BY_TENSE: Record<TenseKey, ErrorCategory> = {
+export const CATEGORY_BY_TENSE: Record<TenseKey, ErrorCategory> = {
   "present-simple": "simple_vs_continuous",
   "present-continuous": "simple_vs_continuous",
   "present-perfect": "present_perfect_vs_past_simple",
