@@ -321,6 +321,7 @@ export const PRESENT_SIMPLE_EXERCISES: Exercise[] = [
       "He doesn't play football.",
       "He does not play football.",
       "He doesn't play soccer.",
+      "He does not play soccer.",
     ],
     hint: "Отрицание с doesn't + V1.",
     explanation: "He → doesn't, а глагол в V1: He doesn't play football.",

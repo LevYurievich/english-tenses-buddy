@@ -130,7 +130,7 @@ export const PRESENT_PERFECT_REASONING: Record<string, Reasoning> = {
       { kind: "who", text: "Tom = he → has." },
       { kind: "form", text: "write → wrote → written. V3 = written." },
     ],
-    result: "Tom has written three letters today.",
+    result: "It's only 11 a.m., but Tom has written three letters today.",
     wrongAnswers: [{ answer: "has wrote", text: "wrote — это V2. После has нужен written." }],
   },
   "pp-fb-5": {
@@ -294,11 +294,11 @@ export const PRESENT_PERFECT_REASONING: Record<string, Reasoning> = {
     title: "Почему My brother has broken my computer?",
     chain: ["компьютер сломан", "результат сейчас", "Present Perfect", F, "has broken"],
     steps: [
-      { kind: "what", text: "Сейчас компьютер сломан — важен результат." },
+      { kind: "what", text: "«И теперь он не работает» — результат важен сейчас." },
       { kind: "who", text: "My brother = he → has." },
       { kind: "form", text: "break → broke → broken." },
     ],
-    result: "My brother has broken my computer.",
+    result: "My brother has broken my computer, and now it doesn't work.",
   },
 
   "pp-sit-1": {
