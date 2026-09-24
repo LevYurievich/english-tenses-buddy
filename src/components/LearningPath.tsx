@@ -181,10 +181,17 @@ export const PATH_STEPS: Step[] = [
     to: "/all-future",
     kind: "challenge",
   },
+  {
+    id: "coordinates",
+    title: "Координаты времени",
+    subtitle: "ГДЕ? + ЧТО? = одно из 12 времён",
+    to: "/coordinates",
+    kind: "tense",
+  },
 ];
 
 /** Следующая остановка маршрута — пока закрыта. */
-const LOCKED_PAST = ["All 12 Tenses"];
+const LOCKED_PAST = ["All 12 Tenses", "Final Challenge"];
 
 export type StepStatus = "done" | "current" | "open";
 

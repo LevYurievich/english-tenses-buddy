@@ -62,6 +62,13 @@ const CARDS = [
     id: "all-past",
   },
   {
+    to: "/coordinates" as const,
+    icon: "🧭",
+    title: "Как выбрать время из 12?",
+    description: "Две координаты: ГДЕ? и ЧТО?",
+    id: "coordinates",
+  },
+  {
     to: "/all-future" as const,
     icon: "🔮",
     title: "Все времена Future",

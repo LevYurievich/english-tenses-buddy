@@ -36,6 +36,7 @@ function MistakesPage() {
     { id: "all-present", title: "Все Present", available: true, path: "/all-present" },
     { id: "all-past", title: "Все времена Past", available: true, path: "/all-past" },
     { id: "all-future", title: "Все времена Future", available: true, path: "/all-future" },
+    { id: "coordinates", title: "Координаты времени", available: true, path: "/coordinates" },
   ];
 
   const byTense = groups.map((tense) => {
