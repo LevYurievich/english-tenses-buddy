@@ -57,7 +57,7 @@ export const PATH_STEPS: Step[] = [
   },
   {
     id: "all-present",
-    title: "Испытание Present",
+    title: "Present Challenge",
     subtitle: "Сам выбираешь время по смыслу",
     to: "/all-present",
     kind: "challenge",
