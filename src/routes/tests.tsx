@@ -40,6 +40,11 @@ const TESTS = [
     to: "/learn/past-perfect-continuous" as const,
   },
   { id: "future-simple", title: "Future Simple", to: "/learn/future-simple" as const },
+  {
+    id: "future-continuous",
+    title: "Future Continuous",
+    to: "/learn/future-continuous" as const,
+  },
 ];
 
 function TestsPage() {

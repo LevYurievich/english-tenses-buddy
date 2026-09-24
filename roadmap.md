@@ -67,3 +67,12 @@
 - Маршруты /learn/future-simple и /compare/future — вводный модуль WILL vs BE GOING TO vs PRESENT CONTINUOUS (12 заданий, оговорка о неабсолютных границах).
 - Карта «Машина времени» обновлена: PAST ✓ ← PRESENT ✓ → FUTURE ●, зона Future открыта на Future Simple.
 - Дальше (не начато): Future Continuous, Future Perfect, Future Perfect Continuous, All Future Tenses.
+
+## FUTURE CONTINUOUS + FUTURE SIMPLE vs FUTURE CONTINUOUS (выполнено)
+- Теория (15 карточек): смысл «процесс в определённый момент будущего», вопрос ЧТО БУДЕТ ПРОИСХОДИТЬ В ТОТ МОМЕНТ?, временные линии (момент, процесс вокруг момента, football), мнемоника ЗАГЛЯНИ В БУДУЩЕЕ → WILL → BE → ING, связь с Present/Past Continuous, визуальная система Continuous, WILL BE не меняется, утверждение/отрицание/вопрос/WH, this time tomorrow как подсказка (не правило), естественный ход событий, вежливый вопрос о планах, напоминание про -ing с кнопкой повтора, типичные ошибки, сравнение с Future Simple и с Present Continuous for future, мини-шпаргалка.
+- Мини-тренировка «Загляни в будущее» (6), основная тренировка 35 заданий (формы, выбор формы, вопросы, отрицания, timeline, Future Simple vs Future Continuous, поиск ошибки, сборка, перевод, ситуации), Continuous family mini-training (9), итоговый тест 15 новых заданий.
+- «Почему?»: КОГДА → есть момент? → событие или процесс? → WILL → BE → V-ING; альтернативы для неоднозначных контекстов.
+- 9 новых категорий ошибок (missing_be_future_continuous, wrong_ing_future_continuous, will_be_plus_v1, will_be_plus_v3, future_simple_vs_continuous, future_continuous_question_order, future_continuous_negative, wrong_future_reference_point, continuous_family_confusion). Достижение «Заглянул в будущее».
+- Маршруты /learn/future-continuous (вкладки: теория, тренировка, Continuous family, тест, мои ошибки) и /compare/future-continuous (15 новых сравнительных заданий, механика «Поставь камеру», оговорка про неоднозначность).
+- Карта «Машина времени», учебный путь, «Сравниваю», «Проверяю себя» и «Тренируюсь» обновлены; следующая остановка — Future Perfect.
+- Дальше (не начато): Future Perfect, Future Perfect Continuous, All Future Tenses.

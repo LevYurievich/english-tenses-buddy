@@ -35,6 +35,7 @@ function ComparePage() {
   const percentPastPerfect = percentFor(progress, "compare-past-perfect");
   const percentPfc = percentFor(progress, "compare-past-perfect-continuous");
   const percentFuture = percentFor(progress, "compare-future");
+  const percentFutureContinuous = percentFor(progress, "compare-future-continuous");
 
   return (
     <div className="space-y-6">
@@ -175,6 +176,25 @@ function ComparePage() {
           {percentFuture > 0 ? "Продолжить" : "Начать"}
         </Link>
       </article>
+      <article className="card-surface flex flex-col gap-3 p-5">
+        <div className="flex items-start justify-between gap-2">
+          <h2 className="text-lg">Future Simple vs Future Continuous</h2>
+          <span className="rounded-full bg-success/15 px-2.5 py-1 text-[11px] font-bold text-success">
+            Доступно
+          </span>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          ЧТО ПРОИЗОЙДЁТ? → WILL + V1 • ЧТО БУДЕТ ПРОИСХОДИТЬ В ТОТ МОМЕНТ? → WILL BE + V-ING
+        </p>
+        <ProgressBar value={percentFutureContinuous} label="Прогресс" />
+        <Link
+          to="/compare/future-continuous"
+          className="mt-1 inline-flex items-center justify-center rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition hover:brightness-110"
+        >
+          {percentFutureContinuous > 0 ? "Продолжить" : "Начать"}
+        </Link>
+      </article>
+
 
 
       <section className="card-surface space-y-3 p-5">
