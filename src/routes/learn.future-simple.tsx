@@ -77,13 +77,13 @@ function FutureSimplePage() {
         <ProgressBar value={percent} label="Прогресс урока" />
       </header>
 
-      <div className="flex gap-2 rounded-xl bg-muted p-1.5">
+      <div className="flex gap-2 overflow-x-auto rounded-xl bg-muted p-1.5">
         {TABS.map((t) => (
           <button
             key={t.id}
             type="button"
             onClick={() => go(t.id)}
-            className={`flex-1 rounded-lg px-3 py-2 text-sm font-bold transition ${
+            className={`flex-1 shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-bold transition ${
               tab === t.id ? "bg-card text-primary shadow-sm" : "text-muted-foreground"
             }`}
           >

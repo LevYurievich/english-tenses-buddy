@@ -86,7 +86,7 @@ function PastPerfectContinuousPage() {
             key={t.id}
             type="button"
             onClick={() => go(t.id)}
-            className={`flex-1 rounded-lg px-3 py-2 text-sm font-bold transition ${
+            className={`flex-1 shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-bold transition ${
               tab === t.id ? "bg-card text-primary shadow-sm" : "text-muted-foreground"
             }`}
           >
