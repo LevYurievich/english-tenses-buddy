@@ -113,7 +113,7 @@ export function futureRecommendations(results: Record<string, boolean>): string[
     texts.push(`«${s.title}» — здесь чаще всего были ошибки. Потренируй именно это различие.`);
   });
   if (!texts.length) {
-    texts.push("Пока всё ровно: времена прошлого ты выбираешь уверенно. Попробуй Past Challenge.");
+    texts.push("Пока всё ровно: времена будущего ты выбираешь уверенно. Попробуй Future Challenge.");
   }
   return texts;
 }
