@@ -197,8 +197,6 @@ export const PATH_STEPS: Step[] = [
   },
 ];
 
-/** Следующая остановка маршрута — пока закрыта. */
-const LOCKED_PAST = ["Final Challenge"];
 
 export type StepStatus = "done" | "current" | "open";
 
@@ -275,25 +273,14 @@ export function LearningPath({ state }: { state: ProgressState | null }) {
         })}
       </ol>
 
-      <ul className="mt-2 space-y-2">
-        {LOCKED_PAST.map((title) => (
-          <li
-            key={title}
-            className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-dashed border-border p-3 sm:p-4"
-          >
-            <span
-              aria-hidden
-              className="grid size-8 shrink-0 place-items-center rounded-full border-2 border-border bg-muted text-sm"
-            >
-              🔒
-            </span>
-            <span className="min-w-0 truncate font-display font-bold text-muted-foreground">
-              {title}
-            </span>
-            <span className="text-xs font-bold text-muted-foreground">Скоро</span>
-          </li>
-        ))}
-      </ul>
+      <Link
+        to="/final"
+        className="mt-2 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border-2 border-primary/40 p-3 sm:p-4"
+      >
+        <span aria-hidden className="grid size-8 shrink-0 place-items-center rounded-full border-2 border-primary bg-primary/10 text-sm">🏁</span>
+        <span className="min-w-0 truncate font-display font-bold">Final Challenge</span>
+        <span className="text-xs font-bold text-primary">Открыто</span>
+      </Link>
 
       <div className="mt-5 rounded-2xl border border-dashed border-border p-4">
         <p className="text-xs font-bold tracking-widest text-muted-foreground">
@@ -302,7 +289,7 @@ export function LearningPath({ state }: { state: ProgressState | null }) {
         <p className="mt-2 text-sm text-muted-foreground">
           {steps.every((s) => s.status === "done")
             ? "PAST ✓ PRESENT ✓ FUTURE ✓ — три временные зоны пройдены. Следующая остановка: Final Challenge."
-            : "Маршрут открыт до Испытания Future. Final Challenge пока закрыт."}
+            : "Final Challenge открыт в любой момент — это проверка, а не экзамен."}
         </p>
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
           <TenseTypeBadge type="simple" />

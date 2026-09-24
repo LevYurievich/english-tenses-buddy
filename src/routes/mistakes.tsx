@@ -38,6 +38,7 @@ function MistakesPage() {
     { id: "all-future", title: "Все времена Future", available: true, path: "/all-future" },
     { id: "coordinates", title: "Координаты времени", available: true, path: "/coordinates" },
     { id: "all-12", title: "Все 12 времён", available: true, path: "/all-12" },
+    { id: "final-challenge", title: "Final Challenge", available: true, path: "/final" },
   ];
 
   const byTense = groups.map((tense) => {

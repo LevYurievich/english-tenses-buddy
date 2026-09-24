@@ -76,6 +76,13 @@ const CARDS = [
     id: "all-12",
   },
   {
+    to: "/final" as const,
+    icon: "🏁",
+    title: "Final Challenge",
+    description: "30 заданий на все 12 времён — без подсказок",
+    id: "final-challenge",
+  },
+  {
     to: "/all-future" as const,
     icon: "🔮",
     title: "Все времена Future",
