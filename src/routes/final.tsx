@@ -240,7 +240,7 @@ function Results({ results, onAgain }: { results: QuestionResult[]; onAgain: () 
           {wrong.map((r) => (
             <div key={r.q.id} className="card-surface space-y-3 p-4 text-sm sm:p-5">
               {r.q.prompt ? <p className="italic text-muted-foreground">{r.q.prompt}</p> : null}
-              {r.items[0]!.context?.length && r.q.kind !== "two" ? <p>{r.items[0]!.context.join(" ")}</p> : null}
+              {r.items[0]!.item.context?.length && r.q.kind !== "two" ? <p>{r.items[0]!.item.context.join(" ")}</p> : null}
               {r.items.filter((x) => !x.analysis.correct).map((x) => (
                 <div key={x.item.id} className="space-y-1 border-t border-border pt-2">
                   <p className="font-medium">{withVerb(x.item)}</p>
