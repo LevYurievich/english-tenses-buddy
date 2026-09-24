@@ -100,7 +100,6 @@ export function Heatmap({ d }: { d: Diagnosis }) {
 export function MistakeGroups({ state, bank, onTrain }: { state: CoordState | null; bank: CoordItem[]; onTrain: (focus: string) => void }) {
   const byId = new Map(bank.map((i) => [i.id, i]));
   const wrong = Object.entries(state?.attempts ?? {})
-    .filter(([, a]) => !a.correct && byId.has(a && ([...byId.keys()].find((k) => k === a.target) ?? "") ? "" : ""))
     .map(([id, a]) => ({ id, a, item: byId.get(id) }))
     .filter((x) => x.item && !x.a.correct);
   const zone = wrong.filter((x) => x.a.coordOk === false);
